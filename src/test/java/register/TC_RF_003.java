@@ -10,10 +10,10 @@ import org.testng.annotations.Test;
 
 import utils.CommonUtilities;
 
-public class TC_RF_001 {
-
+public class TC_RF_003 {
+	
 	@Test
-	public void verifyRegisteringAccountUsingMandatoryFields() {
+	public void verifyRegistringAccountUsingAllFields() {
 		
 		WebDriver driver = new ChromeDriver();
 		driver.manage().window().maximize();
@@ -29,6 +29,7 @@ public class TC_RF_001 {
 		driver.findElement(By.id("input-telephone")).sendKeys("1234567890");
 		driver.findElement(By.id("input-password")).sendKeys("12345");
 		driver.findElement(By.id("input-confirm")).sendKeys("12345");
+		driver.findElement(By.xpath("//input[@name='newsletter'][@value='1']")).click();
 		driver.findElement(By.name("agree")).click();
 		driver.findElement(By.xpath("//input[@value='Continue']")).click();
 		
@@ -52,9 +53,7 @@ public class TC_RF_001 {
 		Assert.assertTrue(driver.findElement(By.linkText("Edit your account information")).isDisplayed());
 		
 		driver.quit();
-		
 	}
-	
 	
 
 }

@@ -1,23 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="0" total="2" passed="2" failed="0" skipped="0">
+<testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2024-11-04T20:24:01 IST" name="Suite" finished-at="2024-11-04T20:24:16 IST" duration-ms="14976">
+  <suite started-at="2024-11-05T20:42:05 IST" name="Default suite" finished-at="2024-11-05T20:42:34 IST" duration-ms="28245">
     <groups>
     </groups>
-    <test started-at="2024-11-04T20:24:01 IST" name="Test" finished-at="2024-11-04T20:24:16 IST" duration-ms="14976">
-      <class name="register.TC_RF_001">
-        <test-method signature="verifyRegisteringAccountUsingMandatoryFields()[pri:0, instance:register.TC_RF_001@4d5650ae]" started-at="2024-11-04T20:24:01 IST" name="verifyRegisteringAccountUsingMandatoryFields" finished-at="2024-11-04T20:24:09 IST" duration-ms="7725" status="PASS">
+    <test started-at="2024-11-05T20:42:05 IST" name="Default test" finished-at="2024-11-05T20:42:34 IST" duration-ms="28245">
+      <class name="register.TC_RF_002">
+        <test-method signature="verifyThankYourConfirmationEmailOnSuccessfulRegistration()[pri:0, instance:register.TC_RF_002@368247b9]" started-at="2024-11-05T20:42:06 IST" name="verifyThankYourConfirmationEmailOnSuccessfulRegistration" finished-at="2024-11-05T20:42:34 IST" duration-ms="28173" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- verifyRegisteringAccountUsingMandatoryFields -->
-      </class> <!-- register.TC_RF_001 -->
-      <class name="register.TC_RF_003">
-        <test-method signature="verifyRegistringAccountUsingAllFields()[pri:0, instance:register.TC_RF_003@41a0aa7d]" started-at="2024-11-04T20:24:09 IST" name="verifyRegistringAccountUsingAllFields" finished-at="2024-11-04T20:24:16 IST" duration-ms="7150" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- verifyRegistringAccountUsingAllFields -->
-      </class> <!-- register.TC_RF_003 -->
-    </test> <!-- Test -->
-  </suite> <!-- Suite -->
+        </test-method> <!-- verifyThankYourConfirmationEmailOnSuccessfulRegistration -->
+      </class> <!-- register.TC_RF_002 -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
 </testng-results>

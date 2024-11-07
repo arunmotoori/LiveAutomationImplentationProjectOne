@@ -2,16 +2,16 @@
 <testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2024-11-05T20:42:05 IST" name="Default suite" finished-at="2024-11-05T20:42:34 IST" duration-ms="28245">
+  <suite started-at="2024-11-07T20:07:25 IST" name="Default suite" finished-at="2024-11-07T20:07:33 IST" duration-ms="8248">
     <groups>
     </groups>
-    <test started-at="2024-11-05T20:42:05 IST" name="Default test" finished-at="2024-11-05T20:42:34 IST" duration-ms="28245">
-      <class name="register.TC_RF_002">
-        <test-method signature="verifyThankYourConfirmationEmailOnSuccessfulRegistration()[pri:0, instance:register.TC_RF_002@368247b9]" started-at="2024-11-05T20:42:06 IST" name="verifyThankYourConfirmationEmailOnSuccessfulRegistration" finished-at="2024-11-05T20:42:34 IST" duration-ms="28173" status="PASS">
+    <test started-at="2024-11-07T20:07:25 IST" name="Default test" finished-at="2024-11-07T20:07:33 IST" duration-ms="8248">
+      <class name="register.TC_RF_006">
+        <test-method signature="verifyRegisteringAccountByNotSubscribingToNewsletter()[pri:0, instance:register.TC_RF_006@4b45a2f5]" started-at="2024-11-07T20:07:25 IST" name="verifyRegisteringAccountByNotSubscribingToNewsletter" finished-at="2024-11-07T20:07:33 IST" duration-ms="8202" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- verifyThankYourConfirmationEmailOnSuccessfulRegistration -->
-      </class> <!-- register.TC_RF_002 -->
+        </test-method> <!-- verifyRegisteringAccountByNotSubscribingToNewsletter -->
+      </class> <!-- register.TC_RF_006 -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>

@@ -2,16 +2,16 @@
 <testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2024-11-12T20:13:54 IST" name="Default suite" finished-at="2024-11-12T20:14:03 IST" duration-ms="8695">
+  <suite started-at="2024-11-20T22:10:27 IST" name="Default suite" finished-at="2024-11-20T22:10:32 IST" duration-ms="5394">
     <groups>
     </groups>
-    <test started-at="2024-11-12T20:13:54 IST" name="Default test" finished-at="2024-11-12T20:14:03 IST" duration-ms="8695">
-      <class name="register.TC_RF_010">
-        <test-method signature="verifyRegisteringAccountUsingInvalidEmail()[pri:0, instance:register.TC_RF_010@f09733f]" started-at="2024-11-12T20:13:54 IST" name="verifyRegisteringAccountUsingInvalidEmail" finished-at="2024-11-12T20:14:03 IST" duration-ms="8648" status="PASS">
+    <test started-at="2024-11-20T22:10:27 IST" name="Default test" finished-at="2024-11-20T22:10:32 IST" duration-ms="5394">
+      <class name="register.TC_RF_013">
+        <test-method signature="verifyRegisterAccountPagePlaceholders()[pri:0, instance:register.TC_RF_013@4b45a2f5]" started-at="2024-11-20T22:10:27 IST" name="verifyRegisterAccountPagePlaceholders" finished-at="2024-11-20T22:10:32 IST" duration-ms="5357" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- verifyRegisteringAccountUsingInvalidEmail -->
-      </class> <!-- register.TC_RF_010 -->
+        </test-method> <!-- verifyRegisterAccountPagePlaceholders -->
+      </class> <!-- register.TC_RF_013 -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>

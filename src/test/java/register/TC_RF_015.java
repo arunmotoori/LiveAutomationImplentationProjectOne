@@ -8,6 +8,7 @@ import java.sql.Statement;
 import java.time.Duration;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
@@ -39,6 +40,9 @@ public class TC_RF_015 {
 		
 		String enteredPasswordData = "12345";
 		driver.findElement(By.id("input-password")).sendKeys(enteredPasswordData);
+		
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
+		jse.executeScript("window.scrollTo(0, document.body.scrollHeight);");
 		
 		driver.findElement(By.id("input-newsletter")).click();
 		driver.findElement(By.name("agree")).click();

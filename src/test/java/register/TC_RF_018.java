@@ -1,15 +1,22 @@
 package register;
 
+import java.io.File;
+import java.io.IOException;
 import java.time.Duration;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.io.FileHandler;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
+
+import utils.CommonUtilities;
 
 public class TC_RF_018 {
 	
@@ -21,7 +28,7 @@ public class TC_RF_018 {
 	}
 	
 	@Test
-	public void verifyHeightWidthNumberOfCharacters() {
+	public void verifyHeightWidthNumberOfCharacters() throws IOException {
 		
 	    driver = new ChromeDriver();
 		driver.manage().window().maximize();
@@ -235,7 +242,34 @@ public class TC_RF_018 {
 		}
 		Assert.assertTrue(passwordWarningStatus);
 		
+		//Password Confirm Field check
+		WebElement passwordConfirmField = driver.findElement(By.id("input-confirm"));
+		String actualPasswordConfirmFieldHeight = passwordConfirmField.getCssValue("height");
+		Assert.assertEquals(actualPasswordConfirmFieldHeight,expectedHeight);
+		String actualPasswordConfirmFieldWidth = passwordConfirmField.getCssValue("width");
+		Assert.assertEquals(actualPasswordConfirmFieldWidth,expectedWidth);
 		
+		//Continue Button
+		WebElement continueButton = driver.findElement(By.xpath("//input[@value='Continue']"));
+		String actualButtonTextColor = continueButton.getCssValue("color");
+		Assert.assertEquals(actualButtonTextColor,"rgba(255, 255, 255, 1)");
+		String actualButtonBackgroundColor = continueButton.getCssValue("background-color");
+		Assert.assertEquals(actualButtonBackgroundColor,"rgba(34, 154, 200, 1)");
+		String actualButtonFontSize = continueButton.getCssValue("font-size");
+		Assert.assertEquals(actualButtonFontSize,"12px");
+		
+		driver.findElement(By.xpath("//span[text()='My Account']")).click();
+		driver.findElement(By.linkText("Register")).click();
+		
+		TakesScreenshot ts = (TakesScreenshot)driver;
+		File srcScreenshot = ts.getScreenshotAs(OutputType.FILE);
+		try {
+			FileHandler.copy(srcScreenshot,new File(System.getProperty("user.dir")+"\\Screenshots\\AcutalRAPageAligment.png"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		Assert.assertFalse(CommonUtilities.compareTwoScreenshots(System.getProperty("user.dir")+"\\Screenshots\\AcutalRAPageAligment.png", System.getProperty("user.dir")+"\\Screenshots\\ExpectedRAPageAligment.png"));
 		
 	}
 

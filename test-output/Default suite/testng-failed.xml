@@ -3,12 +3,12 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="register.TC_RF_018">
+      <class name="register.TC_RF_019">
         <methods>
-          <include name="verifyHeightWidthNumberOfCharacters"/>
+          <include name="verifyRegisterAccountUsingLeadingAndTrailingSpaces"/>
           <include name="teardown"/>
         </methods>
-      </class> <!-- register.TC_RF_018 -->
+      </class> <!-- register.TC_RF_019 -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

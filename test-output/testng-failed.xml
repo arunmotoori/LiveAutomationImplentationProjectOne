@@ -3,11 +3,21 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="register.TC_RF_023">
+      <class name="tests.Register">
         <methods>
-          <include name="verifyRegisterAccountPageNavigations"/>
+          <include name="verifyRegisteringAccountUsingPasswordsWhichAreNotFollowingPasswordComplexityStandards" invocation-numbers="0 1 2 3 4"/>
+          <include name="verifyRegisterAccountUI"/>
+          <include name="teardown"/>
+          <include name="verifyMandatoryFieldsInRegisterAccountPage"/>
+          <include name="verifyRegisteringAccountUsingInvalidTelephoneNumber"/>
+          <include name="verifyRegisterAccountUsingLeadingAndTrailingSpaces"/>
+          <include name="verifyHeightWidthNumberOfCharacters"/>
+          <include name="verifyDataBaseTestingForRegisterAccount"/>
+          <include name="setup"/>
+          <include name="verifyRegisteringAccountByEnteringOnlySpaces"/>
+          <include name="verifyRegisteringAccountUsingInvalidEmail"/>
         </methods>
-      </class> <!-- register.TC_RF_023 -->
+      </class> <!-- tests.Register -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

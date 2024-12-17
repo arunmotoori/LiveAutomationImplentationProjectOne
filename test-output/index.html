@@ -50,7 +50,7 @@
               <ul>
                 <li>
                   <a href="#" panel-name="test-xml-Default_suite" class="navigator-link ">
-                    <span>C:\Users\arunm\AppData\Local\Temp\testng-eclipse--1902245037\testng-customsuite.xml</span>
+                    <span>C:\Users\arunm\AppData\Local\Temp\testng-eclipse--1800888489\testng-customsuite.xml</span>
                   </a> <!-- navigator-link  -->
                 </li>
                 <li>
@@ -92,7 +92,7 @@
               <div class="suite-section-content">
                 <ul>
                   <li>
-                    <span class="method-stats">3 methods,   3 passed</span>
+                    <span class="method-stats">1 method,   1 passed</span>
                   </li>
                   <li>
                     <span class="method-list-title passed">Passed methods</span>
@@ -103,17 +103,7 @@
                     <div class="method-list-content passed suite-Default_suite">
                       <span>
                         <img src="passed.png" width="3%"/>
-                        <a href="#" panel-name="suite-Default_suite" title="register.TC_RF_027" class="method navigator-link" hash-for-method="verifyRegisterAccountInAllEnvironments(firefox)">verifyRegisterAccountInAllEnvironments(firefox)</a> <!-- method navigator-link -->
-                      </span>
-                      <br/>
-                      <span>
-                        <img src="passed.png" width="3%"/>
-                        <a href="#" panel-name="suite-Default_suite" title="register.TC_RF_027" class="method navigator-link" hash-for-method="verifyRegisterAccountInAllEnvironments(edge)">verifyRegisterAccountInAllEnvironments(edge)</a> <!-- method navigator-link -->
-                      </span>
-                      <br/>
-                      <span>
-                        <img src="passed.png" width="3%"/>
-                        <a href="#" panel-name="suite-Default_suite" title="register.TC_RF_027" class="method navigator-link" hash-for-method="verifyRegisterAccountInAllEnvironments(chrome)">verifyRegisterAccountInAllEnvironments(chrome)</a> <!-- method navigator-link -->
+                        <a href="#" panel-name="suite-Default_suite" title="tests.Register" class="method navigator-link" hash-for-method="verifyRegisteringAccountUsingInvalidEmail">verifyRegisteringAccountUsingInvalidEmail</a> <!-- method navigator-link -->
                       </span>
                       <br/>
                     </div> <!-- method-list-content passed suite-Default_suite -->
@@ -131,31 +121,14 @@
           <div class="suite-Default_suite-class-passed">
             <div class="main-panel-header rounded-window-top">
               <img src="passed.png"/>
-              <span class="class-name">register.TC_RF_027</span>
+              <span class="class-name">tests.Register</span>
             </div> <!-- main-panel-header rounded-window-top -->
             <div class="main-panel-content rounded-window-bottom">
               <div class="method">
                 <div class="method-content">
-                  <a name="verifyRegisterAccountInAllEnvironments(firefox)">
-                  </a> <!-- verifyRegisterAccountInAllEnvironments(firefox) -->
-                  <span class="method-name">verifyRegisterAccountInAllEnvironments</span>
-                  <span class="parameters">(firefox)</span>
-                </div> <!-- method-content -->
-              </div> <!-- method -->
-              <div class="method">
-                <div class="method-content">
-                  <a name="verifyRegisterAccountInAllEnvironments(edge)">
-                  </a> <!-- verifyRegisterAccountInAllEnvironments(edge) -->
-                  <span class="method-name">verifyRegisterAccountInAllEnvironments</span>
-                  <span class="parameters">(edge)</span>
-                </div> <!-- method-content -->
-              </div> <!-- method -->
-              <div class="method">
-                <div class="method-content">
-                  <a name="verifyRegisterAccountInAllEnvironments(chrome)">
-                  </a> <!-- verifyRegisterAccountInAllEnvironments(chrome) -->
-                  <span class="method-name">verifyRegisterAccountInAllEnvironments</span>
-                  <span class="parameters">(chrome)</span>
+                  <a name="verifyRegisteringAccountUsingInvalidEmail">
+                  </a> <!-- verifyRegisteringAccountUsingInvalidEmail -->
+                  <span class="method-name">verifyRegisteringAccountUsingInvalidEmail</span>
                 </div> <!-- method-content -->
               </div> <!-- method -->
             </div> <!-- main-panel-content rounded-window-bottom -->
@@ -163,7 +136,7 @@
         </div> <!-- panel Default_suite -->
         <div panel-name="test-xml-Default_suite" class="panel">
           <div class="main-panel-header rounded-window-top">
-            <span class="header-content">C:\Users\arunm\AppData\Local\Temp\testng-eclipse--1902245037\testng-customsuite.xml</span>
+            <span class="header-content">C:\Users\arunm\AppData\Local\Temp\testng-eclipse--1800888489\testng-customsuite.xml</span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <pre>
@@ -172,7 +145,11 @@
 &lt;suite name=&quot;Default suite&quot; guice-stage=&quot;DEVELOPMENT&quot;&gt;
   &lt;test thread-count=&quot;5&quot; name=&quot;Default test&quot; verbose=&quot;2&quot;&gt;
     &lt;classes&gt;
-      &lt;class name=&quot;register.TC_RF_027&quot;/&gt;
+      &lt;class name=&quot;tests.Register&quot;&gt;
+        &lt;methods&gt;
+          &lt;include name=&quot;verifyRegisteringAccountUsingInvalidEmail&quot;/&gt;
+        &lt;/methods&gt;
+      &lt;/class&gt; &lt;!-- tests.Register --&gt;
     &lt;/classes&gt;
   &lt;/test&gt; &lt;!-- Default test --&gt;
 &lt;/suite&gt; &lt;!-- Default suite --&gt;
@@ -212,24 +189,16 @@ data.addColumn('number', 'Number');
 data.addColumn('string', 'Method');
 data.addColumn('string', 'Class');
 data.addColumn('number', 'Time (ms)');
-data.addRows(3);
+data.addRows(1);
 data.setCell(0, 0, 0)
-data.setCell(0, 1, 'verifyRegisterAccountInAllEnvironments')
-data.setCell(0, 2, 'register.TC_RF_027')
-data.setCell(0, 3, 10194);
-data.setCell(1, 0, 1)
-data.setCell(1, 1, 'verifyRegisterAccountInAllEnvironments')
-data.setCell(1, 2, 'register.TC_RF_027')
-data.setCell(1, 3, 9806);
-data.setCell(2, 0, 2)
-data.setCell(2, 1, 'verifyRegisterAccountInAllEnvironments')
-data.setCell(2, 2, 'register.TC_RF_027')
-data.setCell(2, 3, 7989);
+data.setCell(0, 1, 'verifyRegisteringAccountUsingInvalidEmail')
+data.setCell(0, 2, 'tests.Register')
+data.setCell(0, 3, 4002);
 window.suiteTableData['Default_suite']= { tableData: data, tableDiv: 'times-div-Default_suite'}
 return data;
 }
               </script>
-              <span class="suite-total-time">Total running time: 27 seconds</span>
+              <span class="suite-total-time">Total running time: 4 seconds</span>
               <div id="times-div-Default_suite">
               </div> <!-- times-div-Default_suite -->
             </div> <!-- times-div -->
@@ -244,9 +213,66 @@ return data;
         </div> <!-- panel -->
         <div panel-name="ignored-methods-Default_suite" class="panel">
           <div class="main-panel-header rounded-window-top">
-            <span class="header-content">0 ignored methods</span>
+            <span class="header-content">26 ignored methods</span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
+            <div class="ignored-class-div">
+              <span class="ignored-class-name">tests.Register</span>
+              <div class="ignored-methods-div">
+                <span class="ignored-method-name">verifyRegisterAccountUsingLeadingAndTrailingSpaces</span>
+                <br/>
+                <span class="ignored-method-name">verifyRegisterAccountPagePlaceholders</span>
+                <br/>
+                <span class="ignored-method-name">verifyRegisteringAccountUsingMandatoryFields</span>
+                <br/>
+                <span class="ignored-method-name">verifyRegisterAccountInAllEnvironments</span>
+                <br/>
+                <span class="ignored-method-name">verifyWarningMessageOfMandatoryFieldsInRegisterAccountPage</span>
+                <br/>
+                <span class="ignored-method-name">verifyRegisterAccountUI</span>
+                <br/>
+                <span class="ignored-method-name">verifyRegisteringAccountByNotSubscribingToNewsletter</span>
+                <br/>
+                <span class="ignored-method-name">verifyDifferentWaysOfNavigatingToRegisterAccountPage</span>
+                <br/>
+                <span class="ignored-method-name">verifyRegisteringAccountWithoutEnteringConfirmationPassword</span>
+                <br/>
+                <span class="ignored-method-name">verifyDataBaseTestingForRegisterAccount</span>
+                <br/>
+                <span class="ignored-method-name">verifyRegistringAccountUsingAllFields</span>
+                <br/>
+                <span class="ignored-method-name">verifyThankYourConfirmationEmailOnSuccessfulRegistration</span>
+                <br/>
+                <span class="ignored-method-name">verifyRegisteringAccountPasswordFieldsForSecurity</span>
+                <br/>
+                <span class="ignored-method-name">verifyRegisterAccountPageNavigations</span>
+                <br/>
+                <span class="ignored-method-name">verifyRegisterAccountWithExistingEmailAddress</span>
+                <br/>
+                <span class="ignored-method-name">verifyRegisterAccountPageBreadcrumbURLTitleHeading</span>
+                <br/>
+                <span class="ignored-method-name">verifyRegisteringAccountBySubscribingToNewsletter</span>
+                <br/>
+                <span class="ignored-method-name">verifyMandatoryFieldsInRegisterAccountPage</span>
+                <br/>
+                <span class="ignored-method-name">verifyRegisteringAccountByProvidingMismatchedPasswords</span>
+                <br/>
+                <span class="ignored-method-name">verifyRegisteringAccountUsingKeyboardKeys</span>
+                <br/>
+                <span class="ignored-method-name">verifyRegisteringAccountWithoutSelectingPrivacyPolicyCheckboxField</span>
+                <br/>
+                <span class="ignored-method-name">verifyRegisteringAccountUsingInvalidTelephoneNumber</span>
+                <br/>
+                <span class="ignored-method-name">verifyHeightWidthNumberOfCharacters</span>
+                <br/>
+                <span class="ignored-method-name">verifyRegisteringAccountUsingPasswordsWhichAreNotFollowingPasswordComplexityStandards</span>
+                <br/>
+                <span class="ignored-method-name">verifyRegisteringAccountByEnteringOnlySpaces</span>
+                <br/>
+                <span class="ignored-method-name">verifyRegisterAccountPrivacyPolicyField</span>
+                <br/>
+              </div> <!-- ignored-methods-div -->
+            </div> <!-- ignored-class-div -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->
         <div panel-name="chronological-Default_suite" class="panel">
@@ -255,19 +281,19 @@ return data;
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <div class="chronological-class">
-              <div class="chronological-class-name">register.TC_RF_027</div> <!-- chronological-class-name -->
-              <div class="test-method">
-                <span class="method-name">verifyRegisterAccountInAllEnvironments(chrome)</span>
+              <div class="chronological-class-name">tests.Register</div> <!-- chronological-class-name -->
+              <div class="configuration-method before">
+                <span class="method-name">setup</span>
                 <span class="method-start">0 ms</span>
-              </div> <!-- test-method -->
+              </div> <!-- configuration-method before -->
               <div class="test-method">
-                <span class="method-name">verifyRegisterAccountInAllEnvironments(firefox)</span>
-                <span class="method-start">7994 ms</span>
+                <span class="method-name">verifyRegisteringAccountUsingInvalidEmail</span>
+                <span class="method-start">14599 ms</span>
               </div> <!-- test-method -->
-              <div class="test-method">
-                <span class="method-name">verifyRegisterAccountInAllEnvironments(edge)</span>
-                <span class="method-start">17803 ms</span>
-              </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">teardown</span>
+                <span class="method-start">18634 ms</span>
+              </div> <!-- configuration-method after -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->
       </div> <!-- main-panel-root -->

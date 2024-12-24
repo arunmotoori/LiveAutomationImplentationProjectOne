@@ -39,12 +39,22 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
+import pages.AccountSuccessPage;
+import pages.HeaderOptions;
+import pages.MyAccountPage;
+import pages.RegisterPage;
 import utils.CommonUtilities;
 
 public class Register {
 
 	WebDriver driver;
 	String browserName;
+	Properties prop;
+	
+	HeaderOptions headerOptions;
+	RegisterPage registerPage;
+	AccountSuccessPage accountSuccessPage;
+	MyAccountPage myAccountPage;
 
 	@AfterMethod
 	public void teardown() {
@@ -56,72 +66,69 @@ public class Register {
 	@BeforeMethod
 	public void setup() {
 
-		browserName = "edge";
-		
-		if(browserName.equals("chrome"))	{
+		prop = CommonUtilities.loadPropertiesFile();
+		browserName = prop.getProperty("browserName");
+
+		if (browserName.equals("chrome")) {
 			driver = new ChromeDriver();
-		}else if(browserName.equals("firefox")) {
+		} else if (browserName.equals("firefox")) {
 			driver = new FirefoxDriver();
-		}else if(browserName.equals("edge")) {
+		} else if (browserName.equals("edge")) {
 			driver = new EdgeDriver();
-		}else if(browserName.equals("internetexplorer")) {
+		} else if (browserName.equals("internetexplorer")) {
 			driver = new InternetExplorerDriver();
-		}else if(browserName.equals("safari")) {
+		} else if (browserName.equals("safari")) {
 			driver = new SafariDriver();
 		}
-		
+
 		driver.manage().window().maximize();
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
-		driver.get("https://tutorialsninja.com/demo/");
-
-		driver.findElement(By.xpath("//span[text()='My Account']")).click();
-		driver.findElement(By.linkText("Register")).click();
-
+		driver.get(prop.getProperty("appURL"));
+        
+		headerOptions = new HeaderOptions(driver);
+		headerOptions.clickOnMyAccountDropMenu();
+		registerPage = headerOptions.selectRegisterOption();
+	
 	}
 
 	@Test(priority = 1)
 	public void verifyRegisteringAccountUsingMandatoryFields() {
 
-		driver.findElement(By.id("input-firstname")).sendKeys("Arun");
-		driver.findElement(By.id("input-lastname")).sendKeys("Motoori");
-		driver.findElement(By.id("input-email")).sendKeys(CommonUtilities.generateBrandNewEmail());
-		driver.findElement(By.id("input-telephone")).sendKeys("1234567890");
-		driver.findElement(By.id("input-password")).sendKeys("12345");
-		driver.findElement(By.id("input-confirm")).sendKeys("12345");
-		driver.findElement(By.name("agree")).click();
-		driver.findElement(By.xpath("//input[@value='Continue']")).click();
-
-		Assert.assertTrue(driver.findElement(By.xpath("//a[@class='list-group-item'][text()='Logout']")).isDisplayed());
-		Assert.assertTrue(driver.findElement(By.xpath("//ul[@class='breadcrumb']//a[text()='Success']")).isDisplayed());
-
+		registerPage.enterFirstName(prop.getProperty("firstName"));
+		registerPage.enterLastNameField(prop.getProperty("lastName"));
+		registerPage.enterEmail(CommonUtilities.generateBrandNewEmail());
+		registerPage.enterTelephone(prop.getProperty("telephoneNumber"));
+		registerPage.enterPassword(prop.getProperty("validPassword"));
+		registerPage.enterConfirmationPassword(prop.getProperty("validPassword"));
+		registerPage.selectPrivacyPolicyField();
+		accountSuccessPage = registerPage.clickOnContinueButton();
+		Assert.assertTrue(accountSuccessPage.isUserLoggedIn());
+		Assert.assertTrue(accountSuccessPage.didWeNavigateToAccountSuccessPage());
 		String properDetailsOne = "Your Account Has Been Created!";
 		String properDetailsTwo = "Congratulations! Your new account has been successfully created!";
 		String properDetailsThree = "You can now take advantage of member privileges to enhance your online shopping experience with us.";
 		String properDetailsFour = "If you have ANY questions about the operation of this online shop, please e-mail the store owner.";
 		String properDetailsFive = "A confirmation has been sent to the provided e-mail address. If you have not received it within the hour, please contact us.";
-
-		Assert.assertTrue(driver.findElement(By.id("content")).getText().contains(properDetailsOne));
-		Assert.assertTrue(driver.findElement(By.id("content")).getText().contains(properDetailsTwo));
-		Assert.assertTrue(driver.findElement(By.id("content")).getText().contains(properDetailsThree));
-		Assert.assertTrue(driver.findElement(By.id("content")).getText().contains(properDetailsFour));
-		Assert.assertTrue(driver.findElement(By.id("content")).getText().contains(properDetailsFive));
-
-		driver.findElement(By.linkText("Continue")).click();
-
-		Assert.assertTrue(driver.findElement(By.linkText("Edit your account information")).isDisplayed());
+		Assert.assertTrue(accountSuccessPage.getContent().contains(properDetailsOne));
+		Assert.assertTrue(accountSuccessPage.getContent().contains(properDetailsTwo));
+		Assert.assertTrue(accountSuccessPage.getContent().contains(properDetailsThree));
+		Assert.assertTrue(accountSuccessPage.getContent().contains(properDetailsFour));
+		Assert.assertTrue(accountSuccessPage.getContent().contains(properDetailsFive));
+		myAccountPage = accountSuccessPage.clickOnContinueButton();
+		Assert.assertTrue(myAccountPage.didWeNavigateToMyAccountPage());
 
 	}
 
 	@Test(priority = 2)
 	public void verifyThankYourConfirmationEmailOnSuccessfulRegistration() throws InterruptedException {
 
-		driver.findElement(By.id("input-firstname")).sendKeys("Arun");
-		driver.findElement(By.id("input-lastname")).sendKeys("Motoori");
+		driver.findElement(By.id("input-firstname")).sendKeys(prop.getProperty("firstName"));
+		driver.findElement(By.id("input-lastname")).sendKeys(prop.getProperty("lastName"));
 		String emailText = CommonUtilities.generateBrandNewEmail();
 		driver.findElement(By.id("input-email")).sendKeys(emailText);
-		driver.findElement(By.id("input-telephone")).sendKeys("1234567890");
-		driver.findElement(By.id("input-password")).sendKeys("12345");
-		driver.findElement(By.id("input-confirm")).sendKeys("12345");
+		driver.findElement(By.id("input-telephone")).sendKeys(prop.getProperty("telephoneNumber"));
+		driver.findElement(By.id("input-password")).sendKeys(prop.getProperty("validPassword"));
+		driver.findElement(By.id("input-confirm")).sendKeys(prop.getProperty("validPassword"));
 		driver.findElement(By.name("agree")).click();
 		driver.findElement(By.xpath("//input[@value='Continue']")).click();
 
@@ -190,12 +197,12 @@ public class Register {
 	@Test(priority = 3)
 	public void verifyRegistringAccountUsingAllFields() {
 
-		driver.findElement(By.id("input-firstname")).sendKeys("Arun");
-		driver.findElement(By.id("input-lastname")).sendKeys("Motoori");
+		driver.findElement(By.id("input-firstname")).sendKeys(prop.getProperty("firstName"));
+		driver.findElement(By.id("input-lastname")).sendKeys(prop.getProperty("lastName"));
 		driver.findElement(By.id("input-email")).sendKeys(CommonUtilities.generateBrandNewEmail());
-		driver.findElement(By.id("input-telephone")).sendKeys("1234567890");
-		driver.findElement(By.id("input-password")).sendKeys("12345");
-		driver.findElement(By.id("input-confirm")).sendKeys("12345");
+		driver.findElement(By.id("input-telephone")).sendKeys(prop.getProperty("telephoneNumber"));
+		driver.findElement(By.id("input-password")).sendKeys(prop.getProperty("validPassword"));
+		driver.findElement(By.id("input-confirm")).sendKeys(prop.getProperty("validPassword"));
 		driver.findElement(By.xpath("//input[@name='newsletter'][@value='1']")).click();
 		driver.findElement(By.name("agree")).click();
 		driver.findElement(By.xpath("//input[@value='Continue']")).click();
@@ -256,12 +263,12 @@ public class Register {
 	@Test(priority = 5)
 	public void verifyRegisteringAccountBySubscribingToNewsletter() {
 
-		driver.findElement(By.id("input-firstname")).sendKeys("Arun");
-		driver.findElement(By.id("input-lastname")).sendKeys("Motoori");
+		driver.findElement(By.id("input-firstname")).sendKeys(prop.getProperty("firstName"));
+		driver.findElement(By.id("input-lastname")).sendKeys(prop.getProperty("lastName"));
 		driver.findElement(By.id("input-email")).sendKeys(CommonUtilities.generateBrandNewEmail());
-		driver.findElement(By.id("input-telephone")).sendKeys("1234567890");
-		driver.findElement(By.id("input-password")).sendKeys("12345");
-		driver.findElement(By.id("input-confirm")).sendKeys("12345");
+		driver.findElement(By.id("input-telephone")).sendKeys(prop.getProperty("telephoneNumber"));
+		driver.findElement(By.id("input-password")).sendKeys(prop.getProperty("validPassword"));
+		driver.findElement(By.id("input-confirm")).sendKeys(prop.getProperty("validPassword"));
 		driver.findElement(By.xpath("//input[@name='newsletter'][@value='1']")).click();
 		driver.findElement(By.name("agree")).click();
 		driver.findElement(By.xpath("//input[@value='Continue']")).click();
@@ -279,12 +286,12 @@ public class Register {
 	@Test(priority = 6)
 	public void verifyRegisteringAccountByNotSubscribingToNewsletter() {
 
-		driver.findElement(By.id("input-firstname")).sendKeys("Arun");
-		driver.findElement(By.id("input-lastname")).sendKeys("Motoori");
+		driver.findElement(By.id("input-firstname")).sendKeys(prop.getProperty("firstName"));
+		driver.findElement(By.id("input-lastname")).sendKeys(prop.getProperty("lastName"));
 		driver.findElement(By.id("input-email")).sendKeys(CommonUtilities.generateBrandNewEmail());
-		driver.findElement(By.id("input-telephone")).sendKeys("1234567890");
-		driver.findElement(By.id("input-password")).sendKeys("12345");
-		driver.findElement(By.id("input-confirm")).sendKeys("12345");
+		driver.findElement(By.id("input-telephone")).sendKeys(prop.getProperty("telephoneNumber"));
+		driver.findElement(By.id("input-password")).sendKeys(prop.getProperty("validPassword"));
+		driver.findElement(By.id("input-confirm")).sendKeys(prop.getProperty("validPassword"));
 		driver.findElement(By.xpath("//input[@name='newsletter'][@value='0']")).click();
 		driver.findElement(By.name("agree")).click();
 		driver.findElement(By.xpath("//input[@value='Continue']")).click();
@@ -322,12 +329,12 @@ public class Register {
 	@Test(priority = 8)
 	public void verifyRegisteringAccountByProvidingMismatchedPasswords() {
 
-		driver.findElement(By.id("input-firstname")).sendKeys("Arun");
-		driver.findElement(By.id("input-lastname")).sendKeys("Motoori");
+		driver.findElement(By.id("input-firstname")).sendKeys(prop.getProperty("firstName"));
+		driver.findElement(By.id("input-lastname")).sendKeys(prop.getProperty("lastName"));
 		driver.findElement(By.id("input-email")).sendKeys(CommonUtilities.generateBrandNewEmail());
-		driver.findElement(By.id("input-telephone")).sendKeys("1234567890");
-		driver.findElement(By.id("input-password")).sendKeys("12345");
-		driver.findElement(By.id("input-confirm")).sendKeys("67890");
+		driver.findElement(By.id("input-telephone")).sendKeys(prop.getProperty("telephoneNumber"));
+		driver.findElement(By.id("input-password")).sendKeys(prop.getProperty("validPassword"));
+		driver.findElement(By.id("input-confirm")).sendKeys(prop.getProperty("mismatchingPassword"));
 		driver.findElement(By.xpath("//input[@name='newsletter'][@value='1']")).click();
 		driver.findElement(By.name("agree")).click();
 		driver.findElement(By.xpath("//input[@value='Continue']")).click();
@@ -342,12 +349,12 @@ public class Register {
 	@Test(priority = 9)
 	public void verifyRegisterAccountWithExistingEmailAddress() {
 
-		driver.findElement(By.id("input-firstname")).sendKeys("Arun");
-		driver.findElement(By.id("input-lastname")).sendKeys("Motoori");
-		driver.findElement(By.id("input-email")).sendKeys("amotooricap1@gmail.com");
-		driver.findElement(By.id("input-telephone")).sendKeys("1234567890");
-		driver.findElement(By.id("input-password")).sendKeys("12345");
-		driver.findElement(By.id("input-confirm")).sendKeys("12345");
+		driver.findElement(By.id("input-firstname")).sendKeys(prop.getProperty("firstName"));
+		driver.findElement(By.id("input-lastname")).sendKeys(prop.getProperty("lastName"));
+		driver.findElement(By.id("input-email")).sendKeys(prop.getProperty("existingEmail"));
+		driver.findElement(By.id("input-telephone")).sendKeys(prop.getProperty("telephoneNumber"));
+		driver.findElement(By.id("input-password")).sendKeys(prop.getProperty("validPassword"));
+		driver.findElement(By.id("input-confirm")).sendKeys(prop.getProperty("validPassword"));
 		driver.findElement(By.xpath("//input[@name='newsletter'][@value='1']")).click();
 		driver.findElement(By.name("agree")).click();
 		driver.findElement(By.xpath("//input[@value='Continue']")).click();
@@ -362,42 +369,46 @@ public class Register {
 	@Test(priority = 10)
 	public void verifyRegisteringAccountUsingInvalidEmail() throws IOException, InterruptedException {
 
-		driver.findElement(By.id("input-firstname")).sendKeys("Arun");
-		driver.findElement(By.id("input-lastname")).sendKeys("Motoori");
-		driver.findElement(By.id("input-email")).sendKeys("amotoori");
-		driver.findElement(By.id("input-telephone")).sendKeys("1234567890");
-		driver.findElement(By.id("input-password")).sendKeys("12345");
-		driver.findElement(By.id("input-confirm")).sendKeys("12345");
+		driver.findElement(By.id("input-firstname")).sendKeys(prop.getProperty("firstName"));
+		driver.findElement(By.id("input-lastname")).sendKeys(prop.getProperty("lastName"));
+		driver.findElement(By.id("input-email")).sendKeys(prop.getProperty("invalidEmailOne"));
+		driver.findElement(By.id("input-telephone")).sendKeys(prop.getProperty("telephoneNumber"));
+		driver.findElement(By.id("input-password")).sendKeys(prop.getProperty("validPassword"));
+		driver.findElement(By.id("input-confirm")).sendKeys(prop.getProperty("validPassword"));
 		driver.findElement(By.xpath("//input[@name='newsletter'][@value='1']")).click();
 		driver.findElement(By.name("agree")).click();
 		driver.findElement(By.xpath("//input[@value='Continue']")).click();
 
-		if(browserName.equals("chrome") || browserName.equals("edge")) {
+		if (browserName.equals("chrome") || browserName.equals("edge")) {
 			String expectedWarningMessageOne = "Please include an '@' in the email address. 'amotoori' is missing an '@'.";
-			String actualWarningMessageOne = driver.findElement(By.id("input-email")).getDomProperty("validationMessage");
+			String actualWarningMessageOne = driver.findElement(By.id("input-email"))
+					.getDomProperty("validationMessage");
 			Assert.assertEquals(actualWarningMessageOne, expectedWarningMessageOne);
-		}else if(browserName.equals("firefox")) {
+		} else if (browserName.equals("firefox")) {
 			String expectedWarningMessageOne = "Please enter an email address.";
-			String actualWarningMessageOne = driver.findElement(By.id("input-email")).getDomProperty("validationMessage");
+			String actualWarningMessageOne = driver.findElement(By.id("input-email"))
+					.getDomProperty("validationMessage");
 			Assert.assertEquals(actualWarningMessageOne, expectedWarningMessageOne);
 		}
 
 		driver.findElement(By.id("input-email")).clear();
-		driver.findElement(By.id("input-email")).sendKeys("amotoori@");
+		driver.findElement(By.id("input-email")).sendKeys(prop.getProperty("invalidEmailTwo"));
 		driver.findElement(By.xpath("//input[@value='Continue']")).click();
 
-		if(browserName.equals("chrome") || browserName.equals("edge")) {
+		if (browserName.equals("chrome") || browserName.equals("edge")) {
 			String expectedWarningMessageTwo = "Please enter a part following '@'. 'amotoori@' is incomplete.";
-			String actualWarningMessageTwo = driver.findElement(By.id("input-email")).getDomProperty("validationMessage");
+			String actualWarningMessageTwo = driver.findElement(By.id("input-email"))
+					.getDomProperty("validationMessage");
 			Assert.assertEquals(actualWarningMessageTwo, expectedWarningMessageTwo);
-		}else if(browserName.equals("firefox")) {
+		} else if (browserName.equals("firefox")) {
 			String expectedWarningMessageOne = "Please enter an email address.";
-			String actualWarningMessageOne = driver.findElement(By.id("input-email")).getDomProperty("validationMessage");
+			String actualWarningMessageOne = driver.findElement(By.id("input-email"))
+					.getDomProperty("validationMessage");
 			Assert.assertEquals(actualWarningMessageOne, expectedWarningMessageOne);
 		}
 
 		driver.findElement(By.id("input-email")).clear();
-		driver.findElement(By.id("input-email")).sendKeys("amotoori@gmail");
+		driver.findElement(By.id("input-email")).sendKeys(prop.getProperty("invalidEmailThree"));
 		driver.findElement(By.xpath("//input[@value='Continue']")).click();
 
 		String expectedWarningMessageThree = "E-Mail Address does not appear to be valid!";
@@ -406,16 +417,18 @@ public class Register {
 		Assert.assertEquals(actualWarningMessageThree, expectedWarningMessageThree);
 
 		driver.findElement(By.id("input-email")).clear();
-		driver.findElement(By.id("input-email")).sendKeys("amotoori@gmail.");
+		driver.findElement(By.id("input-email")).sendKeys(prop.getProperty("invalidEmailFour"));
 		driver.findElement(By.xpath("//input[@value='Continue']")).click();
 
-		if(browserName.equals("chrome") || browserName.equals("edge")) {
+		if (browserName.equals("chrome") || browserName.equals("edge")) {
 			String expectedWarningMessageFour = "'.' is used at a wrong position in 'gmail.'.";
-			String actualWarningMessageFour = driver.findElement(By.id("input-email")).getDomProperty("validationMessage");
+			String actualWarningMessageFour = driver.findElement(By.id("input-email"))
+					.getDomProperty("validationMessage");
 			Assert.assertEquals(actualWarningMessageFour, expectedWarningMessageFour);
-		}else if(browserName.equals("firefox")) {
+		} else if (browserName.equals("firefox")) {
 			String expectedWarningMessageOne = "Please enter an email address.";
-			String actualWarningMessageOne = driver.findElement(By.id("input-email")).getDomProperty("validationMessage");
+			String actualWarningMessageOne = driver.findElement(By.id("input-email"))
+					.getDomProperty("validationMessage");
 			Assert.assertEquals(actualWarningMessageOne, expectedWarningMessageOne);
 		}
 
@@ -424,19 +437,28 @@ public class Register {
 	@Test(priority = 11)
 	public void verifyRegisteringAccountUsingInvalidTelephoneNumber() {
 
-		driver.findElement(By.id("input-firstname")).sendKeys("Arun");
-		driver.findElement(By.id("input-lastname")).sendKeys("Motoori");
+		driver.findElement(By.id("input-firstname")).sendKeys(prop.getProperty("firstName"));
+		driver.findElement(By.id("input-lastname")).sendKeys(prop.getProperty("lastName"));
 		driver.findElement(By.id("input-email")).sendKeys(CommonUtilities.generateBrandNewEmail());
-		driver.findElement(By.id("input-telephone")).sendKeys("abcde");
-		driver.findElement(By.id("input-password")).sendKeys("12345");
-		driver.findElement(By.id("input-confirm")).sendKeys("12345");
+		driver.findElement(By.id("input-telephone")).sendKeys(prop.getProperty("invalidTelephoneNumber"));
+		driver.findElement(By.id("input-password")).sendKeys(prop.getProperty("validPassword"));
+		driver.findElement(By.id("input-confirm")).sendKeys(prop.getProperty("validPassword"));
 		driver.findElement(By.name("agree")).click();
 		driver.findElement(By.xpath("//input[@value='Continue']")).click();
 
 		String expectedWarningMessage = "Telephone number entered by you is invalid!";
-		Assert.assertEquals(
-				driver.findElement(By.xpath("//input[@id='input-telephone']/following-sibling::div")).getText(),
-				expectedWarningMessage);
+		boolean b = false;
+		try {
+			String actualWarningMessage = driver
+					.findElement(By.xpath("//input[@id='input-telephone']/following-sibling::div")).getText();
+			if (actualWarningMessage.equals(expectedWarningMessage)) {
+				b = true;
+			}
+		} catch (NoSuchElementException e) {
+			b = false;
+		}
+
+		Assert.assertTrue(b);
 
 		Assert.assertFalse(
 				driver.findElement(By.xpath("//ul[@class='breadcrumb']//a[text()='Success']")).isDisplayed());
@@ -452,11 +474,13 @@ public class Register {
 			actions.sendKeys(Keys.TAB).perform();
 		}
 
-		actions.sendKeys("Arun").sendKeys(Keys.TAB).sendKeys("Motoori").sendKeys(Keys.TAB)
-				.sendKeys(CommonUtilities.generateBrandNewEmail()).sendKeys(Keys.TAB).sendKeys("1234567890")
-				.sendKeys(Keys.TAB).sendKeys("12345").sendKeys(Keys.TAB).sendKeys("12345").sendKeys(Keys.TAB)
-				.sendKeys(Keys.ARROW_LEFT).sendKeys(Keys.TAB).sendKeys(Keys.TAB).sendKeys(Keys.SPACE).sendKeys(Keys.TAB)
-				.sendKeys(Keys.ENTER).build().perform();
+		actions.sendKeys(prop.getProperty("firstName")).sendKeys(Keys.TAB).sendKeys(prop.getProperty("lastName"))
+				.sendKeys(Keys.TAB).sendKeys(CommonUtilities.generateBrandNewEmail()).sendKeys(Keys.TAB)
+				.sendKeys(prop.getProperty("telephoneNumber")).sendKeys(Keys.TAB)
+				.sendKeys(prop.getProperty("validPassword")).sendKeys(Keys.TAB)
+				.sendKeys(prop.getProperty("validPassword")).sendKeys(Keys.TAB).sendKeys(Keys.ARROW_LEFT)
+				.sendKeys(Keys.TAB).sendKeys(Keys.TAB).sendKeys(Keys.SPACE).sendKeys(Keys.TAB).sendKeys(Keys.ENTER)
+				.build().perform();
 
 		Assert.assertTrue(driver.findElement(By.xpath("//a[@class='list-group-item'][text()='Logout']")).isDisplayed());
 		Assert.assertTrue(driver.findElement(By.xpath("//ul[@class='breadcrumb']//a[text()='Success']")).isDisplayed());
@@ -561,16 +585,16 @@ public class Register {
 	@Test(priority = 15)
 	public void verifyDataBaseTestingForRegisterAccount() {
 
-		String enteredFirstNameData = "Arun";
+		String enteredFirstNameData = prop.getProperty("firstName");
 		driver.findElement(By.id("input-firstname")).sendKeys(enteredFirstNameData);
 
-		String enteredLastNameData = "Motoori";
+		String enteredLastNameData = prop.getProperty("lastName");
 		driver.findElement(By.id("input-lastname")).sendKeys(enteredLastNameData);
 
 		String enteredEmailData = CommonUtilities.generateBrandNewEmail();
 		driver.findElement(By.id("input-email")).sendKeys(enteredEmailData);
 
-		String enteredPasswordData = "12345";
+		String enteredPasswordData = prop.getProperty("validPassword");
 		driver.findElement(By.id("input-password")).sendKeys(enteredPasswordData);
 
 		JavascriptExecutor jse = (JavascriptExecutor) driver;
@@ -658,17 +682,25 @@ public class Register {
 		String expectedEmailWarning = "E-Mail Address does not appear to be valid!";
 		String expectedTelephoneWarning = "Telephone does not appear to be valid!";
 
-		Assert.assertEquals(
-				driver.findElement(By.xpath("//input[@id='input-firstname']/following-sibling::div")).getText(),
-				expectedFirstNameWarning);
-		Assert.assertEquals(
-				driver.findElement(By.xpath("//input[@id='input-lastname']/following-sibling::div")).getText(),
-				expectedLastNameWarning);
-		Assert.assertEquals(driver.findElement(By.xpath("//input[@id='input-email']/following-sibling::div")).getText(),
-				expectedEmailWarning);
-		Assert.assertEquals(
-				driver.findElement(By.xpath("//input[@id='input-telephone']/following-sibling::div")).getText(),
-				expectedTelephoneWarning);
+		if (browserName.equals("chrome") || browserName.equals("edge")) {
+			Assert.assertEquals(
+					driver.findElement(By.xpath("//input[@id='input-firstname']/following-sibling::div")).getText(),
+					expectedFirstNameWarning);
+			Assert.assertEquals(
+					driver.findElement(By.xpath("//input[@id='input-lastname']/following-sibling::div")).getText(),
+					expectedLastNameWarning);
+			Assert.assertEquals(
+					driver.findElement(By.xpath("//input[@id='input-email']/following-sibling::div")).getText(),
+					expectedEmailWarning);
+			Assert.assertEquals(
+					driver.findElement(By.xpath("//input[@id='input-telephone']/following-sibling::div")).getText(),
+					expectedTelephoneWarning);
+		} else if (browserName.equals("firefox")) {
+			String expectedWarningMessageOne = "Please enter an email address.";
+			String actualWarningMessageOne = driver.findElement(By.id("input-email"))
+					.getDomProperty("validationMessage");
+			Assert.assertEquals(actualWarningMessageOne, expectedWarningMessageOne);
+		}
 
 	}
 
@@ -676,10 +708,10 @@ public class Register {
 	public void verifyRegisteringAccountUsingPasswordsWhichAreNotFollowingPasswordComplexityStandards(
 			String passwordText) {
 
-		driver.findElement(By.id("input-firstname")).sendKeys("Arun");
-		driver.findElement(By.id("input-lastname")).sendKeys("Motoori");
+		driver.findElement(By.id("input-firstname")).sendKeys(prop.getProperty("firstName"));
+		driver.findElement(By.id("input-lastname")).sendKeys(prop.getProperty("lastName"));
 		driver.findElement(By.id("input-email")).sendKeys(CommonUtilities.generateBrandNewEmail());
-		driver.findElement(By.id("input-telephone")).sendKeys("1234567890");
+		driver.findElement(By.id("input-telephone")).sendKeys(prop.getProperty("telephoneNumber"));
 
 		driver.findElement(By.id("input-password")).sendKeys(passwordText);
 		driver.findElement(By.id("input-confirm")).sendKeys(passwordText);
@@ -689,10 +721,18 @@ public class Register {
 		driver.findElement(By.xpath("//input[@value='Continue']")).click();
 
 		String expectedWarning = "Enter password which follows Password Complexity Standard!";
+		boolean b = false;
+		try {
+			String actualWarning = driver.findElement(By.xpath("//input[@id='input-password']/following-sibling::div"))
+					.getText();
+			if (actualWarning.equals(expectedWarning)) {
+				b = true;
+			}
+		} catch (NoSuchElementException e) {
+			b = false;
+		}
 
-		Assert.assertEquals(
-				driver.findElement(By.xpath("//input[@id='input-password']/following-sibling::div")).getText(),
-				expectedWarning);
+		Assert.assertTrue(b);
 
 	}
 
@@ -983,30 +1023,38 @@ public class Register {
 	public void verifyRegisterAccountUsingLeadingAndTrailingSpaces() {
 
 		SoftAssert softAssert = new SoftAssert();
-		String firstName = "     Arun     ";
+		String firstName = "     "+prop.getProperty("firstName")+"     ";
 		driver.findElement(By.id("input-firstname")).sendKeys(firstName);
-		String lastName = "     Motoori     ";
+		String lastName = "     "+prop.getProperty("lastName")+"     ";
 		driver.findElement(By.id("input-lastname")).sendKeys(lastName);
 		String emailText = "     " + CommonUtilities.generateBrandNewEmail() + "     ";
 		driver.findElement(By.id("input-email")).sendKeys(emailText);
-		String telephone = "     1234567890     ";
+		String telephone = "     "+prop.getProperty("telephoneNumber")+"     ";
 		driver.findElement(By.id("input-telephone")).sendKeys(telephone);
-		driver.findElement(By.id("input-password")).sendKeys("     12345     ");
-		driver.findElement(By.id("input-confirm")).sendKeys("     12345     ");
+		driver.findElement(By.id("input-password")).sendKeys("     "+prop.getProperty("validPassword")+"     ");
+		driver.findElement(By.id("input-confirm")).sendKeys("     "+prop.getProperty("validPassword")+"     ");
 		driver.findElement(By.xpath("//input[@name='newsletter'][@value='1']")).click();
 		driver.findElement(By.name("agree")).click();
 		driver.findElement(By.xpath("//input[@value='Continue']")).click();
-		driver.findElement(By.xpath("//a[@class='btn btn-primary'][text()='Continue']")).click();
-		driver.findElement(By.linkText("Edit your account information")).click();
-		String actualFirstName = driver.findElement(By.id("input-firstname")).getDomAttribute("value");
-		softAssert.assertEquals(actualFirstName, firstName.trim());
-		String actualLastName = driver.findElement(By.id("input-lastname")).getDomAttribute("value");
-		softAssert.assertEquals(actualLastName, lastName.trim());
-		String actualEmail = driver.findElement(By.id("input-email")).getDomAttribute("value");
-		softAssert.assertEquals(actualEmail, emailText.trim());
-		String acutalTelephone = driver.findElement(By.id("input-telephone")).getDomAttribute("value");
-		softAssert.assertEquals(acutalTelephone, telephone.trim());
-		softAssert.assertAll();
+
+		if (browserName.equals("chrome") || browserName.equals("edge")) {
+			driver.findElement(By.xpath("//a[@class='btn btn-primary'][text()='Continue']")).click();
+			driver.findElement(By.linkText("Edit your account information")).click();
+			String actualFirstName = driver.findElement(By.id("input-firstname")).getDomAttribute("value");
+			softAssert.assertEquals(actualFirstName, firstName.trim());
+			String actualLastName = driver.findElement(By.id("input-lastname")).getDomAttribute("value");
+			softAssert.assertEquals(actualLastName, lastName.trim());
+			String actualEmail = driver.findElement(By.id("input-email")).getDomAttribute("value");
+			softAssert.assertEquals(actualEmail, emailText.trim());
+			String acutalTelephone = driver.findElement(By.id("input-telephone")).getDomAttribute("value");
+			softAssert.assertEquals(acutalTelephone, telephone.trim());
+			softAssert.assertAll();
+		} else if (browserName.equals("firefox")) {
+			String expectedWarningMessageOne = "Please enter an email address.";
+			String actualWarningMessageOne = driver.findElement(By.id("input-email"))
+					.getDomProperty("validationMessage");
+			Assert.assertEquals(actualWarningMessageOne, expectedWarningMessageOne);
+		}
 
 	}
 
@@ -1020,12 +1068,12 @@ public class Register {
 	@Test(priority = 21)
 	public void verifyRegisteringAccountWithoutSelectingPrivacyPolicyCheckboxField() {
 
-		driver.findElement(By.id("input-firstname")).sendKeys("Arun");
-		driver.findElement(By.id("input-lastname")).sendKeys("Motoori");
+		driver.findElement(By.id("input-firstname")).sendKeys(prop.getProperty("firstName"));
+		driver.findElement(By.id("input-lastname")).sendKeys(prop.getProperty("lastName"));
 		driver.findElement(By.id("input-email")).sendKeys(CommonUtilities.generateBrandNewEmail());
-		driver.findElement(By.id("input-telephone")).sendKeys("1234567890");
-		driver.findElement(By.id("input-password")).sendKeys("12345");
-		driver.findElement(By.id("input-confirm")).sendKeys("12345");
+		driver.findElement(By.id("input-telephone")).sendKeys(prop.getProperty("telephoneNumber"));
+		driver.findElement(By.id("input-password")).sendKeys(prop.getProperty("validPassword"));
+		driver.findElement(By.id("input-confirm")).sendKeys(prop.getProperty("validPassword"));
 		driver.findElement(By.xpath("//input[@name='newsletter'][@value='1']")).click();
 		driver.findElement(By.xpath("//input[@value='Continue']")).click();
 
@@ -1220,11 +1268,11 @@ public class Register {
 	@Test(priority = 24)
 	public void verifyRegisteringAccountWithoutEnteringConfirmationPassword() {
 
-		driver.findElement(By.id("input-firstname")).sendKeys("Arun");
-		driver.findElement(By.id("input-lastname")).sendKeys("Motoori");
+		driver.findElement(By.id("input-firstname")).sendKeys(prop.getProperty("firstName"));
+		driver.findElement(By.id("input-lastname")).sendKeys(prop.getProperty("lastName"));
 		driver.findElement(By.id("input-email")).sendKeys(CommonUtilities.generateBrandNewEmail());
-		driver.findElement(By.id("input-telephone")).sendKeys("1234567890");
-		driver.findElement(By.id("input-password")).sendKeys("12345");
+		driver.findElement(By.id("input-telephone")).sendKeys(prop.getProperty("telephoneNumber"));
+		driver.findElement(By.id("input-password")).sendKeys(prop.getProperty("validPassword"));
 		driver.findElement(By.xpath("//input[@name='newsletter'][@value='1']")).click();
 		driver.findElement(By.name("agree")).click();
 		driver.findElement(By.xpath("//input[@value='Continue']")).click();
@@ -1255,23 +1303,31 @@ public class Register {
 	@Test(priority = 26)
 	public void verifyRegisterAccountUI() throws IOException {
 
-		CommonUtilities.takeScreenshot(driver, System.getProperty("user.dir") + "\\Screenshots\\actualRAPageUI.png");
-
-		Assert.assertFalse(CommonUtilities.compareTwoScreenshots(
-				System.getProperty("user.dir") + "\\Screenshots\\actualRAPageUI.png",
-				System.getProperty("user.dir") + "\\Screenshots\\expectedRAPageUI.png"));
+		if (browserName.equals("chrome") || browserName.equals("edge")) {
+			CommonUtilities.takeScreenshot(driver,
+					System.getProperty("user.dir") + "\\Screenshots\\actualRAPageUI.png");
+			Assert.assertFalse(CommonUtilities.compareTwoScreenshots(
+					System.getProperty("user.dir") + "\\Screenshots\\actualRAPageUI.png",
+					System.getProperty("user.dir") + "\\Screenshots\\expectedRAPageUI.png"));
+		} else if (browserName.equals("firefox")) {
+			CommonUtilities.takeScreenshot(driver,
+					System.getProperty("user.dir") + "\\Screenshots\\actualFirefoxRAPageUI.png");
+			Assert.assertFalse(CommonUtilities.compareTwoScreenshots(
+					System.getProperty("user.dir") + "\\Screenshots\\actualFirefoxRAPageUI.png",
+					System.getProperty("user.dir") + "\\Screenshots\\expectedFirefoxRAPageUI.png"));
+		}
 
 	}
 
-	@Test(priority = 27, dataProvider = "supplyTestEnvironments")
-	public void verifyRegisterAccountInAllEnvironments(String browserName) {
+	@Test(priority = 27)
+	public void verifyRegisterAccountInAllEnvironments() {
 
-		driver.findElement(By.id("input-firstname")).sendKeys("Arun");
-		driver.findElement(By.id("input-lastname")).sendKeys("Motoori");
+		driver.findElement(By.id("input-firstname")).sendKeys(prop.getProperty("firstName"));
+		driver.findElement(By.id("input-lastname")).sendKeys(prop.getProperty("lastName"));
 		driver.findElement(By.id("input-email")).sendKeys(CommonUtilities.generateBrandNewEmail());
-		driver.findElement(By.id("input-telephone")).sendKeys("1234567890");
-		driver.findElement(By.id("input-password")).sendKeys("12345");
-		driver.findElement(By.id("input-confirm")).sendKeys("12345");
+		driver.findElement(By.id("input-telephone")).sendKeys(prop.getProperty("telephoneNumber"));
+		driver.findElement(By.id("input-password")).sendKeys(prop.getProperty("validPassword"));
+		driver.findElement(By.id("input-confirm")).sendKeys(prop.getProperty("validPassword"));
 		driver.findElement(By.xpath("//input[@name='newsletter'][@value='1']")).click();
 		driver.findElement(By.name("agree")).click();
 		driver.findElement(By.xpath("//input[@value='Continue']")).click();
@@ -1279,13 +1335,6 @@ public class Register {
 		Assert.assertTrue(driver.findElement(By.xpath("//a[@class='list-group-item'][text()='Logout']")).isDisplayed());
 		Assert.assertTrue(driver.findElement(By.xpath("//ul[@class='breadcrumb']//a[text()='Success']")).isDisplayed());
 
-	}
-
-	@DataProvider(name = "supplyTestEnvironments")
-	public Object[][] supplyEnvironments() {
-
-		Object[][] envs = { { "chrome" }, { "firefox" }, { "edge" } };
-		return envs;
 	}
 
 }

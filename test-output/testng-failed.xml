@@ -5,17 +5,9 @@
     <classes>
       <class name="tests.Register">
         <methods>
-          <include name="verifyRegisteringAccountUsingPasswordsWhichAreNotFollowingPasswordComplexityStandards" invocation-numbers="0 1 2 3 4"/>
-          <include name="verifyRegisterAccountUI"/>
           <include name="teardown"/>
-          <include name="verifyMandatoryFieldsInRegisterAccountPage"/>
-          <include name="verifyRegisteringAccountUsingInvalidTelephoneNumber"/>
-          <include name="verifyRegisterAccountUsingLeadingAndTrailingSpaces"/>
-          <include name="verifyHeightWidthNumberOfCharacters"/>
-          <include name="verifyDataBaseTestingForRegisterAccount"/>
           <include name="setup"/>
-          <include name="verifyRegisteringAccountByEnteringOnlySpaces"/>
-          <include name="verifyRegisteringAccountUsingInvalidEmail"/>
+          <include name="verifyHeightWidthNumberOfCharacters"/>
         </methods>
       </class> <!-- tests.Register -->
     </classes>

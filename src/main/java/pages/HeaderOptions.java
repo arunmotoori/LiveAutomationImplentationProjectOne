@@ -5,11 +5,14 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class HeaderOptions {
+import pages.root.RootPage;
+
+public class HeaderOptions extends RootPage {
 	
 	WebDriver driver;
 	
 	public HeaderOptions(WebDriver driver) {
+		super(driver);
 		this.driver = driver;
 		PageFactory.initElements(driver,this);
 	}
@@ -19,6 +22,14 @@ public class HeaderOptions {
 	
 	@FindBy(linkText="Register")
 	private WebElement registerOption;
+	
+	@FindBy(linkText="Login")
+	private WebElement loginOption;
+	
+	public LoginPage selectLoginOption() {
+		loginOption.click();
+		return new LoginPage(driver);
+	}
 	
 	public void clickOnMyAccountDropMenu() {
 		myAccountDropMenu.click();

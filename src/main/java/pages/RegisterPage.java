@@ -5,11 +5,14 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class RegisterPage {
+import pages.root.RootPage;
+
+public class RegisterPage extends RootPage {
 
 	WebDriver driver;
 
 	public RegisterPage(WebDriver driver) {
+		super(driver);
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
 	}
@@ -38,6 +41,9 @@ public class RegisterPage {
 	@FindBy(xpath = "//input[@name='newsletter'][@value='1']")
 	private WebElement yesNewsletterOption;
 
+	@FindBy(xpath = "//input[@name='newsletter'][@value='0']")
+	private WebElement noNewsletterOption;
+
 	@FindBy(xpath = "//input[@value='Continue']")
 	private WebElement continueButton;
 
@@ -55,10 +61,24 @@ public class RegisterPage {
 
 	@FindBy(xpath = "//input[@id='input-password']/following-sibling::div")
 	private WebElement passwordWarning;
-	
-	@FindBy(xpath="//div[@class='alert alert-danger alert-dismissible']")
+
+	@FindBy(xpath = "//input[@id='input-confirm']/following-sibling::div")
+	private WebElement passwordConfirmationWarning;
+
+	@FindBy(xpath = "//div[@class='alert alert-danger alert-dismissible']")
 	private WebElement privacyPolicyFieldWaring;
+
+	@FindBy(xpath = "//ul[@class='breadcrumb']//a[text()='Register']")
+	private WebElement registerPageBreadcrumb;
+
+	public boolean didWeNavigateToRegisterPage() {
+		return registerPageBreadcrumb.isDisplayed();
+	}
 	
+	public String getPasswordConfirmationFieldWarning() {
+		return passwordConfirmationWarning.getText();
+	}
+
 	public String getPrivacyPolicyFieldWarning() {
 		return privacyPolicyFieldWaring.getText();
 	}
@@ -85,6 +105,10 @@ public class RegisterPage {
 
 	public void selectYesNewsletterOption() {
 		yesNewsletterOption.click();
+	}
+
+	public void selectNoNewletterOption() {
+		noNewsletterOption.click();
 	}
 
 	public AccountSuccessPage clickOnContinueButton() {

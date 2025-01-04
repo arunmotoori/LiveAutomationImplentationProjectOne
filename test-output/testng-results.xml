@@ -2,20 +2,20 @@
 <testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2025-01-01T22:00:00 IST" name="Default suite" finished-at="2025-01-01T22:00:09 IST" duration-ms="8876">
+  <suite started-at="2025-01-04T13:22:35 IST" name="Default suite" finished-at="2025-01-04T13:22:47 IST" duration-ms="12467">
     <groups>
     </groups>
-    <test started-at="2025-01-01T22:00:00 IST" name="Default test" finished-at="2025-01-01T22:00:09 IST" duration-ms="8876">
+    <test started-at="2025-01-04T13:22:35 IST" name="Default test" finished-at="2025-01-04T13:22:47 IST" duration-ms="12467">
       <class name="tests.Register">
-        <test-method is-config="true" signature="setup()[pri:0, instance:tests.Register@53fb3dab]" started-at="2025-01-01T22:00:00 IST" name="setup" finished-at="2025-01-01T22:00:05 IST" duration-ms="5174" status="PASS">
+        <test-method is-config="true" signature="setup()[pri:0, instance:tests.Register@7bba5817]" started-at="2025-01-04T13:22:35 IST" name="setup" finished-at="2025-01-04T13:22:42 IST" duration-ms="7362" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup -->
-        <test-method signature="verifyRegisteringAccountByProvidingMismatchedPasswords()[pri:8, instance:tests.Register@53fb3dab]" started-at="2025-01-01T22:00:05 IST" name="verifyRegisteringAccountByProvidingMismatchedPasswords" finished-at="2025-01-01T22:00:07 IST" duration-ms="2061" status="PASS">
+        <test-method signature="verifyRegisterAccountInAllEnvironments()[pri:27, instance:tests.Register@7bba5817]" started-at="2025-01-04T13:22:42 IST" name="verifyRegisterAccountInAllEnvironments" finished-at="2025-01-04T13:22:46 IST" duration-ms="3629" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- verifyRegisteringAccountByProvidingMismatchedPasswords -->
-        <test-method is-config="true" signature="teardown()[pri:0, instance:tests.Register@53fb3dab]" started-at="2025-01-01T22:00:07 IST" name="teardown" finished-at="2025-01-01T22:00:09 IST" duration-ms="1590" status="PASS">
+        </test-method> <!-- verifyRegisterAccountInAllEnvironments -->
+        <test-method is-config="true" signature="teardown()[pri:0, instance:tests.Register@7bba5817]" started-at="2025-01-04T13:22:46 IST" name="teardown" finished-at="2025-01-04T13:22:47 IST" duration-ms="1417" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- teardown -->

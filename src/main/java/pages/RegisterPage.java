@@ -66,21 +66,178 @@ public class RegisterPage extends RootPage {
 	private WebElement passwordConfirmationWarning;
 
 	@FindBy(xpath = "//div[@class='alert alert-danger alert-dismissible']")
-	private WebElement privacyPolicyFieldWaring;
+	private WebElement pageLevelWaring;
 
 	@FindBy(xpath = "//ul[@class='breadcrumb']//a[text()='Register']")
 	private WebElement registerPageBreadcrumb;
+	
+	@FindBy(css="label[for='input-firstname']")
+	private WebElement firstNameFieldLabel;
+	
+	@FindBy(css="label[for='input-lastname']")
+	private WebElement lastNameFieldLabel;
+	
+	@FindBy(css="label[for='input-email']")
+	private WebElement emailFieldLabel;
+	
+	@FindBy(css="label[for='input-telephone']")
+	private WebElement telephoneFieldLabel;
+	
+	@FindBy(css="label[for='input-password']")
+	private WebElement passwordFieldLabel;
+	
+	@FindBy(css="label[for='input-confirm']")
+	private WebElement passwordConfirmFieldLabel;
+	
+	@FindBy(css="div[class='pull-right']")
+	private WebElement privacyPolicyFieldLabel;
+
+	public String getPasswordFieldDomAttribute(String attributeName) {
+		return passwordField.getDomAttribute(attributeName);
+	}
+	
+	public String getPasswordConfirmFieldDomAttribute(String attributeName) {
+		return passwordConfirmField.getDomAttribute(attributeName);
+	}
+	
+	public boolean isPrivacyPolicyFieldSelected() {
+		return privacyPolicyField.isSelected();
+	}
+	
+	public String getFirstNameCSSValue(String propertyName) {
+		return firstNameField.getCssValue(propertyName);
+	}
+	
+	public String getLastNameCSSValue(String propertyName) {
+		return lastNameField.getCssValue(propertyName);
+	}
+	
+	public String getEmailCSSValue(String propertyName) {
+		return emailField.getCssValue(propertyName);
+	}
+	
+	public String getTelephoneCSSValue(String propertyName) {
+		return telephoneField.getCssValue(propertyName);
+	}
+	
+	public String getPasswordCSSValue(String propertyName) {
+		return passwordField.getCssValue(propertyName);
+	}
+	
+	public String getPasswordConfirmCSSValue(String propertyName) {
+		return passwordConfirmField.getCssValue(propertyName);
+	}
+	
+	public String getContinueButtonCSSValue(String propertyName) {
+		return continueButton.getCssValue(propertyName);
+	}
+	
+	public void clearPasswordField() {
+		passwordField.clear();
+	}
+	
+	public void clearTelephoneField() {
+		telephoneField.clear();
+	}
+	
+	public void clearFirstNameField() {
+		firstNameField.clear();
+	}
+	
+	public void clearLastNameField() {
+		lastNameField.clear();
+	}
+	
+	public boolean isFirstNameWarningMessageDisplayed() {
+		return firstNameWarning.isDisplayed();
+	}
+	
+	public boolean isLastNameWarningMessageDisplayed() {
+		return lastNameWarning.isDisplayed();
+	}
+	
+	public boolean isEmailWarningMessageDisplayed() {
+		return emailWarning.isDisplayed();
+	}
+	
+	public boolean isTelephoneWarningMessageDisplayed() {
+		return telephoneWarning.isDisplayed();
+	}
+	
+	public boolean isPasswordWarningMessageDisplayed() {
+		return passwordWarning.isDisplayed();
+	}
+	
+	public WebElement getPrivacyPolicyFieldLabelElement() {
+		return privacyPolicyFieldLabel;
+	}
+	
+	public WebElement getPasswordConfirmFieldLabelElement() {
+		return passwordConfirmFieldLabel;
+	}
+	
+	public WebElement getPasswordFieldLabelElement() {
+		return passwordFieldLabel;
+	}
+	
+	public WebElement getTelephoneFieldLabelElement() {
+		return telephoneFieldLabel;
+	}
+	
+	public WebElement getEmailFieldLabelElement() {
+		return emailFieldLabel;
+	}
+	
+	public WebElement getFirstNameFieldLabelElement() {
+		return firstNameFieldLabel;
+	}
+	
+	public WebElement getLastNameFieldLabelElement() {
+		return lastNameFieldLabel;
+	}
+	
+	public String getFirstNameFieldPlaceholderText() {
+		return firstNameField.getDomAttribute("placeholder");
+	}
+	
+	public String getLastNameFieldPlaceholderText() {
+		return lastNameField.getDomAttribute("placeholder");
+	}
+	
+	public String getEmailFieldPlaceholderText() {
+		return emailField.getDomAttribute("placeholder");
+	}
+	
+	public String getTelephoneFieldPlaceholderText() {
+		return telephoneField.getDomAttribute("placeholder");
+	}
+	
+	public String getPasswordFieldPlaceholderText() {
+		return passwordField.getDomAttribute("placeholder");
+	}
+	
+	public String getPasswordConfirmFieldPlaceholderText() {
+		return passwordConfirmField.getDomAttribute("placeholder");
+	}
+	
+	public void clearEmailField() {
+		emailField.clear();
+	}
+	
+	public String getEmailValidationMessage() {
+		return emailField.getDomProperty("validationMessage");
+	}
 
 	public boolean didWeNavigateToRegisterPage() {
 		return registerPageBreadcrumb.isDisplayed();
 	}
 	
-	public String getPasswordConfirmationFieldWarning() {
+	public String getPasswordConfirmationWarning() {
 		return passwordConfirmationWarning.getText();
 	}
 
-	public String getPrivacyPolicyFieldWarning() {
-		return privacyPolicyFieldWaring.getText();
+	public String getPageLevelWarning() {
+		return pageLevelWaring.getText();
 	}
 
 	public String getPasswordWarning() {
@@ -128,7 +285,7 @@ public class RegisterPage extends RootPage {
 		firstNameField.sendKeys(firstNameText);
 	}
 
-	public void enterLastNameField(String lastNameText) {
+	public void enterLastName(String lastNameText) {
 		lastNameField.sendKeys(lastNameText);
 	}
 

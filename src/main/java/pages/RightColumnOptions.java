@@ -20,6 +20,13 @@ public class RightColumnOptions extends RootPage {
 	@FindBy(xpath="//aside[@id='column-right']//a[text()='Register']")
 	private WebElement registerOption;
 	
+	@FindBy(xpath="//a[@class='list-group-item'][text()='Logout']")
+	private WebElement logoutOption;
+	
+	public boolean didWeGetLoggedIn() {
+		return logoutOption.isDisplayed();
+	}
+	
 	public RegisterPage clickOnRegisterOption() {
 		registerOption.click();
 		return new RegisterPage(driver);

@@ -7,7 +7,7 @@
         <methods>
           <include name="teardown"/>
           <include name="setup"/>
-          <include name="verifyHeightWidthNumberOfCharacters"/>
+          <include name="verifyRegisterAccountPageBreadcrumbURLTitleHeading"/>
         </methods>
       </class> <!-- tests.Register -->
     </classes>

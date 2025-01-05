@@ -39,14 +39,29 @@ import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
 import base.Base;
+import pages.AboutUsPage;
 import pages.AccountSuccessPage;
+import pages.BrandPage;
+import pages.ContactUsPage;
+import pages.DeliveryInformationPage;
+import pages.FooterOptions;
+import pages.ForgottenPasswordPage;
+import pages.GiftCertificatePage;
 import pages.HeaderOptions;
+import pages.HomePage;
 import pages.LoginPage;
 import pages.MyAccountInformationPage;
 import pages.MyAccountPage;
 import pages.NewsletterPage;
+import pages.PrivacyPolicyPage;
+import pages.ProductReturnsPage;
 import pages.RegisterPage;
 import pages.RightColumnOptions;
+import pages.SearchPage;
+import pages.ShoppingCartPage;
+import pages.SiteMapPage;
+import pages.SpecialOffersPage;
+import pages.TermsAndConditionsPage;
 import utils.CommonUtilities;
 
 public class Register extends Base {
@@ -63,6 +78,21 @@ public class Register extends Base {
 	LoginPage loginPage;
 	RightColumnOptions rightColumnOptions;
 	MyAccountInformationPage myAccountInformationPage;
+	ContactUsPage contactUsPage;
+	ShoppingCartPage shoppingCartPage;
+	HomePage homePage;
+	SearchPage searchPage;
+	ForgottenPasswordPage forgottenPasswordPage;
+	FooterOptions footerOptions;
+	AboutUsPage aboutUsPage;
+	DeliveryInformationPage deliveryInformationPage;
+	PrivacyPolicyPage privacyPolicyPage;
+	TermsAndConditionsPage termsAndConditionsPage;
+	ProductReturnsPage productReturnsPage;
+	SiteMapPage siteMapPage;
+	BrandPage brandPage;
+	GiftCertificatePage giftCertificatePage;
+	SpecialOffersPage specialOffersPage;
 
 	@AfterMethod
 	public void teardown() {
@@ -298,15 +328,15 @@ public class Register extends Base {
 	public void verifyDifferentWaysOfNavigatingToRegisterAccountPage() {
 
 		Assert.assertTrue(registerPage.didWeNavigateToRegisterPage());
-		headerOptions = new HeaderOptions(registerPage.getDriver());
+		headerOptions = registerPage.getHeaderOptions();
 		headerOptions.clickOnMyAccountDropMenu();
 		loginPage = headerOptions.selectLoginOption();
 		registerPage = loginPage.clickOnContinueButton();
 		Assert.assertTrue(registerPage.didWeNavigateToRegisterPage());
-		headerOptions = new HeaderOptions(registerPage.getDriver());
+		headerOptions = registerPage.getHeaderOptions();
 		headerOptions.clickOnMyAccountDropMenu();
 		loginPage = headerOptions.selectLoginOption();
-		rightColumnOptions = new RightColumnOptions(loginPage.getDriver());
+		rightColumnOptions = loginPage.getRightColumnOptions();
 		registerPage = rightColumnOptions.clickOnRegisterOption();
 		Assert.assertTrue(registerPage.didWeNavigateToRegisterPage());
 
@@ -439,9 +469,9 @@ public class Register extends Base {
 				.sendKeys(prop.getProperty("validPassword")).sendKeys(Keys.TAB).sendKeys(Keys.ARROW_LEFT)
 				.sendKeys(Keys.TAB).sendKeys(Keys.TAB).sendKeys(Keys.SPACE).sendKeys(Keys.TAB).sendKeys(Keys.ENTER)
 				.build().perform();
-		rightColumnOptions = new RightColumnOptions(registerPage.getDriver());
+		rightColumnOptions = registerPage.getRightColumnOptions();
 		Assert.assertTrue(rightColumnOptions.didWeGetLoggedIn());
-		accountSuccessPage = new AccountSuccessPage(rightColumnOptions.getDriver());
+		accountSuccessPage = rightColumnOptions.getAccountSuccessPage();
 		Assert.assertTrue(accountSuccessPage.didWeNavigateToAccountSuccessPage());
 
 	}
@@ -826,7 +856,7 @@ public class Register extends Base {
 		Assert.assertEquals(registerPage.getContinueButtonCSSValue("color"), "rgba(255, 255, 255, 1)");
 		Assert.assertEquals(registerPage.getContinueButtonCSSValue("background-color"), "rgba(34, 154, 200, 1)");
 		Assert.assertEquals(registerPage.getContinueButtonCSSValue("font-size"), "12px");
-		headerOptions = new HeaderOptions(registerPage.getDriver());
+		headerOptions = registerPage.getHeaderOptions();
 		headerOptions.clickOnMyAccountDropMenu();
 		headerOptions.selectRegisterOption();
 		TakesScreenshot ts = (TakesScreenshot) driver;
@@ -910,172 +940,170 @@ public class Register extends Base {
 	@Test(priority = 23)
 	public void verifyRegisterAccountPageNavigations() {
 
-		driver.findElement(By.xpath("//i[@class='fa fa-phone']")).click();
-		Assert.assertEquals(driver.getTitle(), "Contact Us");
-		driver.navigate().back();
+		headerOptions = registerPage.getHeaderOptions();
+		contactUsPage = headerOptions.selectPhoneIconOption();
+		Assert.assertTrue(getPageTitle(contactUsPage.getDriver()).equals("Contact Us"));
+		navigateBackInBrowser(contactUsPage.getDriver());
+		
+		loginPage = headerOptions.selectHeartIconOption();
+		Assert.assertEquals(getPageTitle(loginPage.getDriver()),"Account Login");
+		navigateBackInBrowser(loginPage.getDriver());
 
-		driver.findElement(By.xpath("//i[@class='fa fa-heart']")).click();
-		Assert.assertEquals(driver.getTitle(), "Account Login");
-		driver.navigate().back();
+		loginPage = headerOptions.selectWishListOption();
+		Assert.assertEquals(getPageTitle(loginPage.getDriver()), "Account Login");
+		navigateBackInBrowser(loginPage.getDriver());
 
-		driver.findElement(By.xpath("//span[@class='hidden-xs hidden-sm hidden-md'][contains(text(),'Wish List')]"))
-				.click();
-		Assert.assertEquals(driver.getTitle(), "Account Login");
-		driver.navigate().back();
+		shoppingCartPage = headerOptions.selectShoppingCartIcon();
+		Assert.assertEquals(getPageTitle(shoppingCartPage.getDriver()), "Shopping Cart");
+		navigateBackInBrowser(shoppingCartPage.getDriver());
 
-		driver.findElement(By.xpath("//i[@class='fa fa-shopping-cart']")).click();
-		Assert.assertEquals(driver.getTitle(), "Shopping Cart");
-		driver.navigate().back();
+		shoppingCartPage = headerOptions.selectShoppingCartOption();
+		Assert.assertEquals(getPageTitle(shoppingCartPage.getDriver()), "Shopping Cart");
+		navigateBackInBrowser(shoppingCartPage.getDriver());
 
-		driver.findElement(By.xpath("//span[text()='Shopping Cart']")).click();
-		Assert.assertEquals(driver.getTitle(), "Shopping Cart");
-		driver.navigate().back();
+		shoppingCartPage = headerOptions.selectCheckoutIcon();
+		Assert.assertEquals(getPageTitle(shoppingCartPage.getDriver()), "Shopping Cart");
+		navigateBackInBrowser(shoppingCartPage.getDriver());
 
-		driver.findElement(By.xpath("//i[@class='fa fa-share']")).click();
-		Assert.assertEquals(driver.getTitle(), "Shopping Cart");
-		driver.navigate().back();
+		shoppingCartPage = headerOptions.selectCheckoutOption();
+		Assert.assertEquals(getPageTitle(shoppingCartPage.getDriver()), "Shopping Cart");
+		navigateBackInBrowser(shoppingCartPage.getDriver());
 
-		driver.findElement(By.xpath("//span[text()='Checkout']")).click();
-		Assert.assertEquals(driver.getTitle(), "Shopping Cart");
-		driver.navigate().back();
+		homePage = headerOptions.selectLogo();
+		Assert.assertEquals(getPageTitle(homePage.getDriver()), "Your Store");
+		navigateBackInBrowser(homePage.getDriver());
 
-		driver.findElement(By.linkText("Qafox.com")).click();
-		Assert.assertEquals(driver.getTitle(), "Your Store");
-		driver.navigate().back();
+		searchPage = headerOptions.clickOnSearchButton();
+		Assert.assertEquals(getPageTitle(searchPage.getDriver()), "Search");
+		navigateBackInBrowser(searchPage.getDriver());
 
-		driver.findElement(By.xpath("//button[@class='btn btn-default btn-lg']")).click();
-		Assert.assertEquals(driver.getTitle(), "Search");
-		driver.navigate().back();
+		homePage = headerOptions.selectHomeBreadcrumbOption();
+		Assert.assertEquals(getPageTitle(homePage.getDriver()), "Your Store");
+		navigateBackInBrowser(homePage.getDriver());
 
-		driver.findElement(By.xpath("//i[@class='fa fa-home']")).click();
-		Assert.assertEquals(driver.getTitle(), "Your Store");
-		driver.navigate().back();
+		loginPage = headerOptions.selectAccountBreadcrumbOptionWithoutLogin();
+		Assert.assertEquals(getPageTitle(loginPage.getDriver()), "Account Login");
+		navigateBackInBrowser(loginPage.getDriver());
 
-		driver.findElement(By.xpath("//ul[@class='breadcrumb']//a[text()='Account']")).click();
-		Assert.assertEquals(driver.getTitle(), "Account Login");
-		driver.navigate().back();
+		registerPage = registerPage.selectRegisterBreadcrumbOption();
+		Assert.assertEquals(getPageTitle(registerPage.getDriver()), "Register Account");
 
-		driver.findElement(By.xpath("//ul[@class='breadcrumb']//a[text()='Register']")).click();
-		Assert.assertEquals(driver.getTitle(), "Register Account");
+		loginPage = registerPage.selectLoginPageOption();
+		Assert.assertEquals(getPageTitle(loginPage.getDriver()), "Account Login");
+		navigateBackInBrowser(loginPage.getDriver());
 
-		driver.findElement(By.linkText("login page")).click();
-		Assert.assertEquals(driver.getTitle(), "Account Login");
-		driver.navigate().back();
+		rightColumnOptions = loginPage.getRightColumnOptions();
+		loginPage = rightColumnOptions.clickOnLoginOption();
+		Assert.assertEquals(getPageTitle(loginPage.getDriver()), "Account Login");
+		navigateBackInBrowser(loginPage.getDriver());
 
-		driver.findElement(By.xpath("//a[@class='list-group-item'][text()='Login']")).click();
-		Assert.assertEquals(driver.getTitle(), "Account Login");
-		driver.navigate().back();
+		registerPage = rightColumnOptions.clickOnRegisterOption();
+		Assert.assertEquals(getPageTitle(registerPage.getDriver()), "Register Account");
 
-		driver.findElement(By.xpath("//a[@class='list-group-item'][text()='Register']")).click();
-		Assert.assertEquals(driver.getTitle(), "Register Account");
+		forgottenPasswordPage = rightColumnOptions.clickOnForgottenPasswordOption();
+		Assert.assertEquals(getPageTitle(forgottenPasswordPage.getDriver()), "Forgot Your Password?");
+		navigateBackInBrowser(forgottenPasswordPage.getDriver());
 
-		driver.findElement(By.xpath("//a[@class='list-group-item'][text()='Forgotten Password']")).click();
-		Assert.assertEquals(driver.getTitle(), "Forgot Your Password?");
-		driver.navigate().back();
+		loginPage = rightColumnOptions.clickOnMyAccountOption();
+		Assert.assertEquals(getPageTitle(loginPage.getDriver()), "Account Login");
+		navigateBackInBrowser(loginPage.getDriver());
 
-		driver.findElement(By.xpath("//a[@class='list-group-item'][text()='My Account']")).click();
-		Assert.assertEquals(driver.getTitle(), "Account Login");
-		driver.navigate().back();
+		loginPage = rightColumnOptions.clickOnAddressBookOption();
+		Assert.assertEquals(getPageTitle(loginPage.getDriver()), "Account Login");
+		navigateBackInBrowser(loginPage.getDriver());
 
-		driver.findElement(By.xpath("//a[@class='list-group-item'][text()='Address Book']")).click();
-		Assert.assertEquals(driver.getTitle(), "Account Login");
-		driver.navigate().back();
+		loginPage = rightColumnOptions.clickOnWishListOption();
+		Assert.assertEquals(getPageTitle(loginPage.getDriver()), "Account Login");
+		navigateBackInBrowser(loginPage.getDriver());
 
-		driver.findElement(By.xpath("//a[@class='list-group-item'][text()='Wish List']")).click();
-		Assert.assertEquals(driver.getTitle(), "Account Login");
-		driver.navigate().back();
+		loginPage = rightColumnOptions.clickOnOrderHistoryOption();
+		Assert.assertEquals(getPageTitle(loginPage.getDriver()), "Account Login");
+		navigateBackInBrowser(loginPage.getDriver());
 
-		driver.findElement(By.xpath("//a[@class='list-group-item'][text()='Order History']")).click();
-		Assert.assertEquals(driver.getTitle(), "Account Login");
-		driver.navigate().back();
+		loginPage = rightColumnOptions.clickOnDownloadsOption();
+		Assert.assertEquals(getPageTitle(loginPage.getDriver()), "Account Login");
+		navigateBackInBrowser(loginPage.getDriver());
 
-		driver.findElement(By.xpath("//a[@class='list-group-item'][text()='Downloads']")).click();
-		Assert.assertEquals(driver.getTitle(), "Account Login");
-		driver.navigate().back();
+		loginPage = rightColumnOptions.clickOnRecurringPaymentsOption();
+		Assert.assertEquals(getPageTitle(loginPage.getDriver()), "Account Login");
+		navigateBackInBrowser(loginPage.getDriver());
 
-		driver.findElement(By.xpath("//a[@class='list-group-item'][text()='Recurring payments']")).click();
-		Assert.assertEquals(driver.getTitle(), "Account Login");
-		driver.navigate().back();
+		loginPage = rightColumnOptions.clickOnRewarPointsOption();
+		Assert.assertEquals(getPageTitle(loginPage.getDriver()), "Account Login");
+		navigateBackInBrowser(loginPage.getDriver());
 
-		driver.findElement(By.xpath("//a[@class='list-group-item'][text()='Reward Points']")).click();
-		Assert.assertEquals(driver.getTitle(), "Account Login");
-		driver.navigate().back();
+		loginPage = rightColumnOptions.clickOnReturnsOption();
+		Assert.assertEquals(getPageTitle(loginPage.getDriver()), "Account Login");
+		navigateBackInBrowser(loginPage.getDriver());
 
-		driver.findElement(By.xpath("//a[@class='list-group-item'][text()='Returns']")).click();
-		Assert.assertEquals(driver.getTitle(), "Account Login");
-		driver.navigate().back();
+		loginPage = rightColumnOptions.clickOnTransactionsOption();
+		Assert.assertEquals(getPageTitle(loginPage.getDriver()), "Account Login");
+		navigateBackInBrowser(loginPage.getDriver());
 
-		driver.findElement(By.xpath("//a[@class='list-group-item'][text()='Transactions']")).click();
-		Assert.assertEquals(driver.getTitle(), "Account Login");
-		driver.navigate().back();
+		loginPage = rightColumnOptions.clickOnNewsletterOption();
+		Assert.assertEquals(getPageTitle(loginPage.getDriver()), "Account Login");
+		navigateBackInBrowser(loginPage.getDriver());
 
-		driver.findElement(By.xpath("//a[@class='list-group-item'][text()='Newsletter']")).click();
-		Assert.assertEquals(driver.getTitle(), "Account Login");
-		driver.navigate().back();
+		footerOptions = loginPage.getFoooterOptions();
+		aboutUsPage = footerOptions.selectAboutUsOption();
+		Assert.assertEquals(getPageTitle(aboutUsPage.getDriver()), "About Us");
+		navigateBackInBrowser(aboutUsPage.getDriver());
 
-		driver.findElement(By.xpath("//footer//a[text()='About Us']")).click();
-		Assert.assertEquals(driver.getTitle(), "About Us");
-		driver.navigate().back();
+		deliveryInformationPage = footerOptions.selectDeliveryInformationOption();
+		Assert.assertEquals(getPageTitle(deliveryInformationPage.getDriver()), "Delivery Information");
+		navigateBackInBrowser(deliveryInformationPage.getDriver());
 
-		driver.findElement(By.xpath("//footer//a[text()='Delivery Information']")).click();
-		Assert.assertEquals(driver.getTitle(), "Delivery Information");
-		driver.navigate().back();
+		privacyPolicyPage = footerOptions.selectPrivacyPolicyOption();
+		Assert.assertEquals(getPageTitle(privacyPolicyPage.getDriver()), "Privacy Policy");
+		navigateBackInBrowser(privacyPolicyPage.getDriver());
 
-		driver.findElement(By.xpath("//footer//a[text()='Privacy Policy']")).click();
-		Assert.assertEquals(driver.getTitle(), "Privacy Policy");
-		driver.navigate().back();
+		termsAndConditionsPage = footerOptions.selectTermsAndConditionsOption();
+		Assert.assertEquals(getPageTitle(termsAndConditionsPage.getDriver()), "Terms & Conditions");
+		navigateBackInBrowser(termsAndConditionsPage.getDriver());
 
-		driver.findElement(By.xpath("//footer//a[text()='Terms & Conditions']")).click();
-		Assert.assertEquals(driver.getTitle(), "Terms & Conditions");
-		driver.navigate().back();
+		contactUsPage = footerOptions.selectContactUsOption();
+		Assert.assertEquals(getPageTitle(contactUsPage.getDriver()), "Contact Us");
+		navigateBackInBrowser(contactUsPage.getDriver());
 
-		driver.findElement(By.xpath("//footer//a[text()='Contact Us']")).click();
-		Assert.assertEquals(driver.getTitle(), "Contact Us");
-		driver.navigate().back();
+		productReturnsPage = footerOptions.selectReturnsOption();
+		Assert.assertEquals(getPageTitle(productReturnsPage.getDriver()), "Product Returns");
+		navigateBackInBrowser(productReturnsPage.getDriver());
 
-		driver.findElement(By.xpath("//footer//a[text()='Terms & Conditions']")).click();
-		Assert.assertEquals(driver.getTitle(), "Terms & Conditions");
-		driver.navigate().back();
+		siteMapPage = footerOptions.selectSiteMapOption();
+		Assert.assertEquals(getPageTitle(siteMapPage.getDriver()), "Site Map");
+		navigateBackInBrowser(siteMapPage.getDriver());
 
-		driver.findElement(By.xpath("//footer//a[text()='Returns']")).click();
-		Assert.assertEquals(driver.getTitle(), "Product Returns");
-		driver.navigate().back();
+		brandPage = footerOptions.selectBrandsOption();
+		Assert.assertEquals(getPageTitle(brandPage.getDriver()), "Find Your Favorite Brand");
+		navigateBackInBrowser(brandPage.getDriver());
 
-		driver.findElement(By.xpath("//footer//a[text()='Site Map']")).click();
-		Assert.assertEquals(driver.getTitle(), "Site Map");
-		driver.navigate().back();
+		giftCertificatePage = footerOptions.selectGiftCertificatesOption();
+		Assert.assertEquals(getPageTitle(giftCertificatePage.getDriver()), "Purchase a Gift Certificate");
+		navigateBackInBrowser(giftCertificatePage.getDriver());
 
-		driver.findElement(By.xpath("//footer//a[text()='Brands']")).click();
-		Assert.assertEquals(driver.getTitle(), "Find Your Favorite Brand");
-		driver.navigate().back();
+		loginPage = footerOptions.selectAffiliateOption();
+		Assert.assertEquals(getPageTitle(loginPage.getDriver()), "Affiliate Program");
+		navigateBackInBrowser(loginPage.getDriver());
 
-		driver.findElement(By.xpath("//footer//a[text()='Gift Certificates']")).click();
-		Assert.assertEquals(driver.getTitle(), "Purchase a Gift Certificate");
-		driver.navigate().back();
+		specialOffersPage = footerOptions.selectSpecialsOption();
+		Assert.assertEquals(getPageTitle(specialOffersPage.getDriver()), "Special Offers");
+		navigateBackInBrowser(specialOffersPage.getDriver());
 
-		driver.findElement(By.xpath("//footer//a[text()='Affiliate']")).click();
-		Assert.assertEquals(driver.getTitle(), "Affiliate Program");
-		driver.navigate().back();
+		loginPage = footerOptions.selectMyAccountOption();
+		Assert.assertEquals(getPageTitle(loginPage.getDriver()), "Account Login");
+		navigateBackInBrowser(loginPage.getDriver());
 
-		driver.findElement(By.xpath("//footer//a[text()='Specials']")).click();
-		Assert.assertEquals(driver.getTitle(), "Special Offers");
-		driver.navigate().back();
+		loginPage = footerOptions.selectOrderHistoryOption();
+		Assert.assertEquals(getPageTitle(loginPage.getDriver()), "Account Login");
+		navigateBackInBrowser(loginPage.getDriver());
 
-		driver.findElement(By.xpath("//footer//a[text()='My Account']")).click();
-		Assert.assertEquals(driver.getTitle(), "Account Login");
-		driver.navigate().back();
+		loginPage = footerOptions.selectWishListOption();
+		Assert.assertEquals(getPageTitle(loginPage.getDriver()), "Account Login");
+		navigateBackInBrowser(loginPage.getDriver());
 
-		driver.findElement(By.xpath("//footer//a[text()='Order History']")).click();
-		Assert.assertEquals(driver.getTitle(), "Account Login");
-		driver.navigate().back();
-
-		driver.findElement(By.xpath("//footer//a[text()='Wish List']")).click();
-		Assert.assertEquals(driver.getTitle(), "Account Login");
-		driver.navigate().back();
-
-		driver.findElement(By.xpath("//footer//a[text()='Newsletter']")).click();
-		Assert.assertEquals(driver.getTitle(), "Account Login");
-		driver.navigate().back();
+		loginPage = footerOptions.selectNewsletterOption();
+		Assert.assertEquals(getPageTitle(loginPage.getDriver()), "Account Login");
+		navigateBackInBrowser(loginPage.getDriver());
 
 	}
 

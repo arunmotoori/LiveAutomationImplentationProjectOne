@@ -24,5 +24,7 @@ public class LoginPage extends RootPage {
 		continueButton.click();
 		return new RegisterPage(driver);
 	}
+	
+	
 
 }

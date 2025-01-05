@@ -13,5 +13,9 @@ public class Base {
 	public String getPageURL(WebDriver driver) {
 		return driver.getCurrentUrl();
 	}
+	
+	public void navigateBackInBrowser(WebDriver driver) {
+		driver.navigate().back();
+	}
 
 }

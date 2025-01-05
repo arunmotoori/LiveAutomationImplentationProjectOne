@@ -91,6 +91,14 @@ public class RegisterPage extends RootPage {
 	
 	@FindBy(css="div[class='pull-right']")
 	private WebElement privacyPolicyFieldLabel;
+	
+	@FindBy(linkText="login page")
+	private WebElement loginPageOption;
+	
+	public LoginPage selectLoginPageOption() {
+		loginPageOption.click();
+		return new LoginPage(driver);
+	}
 
 	public String getPasswordFieldDomAttribute(String attributeName) {
 		return passwordField.getDomAttribute(attributeName);
@@ -226,6 +234,11 @@ public class RegisterPage extends RootPage {
 	
 	public String getEmailValidationMessage() {
 		return emailField.getDomProperty("validationMessage");
+	}
+	
+	public RegisterPage selectRegisterBreadcrumbOption() {
+		registerPageBreadcrumb.click();
+		return new RegisterPage(driver);
 	}
 
 	public boolean didWeNavigateToRegisterPage() {

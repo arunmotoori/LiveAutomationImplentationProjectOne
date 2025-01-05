@@ -5,6 +5,13 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import pages.AccountSuccessPage;
+import pages.FooterOptions;
+import pages.HeaderOptions;
+import pages.HomePage;
+import pages.LoginPage;
+import pages.RightColumnOptions;
+
 public class RootPage {
 	
 	WebDriver driver;
@@ -17,8 +24,40 @@ public class RootPage {
 	@FindBy(xpath="//div[@id='content']/h1")
 	private WebElement pageHeading;
 	
+	@FindBy(xpath="//i[@class='fa fa-home']")
+	private WebElement homeBreadCrumb;
+	
+	@FindBy(xpath="//ul[@class='breadcrumb']//a[text()='Account']")
+	private WebElement accountBreadcrumb;
+	
+	public LoginPage selectAccountBreadcrumbOptionWithoutLogin() {
+		accountBreadcrumb.click();
+		return new LoginPage(driver);
+	}
+	
+	public HomePage selectHomeBreadcrumbOption() {
+		homeBreadCrumb.click();
+		return new HomePage(driver);
+	}
+	
 	public String getPageHeading() {
 		return pageHeading.getText();
+	}
+	
+	public HeaderOptions getHeaderOptions() {
+		return new HeaderOptions(driver);
+	}
+	
+	public RightColumnOptions getRightColumnOptions() {
+		return new RightColumnOptions(driver);
+	}
+	
+	public AccountSuccessPage getAccountSuccessPage() {
+		return new AccountSuccessPage(driver);
+	}
+	
+	public FooterOptions getFoooterOptions() {
+		return new FooterOptions(driver);
 	}
 	
 	public WebDriver getDriver() {

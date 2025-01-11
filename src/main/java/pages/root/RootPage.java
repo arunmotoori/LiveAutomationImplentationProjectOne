@@ -11,13 +11,16 @@ import pages.HeaderOptions;
 import pages.HomePage;
 import pages.LoginPage;
 import pages.RightColumnOptions;
+import utils.ElementUtilities;
 
 public class RootPage {
 	
 	WebDriver driver;
+	public ElementUtilities elementUtilities;
 	
 	public RootPage(WebDriver driver) {
 		this.driver = driver;
+		elementUtilities = new ElementUtilities(driver);
 		PageFactory.initElements(driver,this);
 	}
 	
@@ -31,17 +34,17 @@ public class RootPage {
 	private WebElement accountBreadcrumb;
 	
 	public LoginPage selectAccountBreadcrumbOptionWithoutLogin() {
-		accountBreadcrumb.click();
+		elementUtilities.clickOnElement(accountBreadcrumb);
 		return new LoginPage(driver);
 	}
 	
 	public HomePage selectHomeBreadcrumbOption() {
-		homeBreadCrumb.click();
+		elementUtilities.clickOnElement(homeBreadCrumb);
 		return new HomePage(driver);
 	}
 	
 	public String getPageHeading() {
-		return pageHeading.getText();
+		return elementUtilities.getElementText(pageHeading);
 	}
 	
 	public HeaderOptions getHeaderOptions() {

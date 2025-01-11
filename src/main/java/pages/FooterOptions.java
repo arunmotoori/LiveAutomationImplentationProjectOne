@@ -63,77 +63,77 @@ public class FooterOptions extends RootPage {
 	private WebElement newsletterOption;
 	
 	public LoginPage selectNewsletterOption() {
-		newsletterOption.click();
+		elementUtilities.clickOnElement(newsletterOption);
 		return new LoginPage(driver);
 	}
 	
 	public LoginPage selectWishListOption() {
-		wishListOption.click();
+		elementUtilities.clickOnElement(wishListOption);
 		return new LoginPage(driver);
 	}
 	
 	public LoginPage selectOrderHistoryOption() {
-		orderHistory.click();
+		elementUtilities.clickOnElement(orderHistory);
 		return new LoginPage(driver);
 	}
 	
 	public LoginPage selectMyAccountOption() {
-		myAccountOption.click();
+		elementUtilities.clickOnElement(myAccountOption);
 		return new LoginPage(driver);
 	}
 	
 	public SpecialOffersPage selectSpecialsOption() {
-		specialsOption.click();
+		elementUtilities.clickOnElement(specialsOption);
 		return new SpecialOffersPage(driver);
 	}
 	
 	public LoginPage selectAffiliateOption() {
-		affiliateOption.click();
+		elementUtilities.clickOnElement(affiliateOption);
 		return new LoginPage(driver);
 	}
 	
 	public GiftCertificatePage selectGiftCertificatesOption() {
-		giftCertificatesOption.click();
+		elementUtilities.clickOnElement(giftCertificatesOption);
 		return new GiftCertificatePage(driver);
 	}
 	
 	public BrandPage selectBrandsOption() {
-		brandsOption.click();
+		elementUtilities.clickOnElement(brandsOption);
 		return new BrandPage(driver);
 	}
 	
 	public SiteMapPage selectSiteMapOption() {
-		siteMapOption.click();
+		elementUtilities.clickOnElement(siteMapOption);
 		return new SiteMapPage(driver);
 	}
 	
 	public ProductReturnsPage selectReturnsOption() {
-		returnsOption.click();
+		elementUtilities.clickOnElement(returnsOption);
 		return new ProductReturnsPage(driver);
 	}
 	
 	public ContactUsPage selectContactUsOption() {
-		contactUsOption.click();
+		elementUtilities.clickOnElement(contactUsOption);
 		return new ContactUsPage(driver);
 	}
 	
 	public TermsAndConditionsPage selectTermsAndConditionsOption() {
-		termsAndConditionsOption.click();
+		elementUtilities.clickOnElement(termsAndConditionsOption);
 		return new TermsAndConditionsPage(driver);
 	}
 	
 	public PrivacyPolicyPage selectPrivacyPolicyOption() {
-		privacyPolicyOption.click();
+		elementUtilities.clickOnElement(privacyPolicyOption);
 		return new PrivacyPolicyPage(driver);
 	}
 	
 	public DeliveryInformationPage selectDeliveryInformationOption() {
-		deliveryInformationOption.click();
+		elementUtilities.clickOnElement(deliveryInformationOption);
 		return new DeliveryInformationPage(driver);
 	}
 	
 	public AboutUsPage selectAboutUsOption() {
-		aboutUsOption.click();
+		elementUtilities.clickOnElement(aboutUsOption);
 		return new AboutUsPage(driver);
 	}
 

@@ -27,15 +27,15 @@ public class NewsletterPage extends RootPage {
 	private WebElement noNewsletterOption;
 	
 	public boolean isNoNewsletterOptionIsInSelectedState() {
-		return noNewsletterOption.isSelected();
+		return elementUtilities.isElementSelected(noNewsletterOption);
 	}
 	
 	public boolean isYesNewsletterOptionIsInSelectedState() {
-		return yesNewsletterOption.isSelected();
+		return elementUtilities.isElementSelected(yesNewsletterOption);
 	}
 	
 	public boolean didWeNavigateToNewsletterPage() {
-		return newsletterPageBreadcrumb.isDisplayed();
+		return elementUtilities.isElementDisplayed(newsletterPageBreadcrumb);
 	}
 
 }

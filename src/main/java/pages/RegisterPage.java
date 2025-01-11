@@ -96,84 +96,84 @@ public class RegisterPage extends RootPage {
 	private WebElement loginPageOption;
 	
 	public LoginPage selectLoginPageOption() {
-		loginPageOption.click();
+		elementUtilities.clickOnElement(loginPageOption);
 		return new LoginPage(driver);
 	}
 
 	public String getPasswordFieldDomAttribute(String attributeName) {
-		return passwordField.getDomAttribute(attributeName);
+		return elementUtilities.getElementDomAttribute(passwordField, attributeName);
 	}
 	
 	public String getPasswordConfirmFieldDomAttribute(String attributeName) {
-		return passwordConfirmField.getDomAttribute(attributeName);
+		return elementUtilities.getElementDomAttribute(passwordConfirmField, attributeName);
 	}
 	
 	public boolean isPrivacyPolicyFieldSelected() {
-		return privacyPolicyField.isSelected();
+		return elementUtilities.isElementSelected(privacyPolicyField);
 	}
 	
 	public String getFirstNameCSSValue(String propertyName) {
-		return firstNameField.getCssValue(propertyName);
+		return elementUtilities.getElementCSSValue(firstNameField, propertyName);
 	}
 	
 	public String getLastNameCSSValue(String propertyName) {
-		return lastNameField.getCssValue(propertyName);
+		return elementUtilities.getElementCSSValue(lastNameField, propertyName);
 	}
 	
 	public String getEmailCSSValue(String propertyName) {
-		return emailField.getCssValue(propertyName);
+		return elementUtilities.getElementCSSValue(emailField, propertyName);
 	}
 	
 	public String getTelephoneCSSValue(String propertyName) {
-		return telephoneField.getCssValue(propertyName);
+		return elementUtilities.getElementCSSValue(telephoneField, propertyName);
 	}
 	
 	public String getPasswordCSSValue(String propertyName) {
-		return passwordField.getCssValue(propertyName);
+		return elementUtilities.getElementCSSValue(passwordField, propertyName);
 	}
 	
 	public String getPasswordConfirmCSSValue(String propertyName) {
-		return passwordConfirmField.getCssValue(propertyName);
+		return elementUtilities.getElementCSSValue(passwordConfirmField, propertyName);
 	}
 	
 	public String getContinueButtonCSSValue(String propertyName) {
-		return continueButton.getCssValue(propertyName);
+		return elementUtilities.getElementCSSValue(continueButton, propertyName);
 	}
 	
 	public void clearPasswordField() {
-		passwordField.clear();
+		elementUtilities.clearTextFromElement(passwordField);
 	}
 	
 	public void clearTelephoneField() {
-		telephoneField.clear();
+		elementUtilities.clearTextFromElement(telephoneField);
 	}
 	
 	public void clearFirstNameField() {
-		firstNameField.clear();
+		elementUtilities.clearTextFromElement(firstNameField);
 	}
 	
 	public void clearLastNameField() {
-		lastNameField.clear();
+		elementUtilities.clearTextFromElement(lastNameField);
 	}
 	
 	public boolean isFirstNameWarningMessageDisplayed() {
-		return firstNameWarning.isDisplayed();
+		return elementUtilities.isElementDisplayed(firstNameWarning);
 	}
 	
 	public boolean isLastNameWarningMessageDisplayed() {
-		return lastNameWarning.isDisplayed();
+		return elementUtilities.isElementDisplayed(lastNameWarning);
 	}
 	
 	public boolean isEmailWarningMessageDisplayed() {
-		return emailWarning.isDisplayed();
+		return elementUtilities.isElementDisplayed(emailWarning);
 	}
 	
 	public boolean isTelephoneWarningMessageDisplayed() {
-		return telephoneWarning.isDisplayed();
+		return elementUtilities.isElementDisplayed(telephoneWarning);
 	}
 	
 	public boolean isPasswordWarningMessageDisplayed() {
-		return passwordWarning.isDisplayed();
+		return elementUtilities.isElementDisplayed(passwordWarning);
 	}
 	
 	public WebElement getPrivacyPolicyFieldLabelElement() {
@@ -205,113 +205,113 @@ public class RegisterPage extends RootPage {
 	}
 	
 	public String getFirstNameFieldPlaceholderText() {
-		return firstNameField.getDomAttribute("placeholder");
+		return elementUtilities.getElementDomAttribute(firstNameField,"placeholder");
 	}
 	
 	public String getLastNameFieldPlaceholderText() {
-		return lastNameField.getDomAttribute("placeholder");
+		return elementUtilities.getElementDomAttribute(lastNameField, "placeholder");
 	}
 	
 	public String getEmailFieldPlaceholderText() {
-		return emailField.getDomAttribute("placeholder");
+		return elementUtilities.getElementDomAttribute(emailField,"placeholder");
 	}
 	
 	public String getTelephoneFieldPlaceholderText() {
-		return telephoneField.getDomAttribute("placeholder");
+		return elementUtilities.getElementDomAttribute(telephoneField,"placeholder");
 	}
 	
 	public String getPasswordFieldPlaceholderText() {
-		return passwordField.getDomAttribute("placeholder");
+		return elementUtilities.getElementDomAttribute(passwordField,"placeholder");
 	}
 	
 	public String getPasswordConfirmFieldPlaceholderText() {
-		return passwordConfirmField.getDomAttribute("placeholder");
+		return elementUtilities.getElementDomAttribute(passwordConfirmField,"placeholder");
 	}
 	
 	public void clearEmailField() {
-		emailField.clear();
+		elementUtilities.clearTextFromElement(emailField);
 	}
 	
 	public String getEmailValidationMessage() {
-		return emailField.getDomProperty("validationMessage");
+		return elementUtilities.getElementDomProperty(emailField,"validationMessage");
 	}
 	
 	public RegisterPage selectRegisterBreadcrumbOption() {
-		registerPageBreadcrumb.click();
+		elementUtilities.clickOnElement(registerPageBreadcrumb);
 		return new RegisterPage(driver);
 	}
 
 	public boolean didWeNavigateToRegisterPage() {
-		return registerPageBreadcrumb.isDisplayed();
+		return elementUtilities.isElementDisplayed(registerPageBreadcrumb);
 	}
 	
 	public String getPasswordConfirmationWarning() {
-		return passwordConfirmationWarning.getText();
+		return elementUtilities.getElementText(passwordConfirmationWarning);
 	}
 
 	public String getPageLevelWarning() {
-		return pageLevelWaring.getText();
+		return elementUtilities.getElementText(pageLevelWaring);
 	}
 
 	public String getPasswordWarning() {
-		return passwordWarning.getText();
+		return elementUtilities.getElementText(passwordWarning);
 	}
 
 	public String getEmailWarning() {
-		return emailWarning.getText();
+		return elementUtilities.getElementText(emailWarning);
 	}
 
 	public String getTelephoneWarning() {
-		return telephoneWarning.getText();
+		return elementUtilities.getElementText(telephoneWarning);
 	}
 
 	public String getLastNameWarning() {
-		return lastNameWarning.getText();
+		return elementUtilities.getElementText(lastNameWarning);
 	}
 
 	public String getFirstNameWarning() {
-		return firstNameWarning.getText();
+		return elementUtilities.getElementText(firstNameWarning);
 	}
 
 	public void selectYesNewsletterOption() {
-		yesNewsletterOption.click();
+		elementUtilities.clickOnElement(yesNewsletterOption);
 	}
 
 	public void selectNoNewletterOption() {
-		noNewsletterOption.click();
+		elementUtilities.clickOnElement(noNewsletterOption);
 	}
 
 	public AccountSuccessPage clickOnContinueButton() {
-		continueButton.click();
+		elementUtilities.clickOnElement(continueButton);
 		return new AccountSuccessPage(driver);
 	}
 
 	public void selectPrivacyPolicyField() {
-		privacyPolicyField.click();
+		elementUtilities.clickOnElement(privacyPolicyField);
 	}
 
 	public void enterConfirmationPassword(String passwordText) {
-		passwordConfirmField.sendKeys(passwordText);
+		elementUtilities.enterTextIntoElement(passwordConfirmField, passwordText);
 	}
 
 	public void enterFirstName(String firstNameText) {
-		firstNameField.sendKeys(firstNameText);
+		elementUtilities.enterTextIntoElement(firstNameField, firstNameText);
 	}
 
 	public void enterLastName(String lastNameText) {
-		lastNameField.sendKeys(lastNameText);
+		elementUtilities.enterTextIntoElement(lastNameField, lastNameText);
 	}
 
 	public void enterEmail(String emailText) {
-		emailField.sendKeys(emailText);
+		elementUtilities.enterTextIntoElement(emailField, emailText);
 	}
 
 	public void enterTelephone(String telephoneText) {
-		telephoneField.sendKeys(telephoneText);
+		elementUtilities.enterTextIntoElement(telephoneField, telephoneText);
 	}
 
 	public void enterPassword(String passwordText) {
-		passwordField.sendKeys(passwordText);
+		elementUtilities.enterTextIntoElement(passwordField, passwordText);
 	}
 
 }

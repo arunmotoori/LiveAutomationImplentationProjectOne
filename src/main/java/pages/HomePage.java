@@ -14,4 +14,5 @@ public class HomePage extends RootPage {
 		this.driver = driver;
 		PageFactory.initElements(driver,this);
 	}
+
 }

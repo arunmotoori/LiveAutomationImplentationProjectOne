@@ -3,8 +3,7 @@
 <suite name="Suite">
   <test name="Test">
     <classes>
-      <class name="register.TC_RF_001"/>
-      <class name="register.TC_RF_003"/>
+      <class name="tests.Register"/>
     </classes>
   </test> <!-- Test -->
 </suite> <!-- Suite -->

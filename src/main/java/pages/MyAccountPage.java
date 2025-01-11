@@ -24,16 +24,16 @@ public class MyAccountPage extends RootPage {
 	private WebElement subscribeUnsubscribeToNewsletterOption;
 	
 	public NewsletterPage clickOnSubscribeOrUnscriberToNewsletterOption() {
-		subscribeUnsubscribeToNewsletterOption.click();
+		elementUtilities.clickOnElement(subscribeUnsubscribeToNewsletterOption);
 		return new NewsletterPage(driver);
 	}
 	
 	public boolean didWeNavigateToMyAccountPage() {
-		return editYourAccountInformationOption.isDisplayed();
+		return elementUtilities.isElementDisplayed(editYourAccountInformationOption);
 	}
 	
 	public MyAccountInformationPage clickOnEditYourAccountInformationOption() {
-		editYourAccountInformationOption.click();
+		elementUtilities.clickOnElement(editYourAccountInformationOption);
 		return new MyAccountInformationPage(driver);
 	}
 

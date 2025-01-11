@@ -3,11 +3,38 @@
 <suite name="Failed suite [Suite]">
   <test thread-count="5" name="Test(failed)">
     <classes>
-      <class name="register.TC_RF_003">
+      <class name="tests.Register">
         <methods>
+          <include name="verifyRegisteringAccountByProvidingMismatchedPasswords"/>
+          <include name="verifyRegisterAccountInAllEnvironments"/>
+          <include name="verifyRegisteringAccountByNotSubscribingToNewsletter"/>
+          <include name="verifyRegisterAccountPagePlaceholders"/>
+          <include name="verifyWarningMessageOfMandatoryFieldsInRegisterAccountPage"/>
+          <include name="verifyHeightWidthNumberOfCharacters"/>
+          <include name="verifyRegisterAccountUsingLeadingAndTrailingSpaces"/>
+          <include name="verifyRegisterAccountPrivacyPolicyField"/>
+          <include name="verifyRegisteringAccountPasswordFieldsForSecurity"/>
+          <include name="verifyRegisterAccountWithExistingEmailAddress"/>
+          <include name="verifyRegisterAccountUI"/>
+          <include name="verifyRegisteringAccountWithoutEnteringConfirmationPassword"/>
+          <include name="teardown"/>
           <include name="verifyRegistringAccountUsingAllFields"/>
+          <include name="verifyDifferentWaysOfNavigatingToRegisterAccountPage"/>
+          <include name="verifyRegisteringAccountBySubscribingToNewsletter"/>
+          <include name="verifyRegisteringAccountUsingPasswordsWhichAreNotFollowingPasswordComplexityStandards"/>
+          <include name="verifyMandatoryFieldsInRegisterAccountPage"/>
+          <include name="verifyRegisteringAccountUsingInvalidTelephoneNumber"/>
+          <include name="verifyRegisteringAccountByEnteringOnlySpaces"/>
+          <include name="verifyRegisteringAccountUsingMandatoryFields"/>
+          <include name="verifyRegisterAccountPageBreadcrumbURLTitleHeading"/>
+          <include name="verifyRegisteringAccountUsingKeyboardKeys"/>
+          <include name="setup"/>
+          <include name="verifyRegisteringAccountUsingInvalidEmail"/>
+          <include name="verifyThankYourConfirmationEmailOnSuccessfulRegistration"/>
+          <include name="verifyRegisteringAccountWithoutSelectingPrivacyPolicyCheckboxField"/>
+          <include name="verifyRegisterAccountPageNavigations"/>
         </methods>
-      </class> <!-- register.TC_RF_003 -->
+      </class> <!-- tests.Register -->
     </classes>
   </test> <!-- Test(failed) -->
 </suite> <!-- Failed suite [Suite] -->

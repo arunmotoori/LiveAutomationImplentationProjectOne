@@ -60,71 +60,71 @@ public class RightColumnOptions extends RootPage {
 	private WebElement newsletterOption;
 	
 	public LoginPage clickOnNewsletterOption() {
-		newsletterOption.click();
+		elementUtilities.clickOnElement(newsletterOption);
 		return new LoginPage(driver);
 	}
 	
 	public LoginPage clickOnTransactionsOption() {
-		transactionsOption.click();
+		elementUtilities.clickOnElement(transactionsOption);
 		return new LoginPage(driver);
 	}
 	
 	public LoginPage clickOnReturnsOption() {
-		returnsOption.click();
+		elementUtilities.clickOnElement(returnsOption);
 		return new LoginPage(driver);
 	}
 	
 	public LoginPage clickOnRewarPointsOption() {
-		rewardPointsOption.click();
+		elementUtilities.clickOnElement(rewardPointsOption);
 		return new LoginPage(driver);
 	}
 	
 	public LoginPage clickOnRecurringPaymentsOption() {
-		recurringPaymentsOption.click();
+		elementUtilities.clickOnElement(recurringPaymentsOption);
 		return new LoginPage(driver);
 	}
 	
 	public LoginPage clickOnDownloadsOption() {
-		downloadsOption.click();
+		elementUtilities.clickOnElement(downloadsOption);
 		return new LoginPage(driver);
 	}
 	
 	public LoginPage clickOnOrderHistoryOption() {
-		orderHistoryOption.click();
+		elementUtilities.clickOnElement(orderHistoryOption);
 		return new LoginPage(driver);
 	}
 	
 	public LoginPage clickOnWishListOption() {
-		wishListOption.click();
+		elementUtilities.clickOnElement(wishListOption);
 		return new LoginPage(driver);
 	}
 	
 	public LoginPage clickOnAddressBookOption() {
-		addressBookOption.click();
+		elementUtilities.clickOnElement(addressBookOption);
 		return new LoginPage(driver);
 	}
 	
 	public LoginPage clickOnMyAccountOption() {
-		myAccountOption.click();
+		elementUtilities.clickOnElement(myAccountOption);
 		return new LoginPage(driver);
 	}
 	
 	public ForgottenPasswordPage clickOnForgottenPasswordOption() {
-		forgottendPasswordOption.click();
+		elementUtilities.clickOnElement(forgottendPasswordOption);
 		return new ForgottenPasswordPage(driver);
 	}
 	
 	public LoginPage clickOnLoginOption() {
-		loginOption.click();
+		elementUtilities.clickOnElement(loginOption);
 		return new LoginPage(driver);
 	}
 	
 	public boolean didWeGetLoggedIn() {
-		return logoutOption.isDisplayed();
+		return elementUtilities.isElementDisplayed(logoutOption);
 	}
 	
 	public RegisterPage clickOnRegisterOption() {
-		registerOption.click();
+		elementUtilities.clickOnElement(registerOption);
 		return new RegisterPage(driver);
 	}
 

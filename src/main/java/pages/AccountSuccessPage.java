@@ -30,20 +30,20 @@ public class AccountSuccessPage extends RootPage {
 	private WebElement continueButton;
 	
 	public MyAccountPage clickOnContinueButton() {
-		continueButton.click();
+		elementUtilities.clickOnElement(continueButton);
 		return new MyAccountPage(driver);
 	}
 	
 	public String getContent() {
-		return accountSuccessPageContent.getText();
+		return elementUtilities.getElementText(accountSuccessPageContent);
 	}
 	
 	public boolean didWeNavigateToAccountSuccessPage() {
-		return accountSuccessPageBreadcrumb.isDisplayed();
+		return elementUtilities.isElementDisplayed(accountSuccessPageBreadcrumb);
 	}
 	
 	public boolean isUserLoggedIn() {
-		return logoutOption.isDisplayed();
+		return elementUtilities.isElementDisplayed(logoutOption);
 	}
 	
 

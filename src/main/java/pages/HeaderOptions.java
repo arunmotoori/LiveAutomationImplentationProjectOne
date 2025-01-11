@@ -8,107 +8,107 @@ import org.openqa.selenium.support.PageFactory;
 import pages.root.RootPage;
 
 public class HeaderOptions extends RootPage {
-	
+
 	WebDriver driver;
-	
+
 	public HeaderOptions(WebDriver driver) {
 		super(driver);
 		this.driver = driver;
-		PageFactory.initElements(driver,this);
+		PageFactory.initElements(driver, this);
 	}
-	
-	@FindBy(xpath="//span[text()='My Account']")
+
+	@FindBy(xpath = "//span[text()='My Account']")
 	private WebElement myAccountDropMenu;
-	
-	@FindBy(linkText="Register")
+
+	@FindBy(linkText = "Register")
 	private WebElement registerOption;
-	
-	@FindBy(linkText="Login")
+
+	@FindBy(linkText = "Login")
 	private WebElement loginOption;
-	
-	@FindBy(xpath="//i[@class='fa fa-phone']")
+
+	@FindBy(xpath = "//i[@class='fa fa-phone']")
 	private WebElement phoneIcon;
-	
-	@FindBy(xpath="//i[@class='fa fa-heart']")
+
+	@FindBy(xpath = "//i[@class='fa fa-heart']")
 	private WebElement heartIconOption;
-	
-	@FindBy(xpath="//span[@class='hidden-xs hidden-sm hidden-md'][contains(text(),'Wish List')]")
+
+	@FindBy(xpath = "//span[@class='hidden-xs hidden-sm hidden-md'][contains(text(),'Wish List')]")
 	private WebElement wishListHeaderOption;
-	
-	@FindBy(xpath="//i[@class='fa fa-shopping-cart']")
+
+	@FindBy(xpath = "//i[@class='fa fa-shopping-cart']")
 	private WebElement shoppingCartHeaderIcon;
-	
-	@FindBy(xpath="//span[text()='Shopping Cart']")
+
+	@FindBy(xpath = "//span[text()='Shopping Cart']")
 	private WebElement shoppingCartHeaderOption;
-	
-	@FindBy(xpath="//i[@class='fa fa-share']")
+
+	@FindBy(xpath = "//i[@class='fa fa-share']")
 	private WebElement checkoutHeaderIcon;
-	
-	@FindBy(xpath="//span[text()='Checkout']")
+
+	@FindBy(xpath = "//span[text()='Checkout']")
 	private WebElement checkoutOption;
-	
-	@FindBy(linkText="Qafox.com")
+
+	@FindBy(linkText = "Qafox.com")
 	private WebElement logo;
-	
-	@FindBy(xpath="//button[@class='btn btn-default btn-lg']")
+
+	@FindBy(xpath = "//button[@class='btn btn-default btn-lg']")
 	private WebElement searchButton;
-	
+
 	public SearchPage clickOnSearchButton() {
-		searchButton.click();
+		elementUtilities.clickOnElement(searchButton);
 		return new SearchPage(driver);
 	}
-	
+
 	public HomePage selectLogo() {
-		logo.click();
+		elementUtilities.clickOnElement(logo);
 		return new HomePage(driver);
 	}
-	
+
 	public ShoppingCartPage selectCheckoutOption() {
-		checkoutOption.click();
+		elementUtilities.clickOnElement(checkoutOption);
 		return new ShoppingCartPage(driver);
 	}
-	
+
 	public ShoppingCartPage selectCheckoutIcon() {
-		checkoutHeaderIcon.click();
+		elementUtilities.clickOnElement(checkoutHeaderIcon);
 		return new ShoppingCartPage(driver);
 	}
-	
+
 	public ShoppingCartPage selectShoppingCartOption() {
-		shoppingCartHeaderOption.click();
+		elementUtilities.clickOnElement(shoppingCartHeaderOption);
 		return new ShoppingCartPage(driver);
 	}
-	
+
 	public ShoppingCartPage selectShoppingCartIcon() {
-		shoppingCartHeaderIcon.click();
+		elementUtilities.clickOnElement(shoppingCartHeaderIcon);
 		return new ShoppingCartPage(driver);
 	}
-	
+
 	public LoginPage selectWishListOption() {
-		wishListHeaderOption.click();
+		elementUtilities.clickOnElement(wishListHeaderOption);
 		return new LoginPage(driver);
 	}
-	
+
 	public LoginPage selectHeartIconOption() {
-		heartIconOption.click();
+		elementUtilities.clickOnElement(heartIconOption);
 		return new LoginPage(driver);
 	}
-	
+
 	public ContactUsPage selectPhoneIconOption() {
-		phoneIcon.click();
+		elementUtilities.clickOnElement(phoneIcon);
 		return new ContactUsPage(driver);
 	}
-	
+
 	public LoginPage selectLoginOption() {
-		loginOption.click();
+		elementUtilities.clickOnElement(loginOption);
 		return new LoginPage(driver);
 	}
-	
+
 	public void clickOnMyAccountDropMenu() {
-		myAccountDropMenu.click();
+		elementUtilities.clickOnElement(myAccountDropMenu);
 	}
-	
+
 	public RegisterPage selectRegisterOption() {
-		registerOption.click();
+		elementUtilities.clickOnElement(registerOption);
 		return new RegisterPage(driver);
 	}
 

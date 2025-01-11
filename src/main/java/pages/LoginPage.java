@@ -21,7 +21,7 @@ public class LoginPage extends RootPage {
 	private WebElement continueButton;
 	
 	public RegisterPage clickOnContinueButton() {
-		continueButton.click();
+		elementUtilities.clickOnElement(continueButton);
 		return new RegisterPage(driver);
 	}
 	

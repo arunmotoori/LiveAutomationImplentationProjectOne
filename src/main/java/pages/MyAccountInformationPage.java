@@ -30,23 +30,23 @@ public class MyAccountInformationPage extends RootPage {
 	private WebElement telephoneField;
 	
 	public String getFirstNameDomAttribute(String attributeName) {
-		return firstNameField.getDomAttribute(attributeName);
+		return elementUtilities.getElementDomAttribute(firstNameField, attributeName);
 	}
 	
 	public String getLastNameDomAttribute(String attributeName) {
-		return lastNameField.getDomAttribute(attributeName);
+		return elementUtilities.getElementDomAttribute(lastNameField, attributeName);
 	}
 	
 	public String getEmailDomAttribute(String attributeName) {
-		return emailField.getDomAttribute(attributeName);
+		return elementUtilities.getElementDomAttribute(emailField, attributeName);
 	}
 	
-	public String getEmailDomProperty(String propertyName) {
-		return emailField.getDomProperty(propertyName);
+	public String getEmailDomProperty(String lastNameField) {
+		return elementUtilities.getElementDomProperty(emailField, lastNameField);
 	}
 	
 	public String getTelephoneDomAttribute(String attributeName) {
-		return telephoneField.getDomAttribute(attributeName);
+		return elementUtilities.getElementDomAttribute(telephoneField, attributeName);
 	}
 
 }

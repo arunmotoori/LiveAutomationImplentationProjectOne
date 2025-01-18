@@ -65,9 +65,6 @@ public class RegisterPage extends RootPage {
 	@FindBy(xpath = "//input[@id='input-confirm']/following-sibling::div")
 	private WebElement passwordConfirmationWarning;
 
-	@FindBy(xpath = "//div[@class='alert alert-danger alert-dismissible']")
-	private WebElement pageLevelWaring;
-
 	@FindBy(xpath = "//ul[@class='breadcrumb']//a[text()='Register']")
 	private WebElement registerPageBreadcrumb;
 	
@@ -249,9 +246,7 @@ public class RegisterPage extends RootPage {
 		return elementUtilities.getElementText(passwordConfirmationWarning);
 	}
 
-	public String getPageLevelWarning() {
-		return elementUtilities.getElementText(pageLevelWaring);
-	}
+	
 
 	public String getPasswordWarning() {
 		return elementUtilities.getElementText(passwordWarning);

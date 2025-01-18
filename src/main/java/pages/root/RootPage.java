@@ -33,6 +33,13 @@ public class RootPage {
 	@FindBy(xpath="//ul[@class='breadcrumb']//a[text()='Account']")
 	private WebElement accountBreadcrumb;
 	
+	@FindBy(xpath = "//div[@class='alert alert-danger alert-dismissible']")
+	private WebElement pageLevelWaring;
+	
+	public String getPageLevelWarning() {
+		return elementUtilities.getElementText(pageLevelWaring);
+	}
+	
 	public LoginPage selectAccountBreadcrumbOptionWithoutLogin() {
 		elementUtilities.clickOnElement(accountBreadcrumb);
 		return new LoginPage(driver);

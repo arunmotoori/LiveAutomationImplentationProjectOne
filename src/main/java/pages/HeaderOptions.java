@@ -52,6 +52,14 @@ public class HeaderOptions extends RootPage {
 
 	@FindBy(xpath = "//button[@class='btn btn-default btn-lg']")
 	private WebElement searchButton;
+	
+	@FindBy(linkText="Logout")
+	private WebElement logoutOption;
+	
+	public LogoutPage selectLogoutOption() {
+		elementUtilities.clickOnElement(logoutOption);
+		return new LogoutPage(driver);
+	}
 
 	public SearchPage clickOnSearchButton() {
 		elementUtilities.clickOnElement(searchButton);

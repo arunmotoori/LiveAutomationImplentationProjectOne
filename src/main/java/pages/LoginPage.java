@@ -20,11 +20,63 @@ public class LoginPage extends RootPage {
 	@FindBy(xpath="//a[@class='btn btn-primary'][text()='Continue']")
 	private WebElement continueButton;
 	
+	@FindBy(id="input-email")
+	private WebElement emailField;
+	
+	@FindBy(id="input-password")
+	private WebElement passwordField;
+	
+	@FindBy(xpath="//input[@value='Login']")
+	private WebElement loginButton;
+	
+	@FindBy(xpath="//ul[@class='breadcrumb']//a[text()='Login']")
+	private WebElement loginBreadcrumb;
+	
+	@FindBy(linkText="Forgotten Password")
+	private WebElement forgottendPasswordLink;
+	
+	public String getEmailFieldPlaceholderText() {
+		return elementUtilities.getElementDomAttribute(emailField,"placeholder");
+	}
+	
+	public String getPasswordFieldPlaceholderText() {
+		return elementUtilities.getElementDomAttribute(passwordField,"placeholder");
+	}
+	
+	public ForgottenPasswordPage clickOnForgottenPasswordLink() {
+		forgottendPasswordLink.click();
+		return new ForgottenPasswordPage(driver);
+	}
+	
 	public RegisterPage clickOnContinueButton() {
 		elementUtilities.clickOnElement(continueButton);
 		return new RegisterPage(driver);
 	}
 	
+	public MyAccountPage clickOnLoginButton() {
+		elementUtilities.clickOnElement(loginButton);
+		return new MyAccountPage(driver);
+	}
 	
-
+	public void enterEmail(String emailText) {
+		elementUtilities.enterTextIntoElement(emailField, emailText);
+	}
+	
+	public void enterPassword(String passwordText) {
+		elementUtilities.enterTextIntoElement(passwordField, passwordText);
+	}
+	
+	public MyAccountPage loginInToApplication(String emailText,String passwordText) {
+		elementUtilities.enterTextIntoElement(emailField, emailText);
+		elementUtilities.enterTextIntoElement(passwordField, passwordText);
+		elementUtilities.clickOnElement(loginButton);
+		return new MyAccountPage(driver);
+	}
+	
+	public boolean didWeNavigateToLogin() {
+		return elementUtilities.isElementDisplayed(loginBreadcrumb);
+	}
+	
+	
+	
 }

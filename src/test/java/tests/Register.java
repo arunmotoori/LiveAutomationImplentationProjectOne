@@ -7,7 +7,6 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.time.Duration;
 import java.util.Properties;
 
 import javax.mail.Flags;
@@ -23,13 +22,7 @@ import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.edge.EdgeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.ie.InternetExplorerDriver;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.io.FileHandler;
-import org.openqa.selenium.safari.SafariDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -38,90 +31,22 @@ import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
 import base.Base;
-import pages.AboutUsPage;
-import pages.AccountSuccessPage;
-import pages.BrandPage;
-import pages.ContactUsPage;
-import pages.DeliveryInformationPage;
-import pages.FooterOptions;
-import pages.ForgottenPasswordPage;
-import pages.GiftCertificatePage;
 import pages.HeaderOptions;
-import pages.HomePage;
-import pages.LoginPage;
-import pages.MyAccountInformationPage;
-import pages.MyAccountPage;
-import pages.NewsletterPage;
-import pages.PrivacyPolicyPage;
-import pages.ProductReturnsPage;
-import pages.RegisterPage;
-import pages.RightColumnOptions;
-import pages.SearchPage;
-import pages.ShoppingCartPage;
-import pages.SiteMapPage;
-import pages.SpecialOffersPage;
-import pages.TermsAndConditionsPage;
 import utils.CommonUtilities;
 
 public class Register extends Base {
 
 	WebDriver driver;
-	String browserName;
-	Properties prop;
-
-	HeaderOptions headerOptions;
-	RegisterPage registerPage;
-	AccountSuccessPage accountSuccessPage;
-	MyAccountPage myAccountPage;
-	NewsletterPage newsletterPage;
-	LoginPage loginPage;
-	RightColumnOptions rightColumnOptions;
-	MyAccountInformationPage myAccountInformationPage;
-	ContactUsPage contactUsPage;
-	ShoppingCartPage shoppingCartPage;
-	HomePage homePage;
-	SearchPage searchPage;
-	ForgottenPasswordPage forgottenPasswordPage;
-	FooterOptions footerOptions;
-	AboutUsPage aboutUsPage;
-	DeliveryInformationPage deliveryInformationPage;
-	PrivacyPolicyPage privacyPolicyPage;
-	TermsAndConditionsPage termsAndConditionsPage;
-	ProductReturnsPage productReturnsPage;
-	SiteMapPage siteMapPage;
-	BrandPage brandPage;
-	GiftCertificatePage giftCertificatePage;
-	SpecialOffersPage specialOffersPage;
-
+	
 	@AfterMethod
 	public void teardown() {
-		if (driver != null) {
-			driver.quit();
-		}
+		closeBrowser(driver);
 	}
 
 	@BeforeMethod
 	public void setup() {
 		
-		prop = CommonUtilities.loadPropertiesFile();
-		browserName = prop.getProperty("browserName");
-
-		if (browserName.equalsIgnoreCase("chrome")) {
-			driver = new ChromeDriver();
-		} else if (browserName.equalsIgnoreCase("firefox")) {
-			driver = new FirefoxDriver();
-		} else if (browserName.equalsIgnoreCase("edge")) {
-			driver = new EdgeDriver();
-		} else if (browserName.equalsIgnoreCase("internetexplorer")) {
-			driver = new InternetExplorerDriver();
-		} else if (browserName.equalsIgnoreCase("safari")) {
-			driver = new SafariDriver();
-		}
-
-		driver.manage().window().maximize();
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
-		driver.get(prop.getProperty("appURL"));
-
+		driver = openBrowserAndApplicationPageURL();
 		headerOptions = new HeaderOptions(driver);
 		headerOptions.clickOnMyAccountDropMenu();
 		registerPage = headerOptions.selectRegisterOption();
@@ -456,18 +381,26 @@ public class Register extends Base {
 
 	@Test(priority = 12)
 	public void verifyRegisteringAccountUsingKeyboardKeys() {
-
-		Actions actions = new Actions(driver);
-		for (int i = 1; i <= 23; i++) {
-			actions.sendKeys(Keys.TAB).perform();
-		}
-		actions.sendKeys(prop.getProperty("firstName")).sendKeys(Keys.TAB).sendKeys(prop.getProperty("lastName"))
-				.sendKeys(Keys.TAB).sendKeys(CommonUtilities.generateBrandNewEmail()).sendKeys(Keys.TAB)
-				.sendKeys(prop.getProperty("telephoneNumber")).sendKeys(Keys.TAB)
-				.sendKeys(prop.getProperty("validPassword")).sendKeys(Keys.TAB)
-				.sendKeys(prop.getProperty("validPassword")).sendKeys(Keys.TAB).sendKeys(Keys.ARROW_LEFT)
-				.sendKeys(Keys.TAB).sendKeys(Keys.TAB).sendKeys(Keys.SPACE).sendKeys(Keys.TAB).sendKeys(Keys.ENTER)
-				.build().perform();
+		
+		actions = clickKeyboradKeyMultipleTimes(getActions(driver),Keys.TAB,23);
+		actions = typeTextUsingActions(actions,prop.getProperty("firstName"));
+		actions = clickKeyboradKeyMultipleTimes(actions,Keys.TAB,1);
+		actions = typeTextUsingActions(actions,prop.getProperty("lastName"));
+		actions = clickKeyboradKeyMultipleTimes(actions,Keys.TAB,1);
+		actions = typeTextUsingActions(actions,CommonUtilities.generateBrandNewEmail());
+		actions = clickKeyboradKeyMultipleTimes(actions,Keys.TAB,1);
+		actions = typeTextUsingActions(actions,prop.getProperty("telephoneNumber"));
+		actions = clickKeyboradKeyMultipleTimes(actions,Keys.TAB,1);
+		actions = typeTextUsingActions(actions,prop.getProperty("validPassword"));
+		actions = clickKeyboradKeyMultipleTimes(actions,Keys.TAB,1);
+		actions = typeTextUsingActions(actions,prop.getProperty("validPassword"));
+		actions = clickKeyboradKeyMultipleTimes(actions,Keys.TAB,1);
+		actions = clickKeyboradKeyMultipleTimes(actions,Keys.ARROW_LEFT,1);
+		actions = clickKeyboradKeyMultipleTimes(actions,Keys.TAB,2);
+		actions = clickKeyboradKeyMultipleTimes(actions,Keys.SPACE,1);
+		actions = clickKeyboradKeyMultipleTimes(actions,Keys.TAB,1);
+		clickKeyboradKeyMultipleTimes(actions,Keys.ENTER,1);
+		
 		rightColumnOptions = registerPage.getRightColumnOptions();
 		Assert.assertTrue(rightColumnOptions.didWeGetLoggedIn());
 		accountSuccessPage = rightColumnOptions.getAccountSuccessPage();

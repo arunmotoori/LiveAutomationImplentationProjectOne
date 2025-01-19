@@ -9,7 +9,6 @@ import org.testng.annotations.Test;
 
 import base.Base;
 import pages.HeaderOptions;
-import pages.LogoutPage;
 import pages.MyAccountPage;
 import utils.CommonUtilities;
 
@@ -137,5 +136,51 @@ public class Login extends Base {
 		Assert.assertTrue(loginPage.didWeNavigateToLogin());
 		
 	}
+	
+	@Test(priority=11)
+	public void verifyLoggingIntoApplicationUsingInactiveCredentials() {
+		
+		loginPage.loginInToApplication(prop.getProperty("inactiveEmail"), prop.getProperty("validPassword"));
+		String expectedWarning = "Warning: No match for E-Mail Address and/or Password.";
+		Assert.assertEquals(loginPage.getPageLevelWarning(),expectedWarning);
+		
+	}
+	
+	@Test(priority=12)
+	public void verifyNumberOfUnsuccessfulLoginAttemps()  {
+		
+		String invalidEmail = CommonUtilities.generateBrandNewEmail();
+		loginPage.loginInToApplication(invalidEmail,prop.getProperty("mismatchingPassword"));
+		loginPage.loginInToApplication(invalidEmail,prop.getProperty("mismatchingPassword"));
+		loginPage.loginInToApplication(invalidEmail,prop.getProperty("mismatchingPassword"));
+		loginPage.loginInToApplication(invalidEmail,prop.getProperty("mismatchingPassword"));
+		loginPage.loginInToApplication(invalidEmail,prop.getProperty("mismatchingPassword"));
+		loginPage.loginInToApplication(invalidEmail,prop.getProperty("mismatchingPassword"));
+		String expectedWarning = "Warning: Your account has exceeded allowed number of login attempts. Please try again in 1 hour.";
+		Assert.assertEquals(loginPage.getPageLevelWarning(),expectedWarning);
+		
+	}
+	
+	@Test(priority=13)
+	public void verifyLoginPasswordFieldForVisibility() {
+		
+		Assert.assertEquals(loginPage.getPasswordFieldDomAttribute("type"),"password");
+
+	}
+	
+	@Test(priority=14)
+	public void verifyCopyingOfTextEnteredIntoPasswordField() throws InterruptedException {
+		
+		loginPage.enterPassword(prop.getProperty("validPassword"));
+		loginPage.copyPasswordFromPasswordField();
+		loginPage.pasteCopiedTextIntoEmailField();
+		loginPage.clickOnLoginButton();
+		Assert.assertNotEquals(loginPage.getPastedTextFromEmailField(),prop.getProperty("validPassword"));
+		
+	}
+	
+	
+	
+	
 
 }

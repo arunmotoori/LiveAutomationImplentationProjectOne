@@ -77,6 +77,20 @@ public class LoginPage extends RootPage {
 		return elementUtilities.isElementDisplayed(loginBreadcrumb);
 	}
 	
+	public String getPasswordFieldDomAttribute(String attributeName) {
+		return elementUtilities.getElementDomAttribute(passwordField,attributeName);
+	}
 	
+	public void copyPasswordFromPasswordField() {
+		elementUtilities.copyingTextUsingKeyboardKeys(driver);
+	}
+	
+	public void pasteCopiedTextIntoEmailField() {
+		elementUtilities.pasteTextIntoFieldUsingKeyboardKeys(emailField, driver);
+	}
+	
+	public String getPastedTextFromEmailField() {
+		return elementUtilities.getElementDomAttribute(emailField,"value");
+	}
 	
 }

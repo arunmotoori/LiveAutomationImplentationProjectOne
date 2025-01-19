@@ -2,20 +2,20 @@
 <testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2025-01-18T12:59:52 IST" name="Default suite" finished-at="2025-01-18T13:00:02 IST" duration-ms="9714">
+  <suite started-at="2025-01-19T12:28:01 IST" name="Default suite" finished-at="2025-01-19T12:28:08 IST" duration-ms="6945">
     <groups>
     </groups>
-    <test started-at="2025-01-18T12:59:52 IST" name="Default test" finished-at="2025-01-18T13:00:02 IST" duration-ms="9714">
+    <test started-at="2025-01-19T12:28:01 IST" name="Default test" finished-at="2025-01-19T12:28:08 IST" duration-ms="6945">
       <class name="tests.Login">
-        <test-method is-config="true" signature="setup()[pri:0, instance:tests.Login@8f2ef19]" started-at="2025-01-18T12:59:52 IST" name="setup" finished-at="2025-01-18T12:59:59 IST" duration-ms="6326" status="PASS">
+        <test-method is-config="true" signature="setup()[pri:0, instance:tests.Login@173ed316]" started-at="2025-01-19T12:28:01 IST" name="setup" finished-at="2025-01-19T12:28:06 IST" duration-ms="5375" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup -->
-        <test-method signature="verifyBrowsingBackAfterLogout()[pri:10, instance:tests.Login@8f2ef19]" started-at="2025-01-18T12:59:59 IST" name="verifyBrowsingBackAfterLogout" finished-at="2025-01-18T13:00:02 IST" duration-ms="2895" status="PASS">
+        <test-method signature="verifyCopyingOfTextEnteredIntoPasswordField()[pri:14, instance:tests.Login@173ed316]" started-at="2025-01-19T12:28:06 IST" name="verifyCopyingOfTextEnteredIntoPasswordField" finished-at="2025-01-19T12:28:07 IST" duration-ms="1174" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- verifyBrowsingBackAfterLogout -->
-        <test-method is-config="true" signature="teardown()[pri:0, instance:tests.Login@8f2ef19]" started-at="2025-01-18T13:00:02 IST" name="teardown" finished-at="2025-01-18T13:00:02 IST" duration-ms="336" status="PASS">
+        </test-method> <!-- verifyCopyingOfTextEnteredIntoPasswordField -->
+        <test-method is-config="true" signature="teardown()[pri:0, instance:tests.Login@173ed316]" started-at="2025-01-19T12:28:07 IST" name="teardown" finished-at="2025-01-19T12:28:08 IST" duration-ms="354" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- teardown -->

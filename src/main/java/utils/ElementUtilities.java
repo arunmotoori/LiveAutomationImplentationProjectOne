@@ -1,12 +1,15 @@
 package utils;
 
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 
 public class ElementUtilities {
 	
 	WebDriver driver;
+	Actions actions;
 	
 	public ElementUtilities(WebDriver driver) {
 		this.driver = driver;
@@ -16,6 +19,24 @@ public class ElementUtilities {
 		if(isElementDisplayedOnPage(element) && element.isEnabled()) {
 			element.click();
 		}
+	}
+	
+	public Actions getActions(WebDriver driver) {
+		actions = new Actions(driver);
+		return actions;
+	}
+	
+	public void copyingTextUsingKeyboardKeys(WebDriver driver) {
+		actions = getActions(driver);
+		actions.keyDown(Keys.CONTROL).sendKeys("a")
+		.keyUp(Keys.CONTROL).keyDown(Keys.CONTROL).sendKeys("c").keyUp(Keys.CONTROL)
+		.build().perform();
+	}
+	
+	public void pasteTextIntoFieldUsingKeyboardKeys(WebElement element,WebDriver driver) {
+		actions = getActions(driver);
+		actions.click(element).keyDown(Keys.CONTROL).sendKeys("v").keyUp(Keys.CONTROL)
+		.build().perform();
 	}
 	
 	public String getElementText(WebElement element){

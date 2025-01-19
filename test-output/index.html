@@ -50,7 +50,7 @@
               <ul>
                 <li>
                   <a href="#" panel-name="test-xml-Default_suite" class="navigator-link ">
-                    <span>C:\Users\arunm\AppData\Local\Temp\testng-eclipse--1833179253\testng-customsuite.xml</span>
+                    <span>C:\Users\arunm\AppData\Local\Temp\testng-eclipse--601866675\testng-customsuite.xml</span>
                   </a> <!-- navigator-link  -->
                 </li>
                 <li>
@@ -103,7 +103,7 @@
                     <div class="method-list-content passed suite-Default_suite">
                       <span>
                         <img src="passed.png" width="3%"/>
-                        <a href="#" panel-name="suite-Default_suite" title="tests.Login" class="method navigator-link" hash-for-method="verifyBrowsingBackAfterLogout">verifyBrowsingBackAfterLogout</a> <!-- method navigator-link -->
+                        <a href="#" panel-name="suite-Default_suite" title="tests.Login" class="method navigator-link" hash-for-method="verifyCopyingOfTextEnteredIntoPasswordField">verifyCopyingOfTextEnteredIntoPasswordField</a> <!-- method navigator-link -->
                       </span>
                       <br/>
                     </div> <!-- method-list-content passed suite-Default_suite -->
@@ -126,9 +126,9 @@
             <div class="main-panel-content rounded-window-bottom">
               <div class="method">
                 <div class="method-content">
-                  <a name="verifyBrowsingBackAfterLogout">
-                  </a> <!-- verifyBrowsingBackAfterLogout -->
-                  <span class="method-name">verifyBrowsingBackAfterLogout</span>
+                  <a name="verifyCopyingOfTextEnteredIntoPasswordField">
+                  </a> <!-- verifyCopyingOfTextEnteredIntoPasswordField -->
+                  <span class="method-name">verifyCopyingOfTextEnteredIntoPasswordField</span>
                 </div> <!-- method-content -->
               </div> <!-- method -->
             </div> <!-- main-panel-content rounded-window-bottom -->
@@ -136,7 +136,7 @@
         </div> <!-- panel Default_suite -->
         <div panel-name="test-xml-Default_suite" class="panel">
           <div class="main-panel-header rounded-window-top">
-            <span class="header-content">C:\Users\arunm\AppData\Local\Temp\testng-eclipse--1833179253\testng-customsuite.xml</span>
+            <span class="header-content">C:\Users\arunm\AppData\Local\Temp\testng-eclipse--601866675\testng-customsuite.xml</span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <pre>
@@ -147,7 +147,7 @@
     &lt;classes&gt;
       &lt;class name=&quot;tests.Login&quot;&gt;
         &lt;methods&gt;
-          &lt;include name=&quot;verifyBrowsingBackAfterLogout&quot;/&gt;
+          &lt;include name=&quot;verifyCopyingOfTextEnteredIntoPasswordField&quot;/&gt;
         &lt;/methods&gt;
       &lt;/class&gt; &lt;!-- tests.Login --&gt;
     &lt;/classes&gt;
@@ -191,14 +191,14 @@ data.addColumn('string', 'Class');
 data.addColumn('number', 'Time (ms)');
 data.addRows(1);
 data.setCell(0, 0, 0)
-data.setCell(0, 1, 'verifyBrowsingBackAfterLogout')
+data.setCell(0, 1, 'verifyCopyingOfTextEnteredIntoPasswordField')
 data.setCell(0, 2, 'tests.Login')
-data.setCell(0, 3, 2895);
+data.setCell(0, 3, 1174);
 window.suiteTableData['Default_suite']= { tableData: data, tableDiv: 'times-div-Default_suite'}
 return data;
 }
               </script>
-              <span class="suite-total-time">Total running time: 2 seconds</span>
+              <span class="suite-total-time">Total running time: 1 seconds</span>
               <div id="times-div-Default_suite">
               </div> <!-- times-div-Default_suite -->
             </div> <!-- times-div -->
@@ -213,29 +213,37 @@ return data;
         </div> <!-- panel -->
         <div panel-name="ignored-methods-Default_suite" class="panel">
           <div class="main-panel-header rounded-window-top">
-            <span class="header-content">9 ignored methods</span>
+            <span class="header-content">13 ignored methods</span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <div class="ignored-class-div">
               <span class="ignored-class-name">tests.Login</span>
               <div class="ignored-methods-div">
-                <span class="ignored-method-name">verifyLoggingIntoApplicationUsingKeyboardKeys</span>
+                <span class="ignored-method-name">verifyNumberOfUnsuccessfulLoginAttemps</span>
                 <br/>
-                <span class="ignored-method-name">verifyLoggingIntoApplicationUsingInvalidEmailAndValidPassword</span>
+                <span class="ignored-method-name">verifyLoggingIntoApplicationUsingInactiveCredentials</span>
                 <br/>
-                <span class="ignored-method-name">verifyLoggingIntoApplicationUsingInvalidCredentials</span>
+                <span class="ignored-method-name">verifyPlaceHoldersOfFieldsInLoginPage</span>
                 <br/>
-                <span class="ignored-method-name">verifyForgottenPasswordOptionIsAvailable</span>
-                <br/>
-                <span class="ignored-method-name">verifyLoggingIntoApplicationUsingValidEmailAndInvalidPassword</span>
-                <br/>
-                <span class="ignored-method-name">verifyBrowsingBackAfterLogin</span>
-                <br/>
-                <span class="ignored-method-name">verifyLoggingIntoApplicationUsingValidCredentails</span>
+                <span class="ignored-method-name">verifyBrowsingBackAfterLogout</span>
                 <br/>
                 <span class="ignored-method-name">verifyLoggingIntoApplicationWithoutProvidingAnyCredentials</span>
                 <br/>
-                <span class="ignored-method-name">verifyPlaceHoldersOfFieldsInLoginPage</span>
+                <span class="ignored-method-name">verifyLoggingIntoApplicationUsingValidEmailAndInvalidPassword</span>
+                <br/>
+                <span class="ignored-method-name">verifyLoggingIntoApplicationUsingInvalidEmailAndValidPassword</span>
+                <br/>
+                <span class="ignored-method-name">verifyLoggingIntoApplicationUsingKeyboardKeys</span>
+                <br/>
+                <span class="ignored-method-name">verifyLoginPasswordFieldForVisibility</span>
+                <br/>
+                <span class="ignored-method-name">verifyBrowsingBackAfterLogin</span>
+                <br/>
+                <span class="ignored-method-name">verifyLoggingIntoApplicationUsingInvalidCredentials</span>
+                <br/>
+                <span class="ignored-method-name">verifyLoggingIntoApplicationUsingValidCredentails</span>
+                <br/>
+                <span class="ignored-method-name">verifyForgottenPasswordOptionIsAvailable</span>
                 <br/>
               </div> <!-- ignored-methods-div -->
             </div> <!-- ignored-class-div -->
@@ -253,12 +261,12 @@ return data;
                 <span class="method-start">0 ms</span>
               </div> <!-- configuration-method before -->
               <div class="test-method">
-                <span class="method-name">verifyBrowsingBackAfterLogout</span>
-                <span class="method-start">6330 ms</span>
+                <span class="method-name">verifyCopyingOfTextEnteredIntoPasswordField</span>
+                <span class="method-start">5378 ms</span>
               </div> <!-- test-method -->
               <div class="configuration-method after">
                 <span class="method-name">teardown</span>
-                <span class="method-start">9331 ms</span>
+                <span class="method-start">6555 ms</span>
               </div> <!-- configuration-method after -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->

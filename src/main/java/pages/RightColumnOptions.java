@@ -127,5 +127,10 @@ public class RightColumnOptions extends RootPage {
 		elementUtilities.clickOnElement(registerOption);
 		return new RegisterPage(driver);
 	}
+	
+	public AccountLogoutPage clickOnLogoutOption() {
+		elementUtilities.clickOnElement(logoutOption);
+		return new AccountLogoutPage(driver);
+	}
 
 }

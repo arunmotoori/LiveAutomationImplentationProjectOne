@@ -56,9 +56,13 @@ public class HeaderOptions extends RootPage {
 	@FindBy(linkText="Logout")
 	private WebElement logoutOption;
 	
-	public LogoutPage selectLogoutOption() {
+	public boolean isLoginOptionUnderMyAccountDropMenuDisplayed() {
+		return elementUtilities.isElementDisplayed(loginOption);
+	}
+	
+	public AccountLogoutPage selectLogoutOption() {
 		elementUtilities.clickOnElement(logoutOption);
-		return new LogoutPage(driver);
+		return new AccountLogoutPage(driver);
 	}
 
 	public SearchPage clickOnSearchButton() {
@@ -113,6 +117,11 @@ public class HeaderOptions extends RootPage {
 
 	public void clickOnMyAccountDropMenu() {
 		elementUtilities.clickOnElement(myAccountDropMenu);
+	}
+	
+	public LoginPage navigateToLoginPage() {
+		clickOnMyAccountDropMenu();
+		return selectLoginOption();
 	}
 
 	public RegisterPage selectRegisterOption() {

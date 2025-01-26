@@ -7,6 +7,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import pages.AccountLogoutPage;
 import pages.AccountSuccessPage;
 import pages.FooterOptions;
 import pages.HeaderOptions;
@@ -39,8 +40,15 @@ public class RootPage {
 	@FindBy(xpath = "//div[@class='alert alert-danger alert-dismissible']")
 	private WebElement pageLevelWaring;
 	
+	@FindBy(xpath = "//div[@class='alert alert-success alert-dismissible']")
+	private WebElement pageLevelSuccessMessage;
+	
 	public String getPageLevelWarning() {
 		return elementUtilities.getElementText(pageLevelWaring);
+	}
+	
+	public String getPageLevelSuccessMessage() {
+		return elementUtilities.getElementText(pageLevelSuccessMessage);
 	}
 	
 	public LoginPage selectAccountBreadcrumbOptionWithoutLogin() {
@@ -67,6 +75,10 @@ public class RootPage {
 	
 	public AccountSuccessPage getAccountSuccessPage() {
 		return new AccountSuccessPage(driver);
+	}
+	
+	public AccountLogoutPage getAccountLogoutPage() {
+		return new AccountLogoutPage(driver);
 	}
 	
 	public FooterOptions getFoooterOptions() {

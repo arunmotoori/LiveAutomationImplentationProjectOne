@@ -13,8 +13,10 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.safari.SafariDriver;
 
 import pages.AboutUsPage;
+import pages.AccountLogoutPage;
 import pages.AccountSuccessPage;
 import pages.BrandPage;
+import pages.ChangePasswordPage;
 import pages.ContactUsPage;
 import pages.DeliveryInformationPage;
 import pages.FooterOptions;
@@ -23,7 +25,6 @@ import pages.GiftCertificatePage;
 import pages.HeaderOptions;
 import pages.HomePage;
 import pages.LoginPage;
-import pages.LogoutPage;
 import pages.MyAccountInformationPage;
 import pages.MyAccountPage;
 import pages.NewsletterPage;
@@ -67,7 +68,8 @@ public class Base {
 	public GiftCertificatePage giftCertificatePage;
 	public SpecialOffersPage specialOffersPage;
 	public Actions actions;
-	public LogoutPage logoutPage;
+	public AccountLogoutPage accountLogoutPage;
+	public ChangePasswordPage changePasswordPage;
 	
 	public WebDriver openBrowserAndApplicationPageURL() {
 		
@@ -116,6 +118,10 @@ public class Base {
 		}
 	}
 	
+	public String getPageSourceCode(WebDriver driver) {
+		return driver.getPageSource();
+	}
+	
 	public Actions getActions(WebDriver driver) {
 		Actions actions = new Actions(driver);
 		return actions;
@@ -131,6 +137,15 @@ public class Base {
 	public Actions typeTextUsingActions(Actions actions,String text) {
 		actions.sendKeys(text).perform();
 		return actions;
+	}
+	
+	public Properties swapPasswords(Properties prop) {
+		String oldPassword = prop.getProperty("validPasswordTwo");
+		String newPassword = prop.getProperty("validPasswordThree");
+		prop.setProperty("validPasswordTwo", newPassword);
+		prop.setProperty("validPasswordThree", oldPassword);
+	    prop = CommonUtilities.storePropertiesFile(prop);
+	    return prop;
 	}
 
 }

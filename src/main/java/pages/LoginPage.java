@@ -35,6 +35,25 @@ public class LoginPage extends RootPage {
 	@FindBy(linkText="Forgotten Password")
 	private WebElement forgottendPasswordLink;
 	
+	@FindBy(xpath="(//div[@id='content']//h2)[1]")
+	private WebElement firstHeading;
+	
+	@FindBy(xpath="(//div[@id='content']//h2)[2]")
+	private WebElement secondHeading;
+	
+	public String getFirstHeading() {
+		return elementUtilities.getElementText(firstHeading);
+	}
+	
+	public String getSecondHeading() {
+		return elementUtilities.getElementText(secondHeading);
+	}
+	
+	public LoginPage selectLoginBreadcrumbOption() {
+		elementUtilities.clickOnElement(loginBreadcrumb);
+		return new LoginPage(driver);
+	}
+	
 	public String getEmailFieldPlaceholderText() {
 		return elementUtilities.getElementDomAttribute(emailField,"placeholder");
 	}
@@ -44,7 +63,7 @@ public class LoginPage extends RootPage {
 	}
 	
 	public ForgottenPasswordPage clickOnForgottenPasswordLink() {
-		forgottendPasswordLink.click();
+		elementUtilities.clickOnElement(forgottendPasswordLink);
 		return new ForgottenPasswordPage(driver);
 	}
 	

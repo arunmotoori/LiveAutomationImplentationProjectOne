@@ -1067,7 +1067,7 @@ public class Register extends Base {
 	@Test(priority = 26)
 	public void verifyRegisterAccountUI() throws IOException {
 
-		if (browserName.equalsIgnoreCase("chrome") || browserName.equalsIgnoreCase("edge")) {
+		if (browserName.equalsIgnoreCase("chrome")) {
 			CommonUtilities.takeScreenshot(driver,
 					System.getProperty("user.dir") + "\\Screenshots\\actualRAPageUI.png");
 			Assert.assertFalse(CommonUtilities.compareTwoScreenshots(
@@ -1079,6 +1079,12 @@ public class Register extends Base {
 			Assert.assertFalse(CommonUtilities.compareTwoScreenshots(
 					System.getProperty("user.dir") + "\\Screenshots\\actualFirefoxRAPageUI.png",
 					System.getProperty("user.dir") + "\\Screenshots\\expectedFirefoxRAPageUI.png"));
+		} else if(browserName.equalsIgnoreCase("edge")) {
+			CommonUtilities.takeScreenshot(driver,
+					System.getProperty("user.dir") + "\\Screenshots\\actualEdgeRAPageUI.png");
+			Assert.assertFalse(CommonUtilities.compareTwoScreenshots(
+					System.getProperty("user.dir") + "\\Screenshots\\actualEdgeRAPageUI.png",
+					System.getProperty("user.dir") + "\\Screenshots\\expectedEdgeRAPageUI.png"));
 		}
 
 	}

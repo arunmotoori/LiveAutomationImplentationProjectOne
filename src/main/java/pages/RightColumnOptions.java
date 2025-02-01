@@ -59,6 +59,10 @@ public class RightColumnOptions extends RootPage {
 	@FindBy(xpath="//a[@class='list-group-item'][text()='Newsletter']")
 	private WebElement newsletterOption;
 	
+	public boolean isLogoutOptionDisplayed() {
+		return elementUtilities.isElementDisplayed(logoutOption);
+	}
+	
 	public LoginPage clickOnNewsletterOption() {
 		elementUtilities.clickOnElement(newsletterOption);
 		return new LoginPage(driver);

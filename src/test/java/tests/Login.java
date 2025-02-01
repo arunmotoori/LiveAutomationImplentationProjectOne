@@ -5,7 +5,6 @@ import java.io.IOException;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
-import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -26,11 +25,6 @@ public class Login extends Base {
 		headerOptions.clickOnMyAccountDropMenu();
 		loginPage = headerOptions.selectLoginOption();
 
-	}
-
-	@AfterMethod
-	public void teardown() {
-		closeBrowser(driver);
 	}
 
 	@Test(priority = 1)
@@ -403,10 +397,10 @@ public class Login extends Base {
 		Assert.assertEquals(loginPage.getSecondHeading(), "Returning Customer");
 
 	}
-	
+
 	@Test(priority = 20)
 	public void verifyLoginPageUI() throws IOException {
-		
+
 		if (browserName.equalsIgnoreCase("chrome")) {
 			CommonUtilities.takeScreenshot(driver,
 					System.getProperty("user.dir") + "\\Screenshots\\actualLoginPageUI.png");
@@ -415,10 +409,10 @@ public class Login extends Base {
 					System.getProperty("user.dir") + "\\Screenshots\\expectedLoginPageUI.png"));
 		} else if (browserName.equalsIgnoreCase("firefox")) {
 			CommonUtilities.takeScreenshot(driver,
-					System.getProperty("user.dir") + "\\Screenshots\\actualFirefoxLoginPageUI.png");
+					System.getProperty("user.dir") + "\\Screenshots\\expectedFirefoxLogoutOptions.png");
 			Assert.assertFalse(CommonUtilities.compareTwoScreenshots(
-					System.getProperty("user.dir") + "\\Screenshots\\actualFirefoxLoginPageUI.png",
-					System.getProperty("user.dir") + "\\Screenshots\\expectedFirefoxLoginPageUI.png"));
+					System.getProperty("user.dir") + "\\Screenshots\\actualFirefoxLogoutOptions.png",
+					System.getProperty("user.dir") + "\\Screenshots\\expectedFirefoxLogoutOptions.png"));
 		} else if (browserName.equalsIgnoreCase("edge")) {
 			CommonUtilities.takeScreenshot(driver,
 					System.getProperty("user.dir") + "\\Screenshots\\actualEdgeLoginPageUI.png");
@@ -426,19 +420,18 @@ public class Login extends Base {
 					System.getProperty("user.dir") + "\\Screenshots\\actualEdgeLoginPageUI.png",
 					System.getProperty("user.dir") + "\\Screenshots\\expectedEdgeLoginPageUI.png"));
 		}
-		
 
 	}
-	
+
 	@Test(priority = 21)
 	public void verifyLoginInAllEnvironments() {
-		
+
 		Assert.assertTrue(loginPage.didWeNavigateToLogin());
 		loginPage.enterEmail(prop.getProperty("existingEmail"));
 		loginPage.enterPassword(prop.getProperty("validPassword"));
 		myAccountPage = loginPage.clickOnLoginButton();
 		Assert.assertTrue(myAccountPage.didWeNavigateToMyAccountPage());
-		
+
 	}
 
 }

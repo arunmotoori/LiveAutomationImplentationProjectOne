@@ -11,6 +11,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.safari.SafariDriver;
+import org.testng.annotations.AfterMethod;
 
 import pages.AboutUsPage;
 import pages.AccountLogoutPage;
@@ -71,6 +72,13 @@ public class Base {
 	public AccountLogoutPage accountLogoutPage;
 	public ChangePasswordPage changePasswordPage;
 	
+	@AfterMethod
+	public void teardown() {
+		if(driver!=null) {
+			driver.quit();
+		}
+	}
+	
 	public WebDriver openBrowserAndApplicationPageURL() {
 		
 		prop = CommonUtilities.loadPropertiesFile();
@@ -110,12 +118,6 @@ public class Base {
 	
 	public void refreshPage(WebDriver driver) {
 		driver.navigate().refresh();
-	}
-	
-	public void closeBrowser(WebDriver driver) {
-		if(driver!=null) {
-			driver.quit();
-		}
 	}
 	
 	public String getPageSourceCode(WebDriver driver) {

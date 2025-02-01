@@ -24,7 +24,6 @@ import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.io.FileHandler;
 import org.testng.Assert;
-import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -37,15 +36,10 @@ import utils.CommonUtilities;
 public class Register extends Base {
 
 	WebDriver driver;
-	
-	@AfterMethod
-	public void teardown() {
-		closeBrowser(driver);
-	}
 
 	@BeforeMethod
 	public void setup() {
-		
+
 		driver = openBrowserAndApplicationPageURL();
 		headerOptions = new HeaderOptions(driver);
 		headerOptions.clickOnMyAccountDropMenu();
@@ -381,26 +375,26 @@ public class Register extends Base {
 
 	@Test(priority = 12)
 	public void verifyRegisteringAccountUsingKeyboardKeys() {
-		
-		actions = clickKeyboradKeyMultipleTimes(getActions(driver),Keys.TAB,23);
-		actions = typeTextUsingActions(actions,prop.getProperty("firstName"));
-		actions = clickKeyboradKeyMultipleTimes(actions,Keys.TAB,1);
-		actions = typeTextUsingActions(actions,prop.getProperty("lastName"));
-		actions = clickKeyboradKeyMultipleTimes(actions,Keys.TAB,1);
-		actions = typeTextUsingActions(actions,CommonUtilities.generateBrandNewEmail());
-		actions = clickKeyboradKeyMultipleTimes(actions,Keys.TAB,1);
-		actions = typeTextUsingActions(actions,prop.getProperty("telephoneNumber"));
-		actions = clickKeyboradKeyMultipleTimes(actions,Keys.TAB,1);
-		actions = typeTextUsingActions(actions,prop.getProperty("validPassword"));
-		actions = clickKeyboradKeyMultipleTimes(actions,Keys.TAB,1);
-		actions = typeTextUsingActions(actions,prop.getProperty("validPassword"));
-		actions = clickKeyboradKeyMultipleTimes(actions,Keys.TAB,1);
-		actions = clickKeyboradKeyMultipleTimes(actions,Keys.ARROW_LEFT,1);
-		actions = clickKeyboradKeyMultipleTimes(actions,Keys.TAB,2);
-		actions = clickKeyboradKeyMultipleTimes(actions,Keys.SPACE,1);
-		actions = clickKeyboradKeyMultipleTimes(actions,Keys.TAB,1);
-		clickKeyboradKeyMultipleTimes(actions,Keys.ENTER,1);
-		
+
+		actions = clickKeyboradKeyMultipleTimes(getActions(driver), Keys.TAB, 23);
+		actions = typeTextUsingActions(actions, prop.getProperty("firstName"));
+		actions = clickKeyboradKeyMultipleTimes(actions, Keys.TAB, 1);
+		actions = typeTextUsingActions(actions, prop.getProperty("lastName"));
+		actions = clickKeyboradKeyMultipleTimes(actions, Keys.TAB, 1);
+		actions = typeTextUsingActions(actions, CommonUtilities.generateBrandNewEmail());
+		actions = clickKeyboradKeyMultipleTimes(actions, Keys.TAB, 1);
+		actions = typeTextUsingActions(actions, prop.getProperty("telephoneNumber"));
+		actions = clickKeyboradKeyMultipleTimes(actions, Keys.TAB, 1);
+		actions = typeTextUsingActions(actions, prop.getProperty("validPassword"));
+		actions = clickKeyboradKeyMultipleTimes(actions, Keys.TAB, 1);
+		actions = typeTextUsingActions(actions, prop.getProperty("validPassword"));
+		actions = clickKeyboradKeyMultipleTimes(actions, Keys.TAB, 1);
+		actions = clickKeyboradKeyMultipleTimes(actions, Keys.ARROW_LEFT, 1);
+		actions = clickKeyboradKeyMultipleTimes(actions, Keys.TAB, 2);
+		actions = clickKeyboradKeyMultipleTimes(actions, Keys.SPACE, 1);
+		actions = clickKeyboradKeyMultipleTimes(actions, Keys.TAB, 1);
+		clickKeyboradKeyMultipleTimes(actions, Keys.ENTER, 1);
+
 		rightColumnOptions = registerPage.getRightColumnOptions();
 		Assert.assertTrue(rightColumnOptions.didWeGetLoggedIn());
 		accountSuccessPage = rightColumnOptions.getAccountSuccessPage();
@@ -876,9 +870,9 @@ public class Register extends Base {
 		contactUsPage = headerOptions.selectPhoneIconOption();
 		Assert.assertTrue(getPageTitle(contactUsPage.getDriver()).equals("Contact Us"));
 		navigateBackInBrowser(contactUsPage.getDriver());
-		
+
 		loginPage = headerOptions.selectHeartIconOption();
-		Assert.assertEquals(getPageTitle(loginPage.getDriver()),"Account Login");
+		Assert.assertEquals(getPageTitle(loginPage.getDriver()), "Account Login");
 		navigateBackInBrowser(loginPage.getDriver());
 
 		loginPage = headerOptions.selectWishListOption();
@@ -1050,15 +1044,16 @@ public class Register extends Base {
 		registerPage.selectYesNewsletterOption();
 		registerPage.selectPrivacyPolicyField();
 		registerPage.clickOnContinueButton();
-		Assert.assertEquals(registerPage.getPasswordConfirmationWarning(), "Password confirmation does not match password!");
+		Assert.assertEquals(registerPage.getPasswordConfirmationWarning(),
+				"Password confirmation does not match password!");
 
 	}
 
 	@Test(priority = 25)
 	public void verifyRegisterAccountPageBreadcrumbURLTitleHeading() {
 
-		Assert.assertEquals(getPageTitle(registerPage.getDriver()),"Register Account");
-		Assert.assertEquals(getPageURL(registerPage.getDriver()),prop.getProperty("registerPageURL"));
+		Assert.assertEquals(getPageTitle(registerPage.getDriver()), "Register Account");
+		Assert.assertEquals(getPageURL(registerPage.getDriver()), prop.getProperty("registerPageURL"));
 		Assert.assertTrue(registerPage.didWeNavigateToRegisterPage());
 		Assert.assertEquals(registerPage.getPageHeading(), "Register Account");
 
@@ -1079,7 +1074,7 @@ public class Register extends Base {
 			Assert.assertFalse(CommonUtilities.compareTwoScreenshots(
 					System.getProperty("user.dir") + "\\Screenshots\\actualFirefoxRAPageUI.png",
 					System.getProperty("user.dir") + "\\Screenshots\\expectedFirefoxRAPageUI.png"));
-		} else if(browserName.equalsIgnoreCase("edge")) {
+		} else if (browserName.equalsIgnoreCase("edge")) {
 			CommonUtilities.takeScreenshot(driver,
 					System.getProperty("user.dir") + "\\Screenshots\\actualEdgeRAPageUI.png");
 			Assert.assertFalse(CommonUtilities.compareTwoScreenshots(

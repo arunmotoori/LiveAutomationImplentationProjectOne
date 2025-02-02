@@ -1,5 +1,7 @@
 package utils;
 
+import java.util.List;
+
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
@@ -96,5 +98,19 @@ public class ElementUtilities {
 			clearTextFromElement(element);
 			element.sendKeys(text);
 		}
+	}
+	
+	public int getElementsCount(List<WebElement> elements) {
+		
+		int count = 0;
+		
+		try {
+		  count = elements.size();
+		}catch(NoSuchElementException e) {
+		  count = 0;
+		}
+		
+		return count;
+		
 	}
 }

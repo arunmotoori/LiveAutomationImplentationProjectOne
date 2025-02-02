@@ -59,6 +59,10 @@ public class HeaderOptions extends RootPage {
 	@FindBy(linkText = "Logout")
 	private WebElement logoutOption;
 	
+	public String getSearchBoxFieldPlaceHolderText() {
+		return elementUtilities.getElementDomAttribute(searchBoxField,"placeholder");
+	}
+	
 	public void enterProductIntoSearchBoxField(String productName) {
 		elementUtilities.enterTextIntoElement(searchBoxField, productName);
 	}

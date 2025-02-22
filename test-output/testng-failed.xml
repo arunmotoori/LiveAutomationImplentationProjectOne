@@ -6,7 +6,7 @@
       <class name="tests.Search">
         <methods>
           <include name="teardown"/>
-          <include name="verifyProductSeachResultingMultipleProducts"/>
+          <include name="verifySearchBySelectingTheCategory"/>
           <include name="setup"/>
         </methods>
       </class> <!-- tests.Search -->

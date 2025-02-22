@@ -7,14 +7,30 @@ import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.Select;
 
 public class ElementUtilities {
 	
 	WebDriver driver;
 	Actions actions;
+	Select select;
 	
 	public ElementUtilities(WebDriver driver) {
 		this.driver = driver;
+	}
+	
+	public void selectOptionFromDropdownFieldUsingIndex(WebElement element,int optionIndex) {
+		if(isElementDisplayedOnPage(element) && element.isEnabled()) {
+			select = new Select(element);
+			select.selectByIndex(optionIndex);
+		}
+	}
+	
+	public void selectOptionFromDropdownFieldUsingVisibleText(WebElement element,String optionText) {
+		if(isElementDisplayedOnPage(element) && element.isEnabled()) {
+			select = new Select(element);
+			select.selectByVisibleText(optionText);
+		}
 	}
 	
 	public void clickOnElement(WebElement element) {

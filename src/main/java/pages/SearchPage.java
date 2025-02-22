@@ -42,6 +42,24 @@ public class SearchPage extends RootPage {
 	
 	@FindBy(id = "description")
 	private WebElement searchInProductDescriptionField;
+	
+	@FindBy(name = "category_id")
+	private WebElement categoriesDropdownField;
+	
+	@FindBy(name = "sub_category")
+	private WebElement searchInSubCategoriesOption;
+	
+	public void selectToSearchInSubCategories() {
+		elementUtilities.clickOnElement(searchInSubCategoriesOption);
+	}
+	
+	public void selectOptionFromCategoryDropdownField(int optionIndex) {
+		elementUtilities.selectOptionFromDropdownFieldUsingIndex(categoriesDropdownField,optionIndex);
+	}
+	
+	public void selectOptionFromCategoryDropdownField(String optionText) {
+		elementUtilities.selectOptionFromDropdownFieldUsingVisibleText(categoriesDropdownField,optionText);
+	}
 
 	public void selectSearchInProductDescriptionField() {
 		elementUtilities.clickOnElement(searchInProductDescriptionField);
@@ -73,6 +91,10 @@ public class SearchPage extends RootPage {
 
 	public boolean isProductDisplayedInSearchResults() {
 		return elementUtilities.isElementDisplayed(existingProductOne);
+	}
+	
+	public boolean isProductFromCorrectCategoryDisplayedInSearchResults() {
+		return elementUtilities.isElementDisplayed(existingProductThree);
 	}
 	
 	public boolean isProductHavingTextInItsDescriptionDisplayedInSearchResults() {

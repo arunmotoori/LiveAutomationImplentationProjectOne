@@ -49,6 +49,10 @@ public class CommonUtilities {
 		
 		return prop;
 	}
+	
+	public static int convertToInteger(String text) {
+		return Integer.parseInt(text);
+	}
 
 	public static String generateBrandNewEmail() {
 

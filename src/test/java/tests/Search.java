@@ -7,6 +7,7 @@ import org.testng.annotations.Test;
 
 import base.Base;
 import pages.HeaderOptions;
+import utils.CommonUtilities;
 
 public class Search extends Base {
 
@@ -101,5 +102,37 @@ public class Search extends Base {
 		Assert.assertTrue(searchPage.isProductHavingTextInItsDescriptionDisplayedInSearchResults());
 		
 	}
+	
+	@Test(priority = 9)
+	public void verifySearchBySelectingTheCategory() {
+		
+		searchPage = headerOptions.clickOnSearchButton();
+		searchPage.enterProductIntoSearchCriteriaField(prop.getProperty("existingProductThree"));
+		searchPage.selectOptionFromCategoryDropdownField(CommonUtilities.convertToInteger(prop.getProperty("correctCategoryIndex")));
+		searchPage.clickOnSearchButton();
+		Assert.assertTrue(searchPage.isProductFromCorrectCategoryDisplayedInSearchResults());
+		searchPage.selectOptionFromCategoryDropdownField(CommonUtilities.convertToInteger(prop.getProperty("wrongCategoryIndex")));
+		searchPage.clickOnSearchButton();
+		Assert.assertEquals(searchPage.getNoProductMessage(),"There is no product that matches the search criteria.");
+		
+	}
+	
+	@Test(priority = 10)
+	public void verifySearchBySelectingToSearchInSubCategories() {
+		
+		searchPage = headerOptions.clickOnSearchButton();
+		searchPage.enterProductIntoSearchCriteriaField(prop.getProperty("existingProductThree"));
+		searchPage.selectOptionFromCategoryDropdownField(prop.getProperty("superCategory"));
+		searchPage.clickOnSearchButton();
+		Assert.assertEquals(searchPage.getNoProductMessage(),"There is no product that matches the search criteria.");
+		searchPage.selectToSearchInSubCategories();
+		searchPage.clickOnSearchButton();
+		Assert.assertTrue(searchPage.isProductFromCorrectCategoryDisplayedInSearchResults());
+		
+	}
+	
+	
+	
+	
 
 }

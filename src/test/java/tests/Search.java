@@ -131,6 +131,86 @@ public class Search extends Base {
 		
 	}
 	
+	@Test(priority = 11)
+	public void verifyListAndGridViewsInSearchResultsPageHavingOneProduct() throws InterruptedException {
+		
+		headerOptions.enterProductIntoSearchBoxField(prop.getProperty("existingProductThree"));
+		searchPage = headerOptions.clickOnSearchButton();
+		searchPage.selectListOption();
+		Assert.assertTrue(searchPage.getProductsCount()==1);
+		searchPage.clickOnAddToCartOption();
+		String expectedMessage = "Success: You have added "+prop.getProperty("existingProductThree")+" to your shopping cart!";
+		Assert.assertTrue(searchPage.getPageLevelSuccessMessage().contains(expectedMessage));
+		refreshPage(searchPage.getDriver());
+		searchPage.clickOnAddToWishListOption();
+		expectedMessage = "You must login or create an account to save "+prop.getProperty("existingProductThree")+" to your wish list!";
+		Assert.assertTrue(searchPage.getPageLevelSuccessMessage().contains(expectedMessage));
+		refreshPage(searchPage.getDriver());
+		searchPage.clickOnCompareThisProductOption();
+		expectedMessage = "Success: You have added "+prop.getProperty("existingProductThree")+" to your product comparison!";
+		Assert.assertTrue(searchPage.getPageLevelSuccessMessage().contains(expectedMessage));
+		productDisplayPage = searchPage.clickOnProductOneImage();
+		Assert.assertTrue(productDisplayPage.didWeNavigateToProductDisplayPage());
+		navigateBackInBrowser(productDisplayPage.getDriver());
+		productDisplayPage = searchPage.clickOnProductOneName();
+		Assert.assertTrue(productDisplayPage.didWeNavigateToProductDisplayPage());
+		navigateBackInBrowser(productDisplayPage.getDriver());
+		refreshPage(searchPage.getDriver());
+		searchPage.selectGridOption();
+		Assert.assertTrue(searchPage.getProductsCount()==1);
+		searchPage.clickOnAddToCartOption();
+		expectedMessage = "Success: You have added "+prop.getProperty("existingProductThree")+" to your shopping cart!";
+		Assert.assertTrue(searchPage.getPageLevelSuccessMessage().contains(expectedMessage));
+		refreshPage(searchPage.getDriver());
+		searchPage.clickOnAddToWishListOption();
+		expectedMessage = "You must login or create an account to save "+prop.getProperty("existingProductThree")+" to your wish list!";
+		Assert.assertTrue(searchPage.getPageLevelSuccessMessage().contains(expectedMessage));
+		refreshPage(searchPage.getDriver());
+		searchPage.clickOnCompareThisProductOption();
+		expectedMessage = "Success: You have added "+prop.getProperty("existingProductThree")+" to your product comparison!";
+		Assert.assertTrue(searchPage.getPageLevelSuccessMessage().contains(expectedMessage));
+		productDisplayPage = searchPage.clickOnProductOneImage();
+		Assert.assertTrue(productDisplayPage.didWeNavigateToProductDisplayPage());
+		navigateBackInBrowser(productDisplayPage.getDriver());
+		productDisplayPage = searchPage.clickOnProductOneName();
+		Assert.assertTrue(productDisplayPage.didWeNavigateToProductDisplayPage());
+		navigateBackInBrowser(productDisplayPage.getDriver());
+		
+	}
+	
+	@Test(priority = 12)
+	public void verifyListAndGridViewsWhenMultipleProductsAreDisplayed() {
+		
+		headerOptions.enterProductIntoSearchBoxField(prop.getProperty("existingProductTwo"));
+		searchPage = headerOptions.clickOnSearchButton();
+		Assert.assertTrue(searchPage.getProductsCount() > 1);
+		searchPage.selectListOption();
+		Assert.assertTrue(searchPage.getProductsCount() > 1);
+		searchPage.selectGridOption();
+		Assert.assertTrue(searchPage.getProductsCount() > 1);;
+		
+	}
+	
+	
+	@Test(priority = 13)
+	public void verifyNavigationToProductComparisonPageFromSearchResultsPage() {
+		
+		headerOptions.enterProductIntoSearchBoxField(prop.getProperty("existingProductThree"));
+		searchPage = headerOptions.clickOnSearchButton();
+		productComparisonPage = searchPage.selectProductCompareOption();
+		Assert.assertTrue(productComparisonPage.didWeNavigateToProductComparisonPage());
+		
+	}
+	
+	@Test(priority = 14)
+	public void verifyAllSortingOptionsInSearchResultsPage() {
+		
+		headerOptions.enterProductIntoSearchBoxField(prop.getProperty("existingProductTwo"));
+		searchPage = headerOptions.clickOnSearchButton();
+		searchPage.selectSortOptionInDropdownField("Default");
+		Assert.assertTrue(searchPage.didProductsGotDisplayedInAscendingOrder());
+		
+	}
 	
 	
 	

@@ -1,5 +1,6 @@
 package utils;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.openqa.selenium.Keys;
@@ -17,6 +18,14 @@ public class ElementUtilities {
 	
 	public ElementUtilities(WebDriver driver) {
 		this.driver = driver;
+	}
+	
+	public List<String> getTextOfElements(List<WebElement> items) {
+		List<String> itemNames = new ArrayList<>();
+		for(WebElement item:items) {
+			itemNames.add(getElementText(item));
+		}
+		return itemNames;
 	}
 	
 	public void selectOptionFromDropdownFieldUsingIndex(WebElement element,int optionIndex) {

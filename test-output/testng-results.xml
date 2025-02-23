@@ -2,20 +2,20 @@
 <testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2025-02-22T12:17:18 IST" name="Default suite" finished-at="2025-02-22T12:17:26 IST" duration-ms="7348">
+  <suite started-at="2025-02-23T18:12:49 IST" name="Default suite" finished-at="2025-02-23T18:12:57 IST" duration-ms="7827">
     <groups>
     </groups>
-    <test started-at="2025-02-22T12:17:18 IST" name="Default test" finished-at="2025-02-22T12:17:26 IST" duration-ms="7348">
+    <test started-at="2025-02-23T18:12:49 IST" name="Default test" finished-at="2025-02-23T18:12:57 IST" duration-ms="7827">
       <class name="tests.Search">
-        <test-method is-config="true" signature="setup()[pri:0, instance:tests.Search@470734c3]" started-at="2025-02-22T12:17:19 IST" name="setup" finished-at="2025-02-22T12:17:23 IST" duration-ms="4489" status="PASS">
+        <test-method is-config="true" signature="setup()[pri:0, instance:tests.Search@25ce9dc4]" started-at="2025-02-23T18:12:49 IST" name="setup" finished-at="2025-02-23T18:12:54 IST" duration-ms="5405" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup -->
-        <test-method signature="verifySearchBySelectingToSearchInSubCategories()[pri:10, instance:tests.Search@470734c3]" started-at="2025-02-22T12:17:23 IST" name="verifySearchBySelectingToSearchInSubCategories" finished-at="2025-02-22T12:17:26 IST" duration-ms="2552" status="PASS">
+        <test-method signature="verifyAllSortingOptionsInSearchResultsPage()[pri:14, instance:tests.Search@25ce9dc4]" started-at="2025-02-23T18:12:54 IST" name="verifyAllSortingOptionsInSearchResultsPage" finished-at="2025-02-23T18:12:56 IST" duration-ms="1895" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- verifySearchBySelectingToSearchInSubCategories -->
-        <test-method is-config="true" signature="teardown()[pri:0, instance:tests.Search@470734c3]" started-at="2025-02-22T12:17:26 IST" name="teardown" finished-at="2025-02-22T12:17:26 IST" duration-ms="233" status="PASS">
+        </test-method> <!-- verifyAllSortingOptionsInSearchResultsPage -->
+        <test-method is-config="true" signature="teardown()[pri:0, instance:tests.Search@25ce9dc4]" started-at="2025-02-23T18:12:56 IST" name="teardown" finished-at="2025-02-23T18:12:57 IST" duration-ms="437" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- teardown -->

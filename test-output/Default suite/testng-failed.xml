@@ -6,7 +6,7 @@
       <class name="tests.Search">
         <methods>
           <include name="teardown"/>
-          <include name="verifySearchBySelectingTheCategory"/>
+          <include name="verifyListAndGridViewsInSearchResultsPageHavingOneProduct"/>
           <include name="setup"/>
         </methods>
       </class> <!-- tests.Search -->

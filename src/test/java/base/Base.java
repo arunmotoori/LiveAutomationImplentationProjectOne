@@ -30,6 +30,8 @@ import pages.MyAccountInformationPage;
 import pages.MyAccountPage;
 import pages.NewsletterPage;
 import pages.PrivacyPolicyPage;
+import pages.ProductComparisonPage;
+import pages.ProductDisplayPage;
 import pages.ProductReturnsPage;
 import pages.RegisterPage;
 import pages.RightColumnOptions;
@@ -71,6 +73,8 @@ public class Base {
 	public Actions actions;
 	public AccountLogoutPage accountLogoutPage;
 	public ChangePasswordPage changePasswordPage;
+	public ProductDisplayPage productDisplayPage;
+	public ProductComparisonPage productComparisonPage;
 	
 	@AfterMethod
 	public void teardown() {

@@ -1,5 +1,6 @@
 package pages;
 
+import java.util.Collections;
 import java.util.List;
 
 import org.openqa.selenium.WebDriver;
@@ -8,6 +9,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import pages.root.RootPage;
+import utils.CommonUtilities;
 
 public class SearchPage extends RootPage {
 
@@ -31,7 +33,7 @@ public class SearchPage extends RootPage {
 	@FindBy(xpath = "//input[@id='button-search']/following-sibling::p")
 	private WebElement noProductMessage;
 
-	@FindBy(xpath = "//div[@class='product-thumb']")
+	@FindBy(className = "product-thumb")
 	private List<WebElement> productThumbnail;
 	
 	@FindBy(id = "button-search")
@@ -48,6 +50,79 @@ public class SearchPage extends RootPage {
 	
 	@FindBy(name = "sub_category")
 	private WebElement searchInSubCategoriesOption;
+	
+	@FindBy(id = "list-view")
+	private WebElement listOption;
+	
+	@FindBy(id = "grid-view")
+	private WebElement gridOption;
+	
+	@FindBy(xpath = "//div[@class='product-thumb']//span[text()='Add to Cart']")
+	private WebElement addToCartOption;
+	
+	@FindBy(xpath = "//button[@*='Add to Wish List']")
+	private WebElement addToWishListOption;
+	
+	@FindBy(xpath = "//button[@*='Compare this Product']")
+	private WebElement compareThisProductOption;
+	
+	@FindBy(xpath = "(//div[@class='product-thumb']//img)[1]")
+	private WebElement productOneImage;
+	
+	@FindBy(xpath = "(//div[@class='product-thumb']//h4//a)[1]")
+	private WebElement productOneName;
+	
+	@FindBy(id = "compare-total")
+	private WebElement productCompareOption;
+	
+	@FindBy(id = "input-sort")
+	private WebElement sortDropdownField;
+	
+	@FindBy(xpath = "//div[@class='product-thumb']//h4/a")
+	private List<WebElement> sortedProducts;
+	
+	public boolean didProductsGotDisplayedInAscendingOrder() {
+		return CommonUtilities.areItemsInListAreInAscendingOrder(elementUtilities.getTextOfElements(sortedProducts));
+	}
+	
+	public void selectSortOptionInDropdownField(String optionText) {
+		elementUtilities.selectOptionFromDropdownFieldUsingVisibleText(sortDropdownField, optionText);
+	}
+	
+	public ProductComparisonPage selectProductCompareOption() {
+		elementUtilities.clickOnElement(productCompareOption);
+		return new ProductComparisonPage(driver);
+	}
+	
+	public void selectGridOption() {
+		elementUtilities.clickOnElement(gridOption);
+	}
+	
+	public ProductDisplayPage clickOnProductOneName() {
+		elementUtilities.clickOnElement(productOneName);
+		return new ProductDisplayPage(driver);
+	}
+	
+	public ProductDisplayPage clickOnProductOneImage() {
+		elementUtilities.clickOnElement(productOneImage);
+		return new ProductDisplayPage(driver);
+	}
+	
+	public void clickOnCompareThisProductOption() {
+		elementUtilities.clickOnElement(compareThisProductOption);
+	}
+	
+	public void clickOnAddToWishListOption() {
+		elementUtilities.clickOnElement(addToWishListOption);
+	}
+	
+	public void clickOnAddToCartOption() {
+		elementUtilities.clickOnElement(addToCartOption);
+	}
+	
+	public void selectListOption() {
+		elementUtilities.clickOnElement(listOption);
+	}
 	
 	public void selectToSearchInSubCategories() {
 		elementUtilities.clickOnElement(searchInSubCategoriesOption);

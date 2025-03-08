@@ -24,6 +24,10 @@ import ru.yandex.qatools.ashot.comparison.ImageDiff;
 import ru.yandex.qatools.ashot.comparison.ImageDiffer;
 
 public class CommonUtilities {
+	
+	public static final int MIN_TIME = 3;
+	public static final int AVERAGE_TIME = 10;
+	public static final int MAX_TIME = 30;
 
 	public static Properties loadPropertiesFile() {
 
@@ -38,6 +42,14 @@ public class CommonUtilities {
 		
 		return prop;
 
+	}
+	
+	public static void waitForSeconds(int milliseconds) {
+		try {
+			Thread.sleep(milliseconds);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public static Properties storePropertiesFile(Properties prop) {

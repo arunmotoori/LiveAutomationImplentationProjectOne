@@ -1,5 +1,6 @@
 package utils;
 
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,7 +9,9 @@ import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class ElementUtilities {
 	
@@ -40,6 +43,16 @@ public class ElementUtilities {
 			select = new Select(element);
 			select.selectByVisibleText(optionText);
 		}
+	}
+	
+	public void waitForElement(WebElement element,int seconds) {
+		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(seconds));
+		wait.until(ExpectedConditions.visibilityOf(element));
+	}
+	
+	public void waitForElementAndClick(WebElement element,int seconds) {
+		waitForElement(element,seconds);
+		clickOnElement(element);
 	}
 	
 	public void clickOnElement(WebElement element) {

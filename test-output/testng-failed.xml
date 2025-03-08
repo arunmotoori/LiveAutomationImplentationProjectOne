@@ -6,7 +6,7 @@
       <class name="tests.Search">
         <methods>
           <include name="teardown"/>
-          <include name="verifyListAndGridViewsInSearchResultsPageHavingOneProduct"/>
+          <include name="verifyDisplayingOfSearchFieldAndSearchButtonOnAllPagesOfTheApplication"/>
           <include name="setup"/>
         </methods>
       </class> <!-- tests.Search -->

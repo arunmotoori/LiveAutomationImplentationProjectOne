@@ -1053,7 +1053,7 @@ public class Register extends Base {
 	public void verifyRegisterAccountPageBreadcrumbURLTitleHeading() {
 
 		Assert.assertEquals(getPageTitle(registerPage.getDriver()), "Register Account");
-		Assert.assertEquals(getPageURL(registerPage.getDriver()), prop.getProperty("registerPageURL"));
+		Assert.assertEquals(getPageURL(registerPage.getDriver()), getBaseURL()+prop.getProperty("registerPageURL"));
 		Assert.assertTrue(registerPage.didWeNavigateToRegisterPage());
 		Assert.assertEquals(registerPage.getPageHeading(), "Register Account");
 

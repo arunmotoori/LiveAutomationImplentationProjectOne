@@ -16,10 +16,16 @@ import org.testng.annotations.AfterMethod;
 import pages.AboutUsPage;
 import pages.AccountLogoutPage;
 import pages.AccountSuccessPage;
+import pages.AddAddressPage;
+import pages.AddressBookPage;
+import pages.AffiliatePage;
 import pages.BrandPage;
 import pages.ChangePasswordPage;
+import pages.CheckoutPage;
+import pages.CheckoutSuccessPage;
 import pages.ContactUsPage;
 import pages.DeliveryInformationPage;
+import pages.EditAddressPage;
 import pages.FooterOptions;
 import pages.ForgottenPasswordPage;
 import pages.GiftCertificatePage;
@@ -29,11 +35,14 @@ import pages.LoginPage;
 import pages.MyAccountInformationPage;
 import pages.MyAccountPage;
 import pages.NewsletterPage;
+import pages.OrderHistoryPage;
+import pages.OrderInformationPage;
 import pages.PrivacyPolicyPage;
 import pages.ProductComparisonPage;
 import pages.ProductDisplayPage;
 import pages.ProductReturnsPage;
 import pages.RegisterPage;
+import pages.ReturnInformationPage;
 import pages.RightColumnOptions;
 import pages.SearchPage;
 import pages.ShoppingCartPage;
@@ -75,6 +84,16 @@ public class Base {
 	public ChangePasswordPage changePasswordPage;
 	public ProductDisplayPage productDisplayPage;
 	public ProductComparisonPage productComparisonPage;
+	public AddressBookPage addressBookPage;
+	public AddAddressPage addAddressPage;
+	public EditAddressPage editAddressPage;
+	public OrderHistoryPage orderHistoryPage;
+	public OrderInformationPage orderInformationPage;
+	public AffiliatePage affiliatePage;
+	public ReturnInformationPage returnInformationPage;
+	public CheckoutPage checkoutPage;
+	public CheckoutSuccessPage checkoutSuccessPage;
+	
 	
 	@AfterMethod
 	public void teardown() {
@@ -101,11 +120,20 @@ public class Base {
 		}
 		
 		driver.manage().window().maximize();
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(CommonUtilities.MIN_TIME));
 		driver.get(prop.getProperty("appURL"));
 		
 		return driver;
 		
+	}
+	
+	public void refreshAndNavigateToPage(WebDriver driver,String pageURL) {
+		refreshPage(driver);
+		navigateToPage(pageURL);
+	}
+	
+	public void navigateToPage(String pageURL) {
+		driver.navigate().to(pageURL);
 	}
 	
 	public String getPageTitle(WebDriver driver) {
@@ -152,6 +180,10 @@ public class Base {
 		prop.setProperty("validPasswordThree", oldPassword);
 	    prop = CommonUtilities.storePropertiesFile(prop);
 	    return prop;
+	}
+	
+	public String getBaseURL() {
+		return prop.getProperty("appURL");
 	}
 
 }

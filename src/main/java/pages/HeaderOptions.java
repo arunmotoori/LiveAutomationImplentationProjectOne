@@ -59,8 +59,33 @@ public class HeaderOptions extends RootPage {
 	@FindBy(linkText = "Logout")
 	private WebElement logoutOption;
 	
+	@FindBy(linkText = "My Account")
+	private WebElement myAccountOption;
+	
+	public MyAccountPage selectMyAccountOption() {
+		elementUtilities.clickOnElement(myAccountOption);
+		return new MyAccountPage(driver);
+	}
+	
+	public boolean isSearchBoxFieldDisplayed() {
+		return elementUtilities.isElementDisplayed(searchBoxField);
+	}
+	
+	public boolean isSearchButtonDisplayed() {
+		return elementUtilities.isElementDisplayed(searchButton);
+	}
+	
+	public boolean areSearchBoxFieldAndSearchButtonDisplayed() {
+		return isSearchBoxFieldDisplayed() && isSearchButtonDisplayed();
+	}
+	
 	public String getSearchBoxFieldPlaceHolderText() {
 		return elementUtilities.getElementDomAttribute(searchBoxField,"placeholder");
+	}
+	
+	public SearchPage enterProductAndClickOnSearchButton(String productName) {
+		enterProductIntoSearchBoxField(productName);
+		return clickOnSearchButton();
 	}
 	
 	public void enterProductIntoSearchBoxField(String productName) {

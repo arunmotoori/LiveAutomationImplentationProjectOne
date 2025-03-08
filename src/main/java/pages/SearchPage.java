@@ -1,6 +1,5 @@
 package pages;
 
-import java.util.Collections;
 import java.util.List;
 
 import org.openqa.selenium.WebDriver;
@@ -78,6 +77,9 @@ public class SearchPage extends RootPage {
 	@FindBy(id = "input-sort")
 	private WebElement sortDropdownField;
 	
+	@FindBy(id = "input-limit")
+	private WebElement showDropdownField;
+	
 	@FindBy(xpath = "//div[@class='product-thumb']//h4/a")
 	private List<WebElement> sortedProducts;
 	
@@ -87,6 +89,10 @@ public class SearchPage extends RootPage {
 	
 	public void selectSortOptionInDropdownField(String optionText) {
 		elementUtilities.selectOptionFromDropdownFieldUsingVisibleText(sortDropdownField, optionText);
+	}
+	
+	public void selectOptionInShowDropdownField(String optionText) {
+		elementUtilities.selectOptionFromDropdownFieldUsingVisibleText(showDropdownField, optionText);
 	}
 	
 	public ProductComparisonPage selectProductCompareOption() {

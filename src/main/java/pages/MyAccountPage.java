@@ -53,6 +53,9 @@ public class MyAccountPage extends RootPage {
 	@FindBy(linkText = "Edit your affiliate information")
 	private WebElement editYourAffiliateInformationOption;
 	
+	@FindBy(linkText = "Register for an affiliate account")
+	private WebElement registerForAnAffiliateAccount;
+	
 	@FindBy(linkText = "Custom Affiliate Tracking Code")
 	private WebElement customAffilateTrackingCodeOption;
 	
@@ -62,7 +65,7 @@ public class MyAccountPage extends RootPage {
 	}
 	
 	public AffiliatePage clickOnEditYourAffiliateInformationOption() {
-		elementUtilities.clickOnElement(editYourAffiliateInformationOption);
+		elementUtilities.clickEitherOfTheseElements(registerForAnAffiliateAccount,editYourAffiliateInformationOption);
 		return new AffiliatePage(driver);
 	}
 	

@@ -163,6 +163,11 @@ public class HeaderOptions extends RootPage {
 		clickOnMyAccountDropMenu();
 		return selectLoginOption();
 	}
+	
+	public RegisterPage navigateToRegisterPage() {
+		clickOnMyAccountDropMenu();
+		return selectRegisterOption();
+	}
 
 	public RegisterPage selectRegisterOption() {
 		elementUtilities.clickOnElement(registerOption);

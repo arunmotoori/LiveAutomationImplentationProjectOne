@@ -92,6 +92,7 @@ public class RegisterPage extends RootPage {
 	@FindBy(linkText="login page")
 	private WebElement loginPageOption;
 	
+
 	public LoginPage selectLoginPageOption() {
 		elementUtilities.clickOnElement(loginPageOption);
 		return new LoginPage(driver);
@@ -287,6 +288,17 @@ public class RegisterPage extends RootPage {
 
 	public void enterConfirmationPassword(String passwordText) {
 		elementUtilities.enterTextIntoElement(passwordConfirmField, passwordText);
+	}
+	
+	public AccountSuccessPage registeringAnAccount(String firstNameText,String lastNameText,String emailText,String telephoneText,String passwordText) {
+		enterFirstName(firstNameText);
+		enterLastName(lastNameText);
+		enterEmail(emailText);
+		enterTelephone(telephoneText);
+		enterPassword(passwordText);
+		enterConfirmationPassword(passwordText);
+		selectPrivacyPolicyField();
+		return clickOnContinueButton();
 	}
 
 	public void enterFirstName(String firstNameText) {

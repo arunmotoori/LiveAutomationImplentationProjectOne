@@ -256,9 +256,11 @@ public class Search extends Base {
 		Assert.assertTrue(headerOptions.areSearchBoxFieldAndSearchButtonDisplayed());
 		navigateToPage(getBaseURL()+prop.getProperty("forgottenPasswordPage"));
 		Assert.assertTrue(headerOptions.areSearchBoxFieldAndSearchButtonDisplayed());
-		loginPage = headerOptions.navigateToLoginPage();
-		myAccountPage = loginPage.loginInToApplication(prop.getProperty("existingEmailThree"),
-				prop.getProperty("validPassword"));
+		registerPage = headerOptions.navigateToRegisterPage();
+		String emailAddress = CommonUtilities.generateBrandNewEmail();
+		accountSuccessPage = registerPage.registeringAnAccount(prop.getProperty("firstName"),prop.getProperty("lastName"),emailAddress,prop.getProperty("telephoneNumber"),prop.getProperty("validPassword"));
+		rightColumnOptions = accountSuccessPage.getRightColumnOptions();
+		myAccountPage = rightColumnOptions.clickOnMyAccountOptionAfterLogin();
 		myAccountPage.clickOnEditYourAccountInformationOption();
 		Assert.assertTrue(headerOptions.areSearchBoxFieldAndSearchButtonDisplayed());
 		navigateBackInBrowser(headerOptions.getDriver());
@@ -289,7 +291,10 @@ public class Search extends Base {
 		Assert.assertTrue(headerOptions.areSearchBoxFieldAndSearchButtonDisplayed());
 		productReturnsPage = orderInformationPage.selectReturnOption();
 		Assert.assertTrue(headerOptions.areSearchBoxFieldAndSearchButtonDisplayed());
-		myAccountPage = productReturnsPage.clickOnAccountBreadCrumb();
+		productReturnsPage.selectFirstReasonForReturn();
+		productReturnsPage.clickOnSubmitButton();
+		rightColumnOptions = productReturnsPage.getRightColumnOptions();
+		rightColumnOptions.clickOnMyAccountOption();
 		myAccountPage.clickOnDownloadsOption();
 		Assert.assertTrue(headerOptions.areSearchBoxFieldAndSearchButtonDisplayed());
 		navigateBackInBrowser(headerOptions.getDriver());
@@ -310,21 +315,32 @@ public class Search extends Base {
 		navigateBackInBrowser(headerOptions.getDriver());
 		affiliatePage = myAccountPage.clickOnEditYourAffiliateInformationOption();
 		Assert.assertTrue(headerOptions.areSearchBoxFieldAndSearchButtonDisplayed());
-		navigateBackInBrowser(headerOptions.getDriver());
+		myAccountPage = affiliatePage.updateAffiliateAccount(prop.getProperty("firstName"));
 		myAccountPage.clickOnCustomAffiliateTrackingCodeOption();
 		Assert.assertTrue(headerOptions.areSearchBoxFieldAndSearchButtonDisplayed());
 		navigateBackInBrowser(headerOptions.getDriver());
 		myAccountPage.clickOnSubscribeOrUnscriberToNewsletterOption();
 		Assert.assertTrue(headerOptions.areSearchBoxFieldAndSearchButtonDisplayed());
 		navigateBackInBrowser(headerOptions.getDriver());
+		rightColumnOptions = myAccountPage.getRightColumnOptions();
+		accountLogoutPage = rightColumnOptions.clickOnLogoutOption();
 		Assert.assertTrue(headerOptions.areSearchBoxFieldAndSearchButtonDisplayed());
-		navigateToPage(prop.getProperty("shoppingCartPage"));
+		navigateToPage(getBaseURL()+prop.getProperty("aboutUsPage"));
 		Assert.assertTrue(headerOptions.areSearchBoxFieldAndSearchButtonDisplayed());
-		navigateToPage(prop.getProperty("checkoutPage"));
+		navigateToPage(getBaseURL()+prop.getProperty("deliveryInformationPage"));
 		Assert.assertTrue(headerOptions.areSearchBoxFieldAndSearchButtonDisplayed());
-
-		// Checkout pages - All types of checkout pages like Guest checkout etc.
-
+		navigateToPage(getBaseURL()+prop.getProperty("privacyPolicyPage"));
+		Assert.assertTrue(headerOptions.areSearchBoxFieldAndSearchButtonDisplayed());
+		navigateToPage(getBaseURL()+prop.getProperty("termsAndConditionsPage"));
+		Assert.assertTrue(headerOptions.areSearchBoxFieldAndSearchButtonDisplayed());
+		navigateToPage(getBaseURL()+prop.getProperty("brandsPage"));
+		Assert.assertTrue(headerOptions.areSearchBoxFieldAndSearchButtonDisplayed());
+		//pending things - sitemap pages links and guest checkout pages
+		//Pending items - Footer pages - gift certificate and purchase gift certificate page
+		navigateToPage(getBaseURL()+prop.getProperty("affiliateLoginPage"));
+		Assert.assertTrue(headerOptions.areSearchBoxFieldAndSearchButtonDisplayed());
+		navigateToPage(getBaseURL()+prop.getProperty("specialOffersPage"));
+		
 	}
 
 }

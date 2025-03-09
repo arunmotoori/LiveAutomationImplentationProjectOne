@@ -113,6 +113,11 @@ public class RightColumnOptions extends RootPage {
 		return new LoginPage(driver);
 	}
 	
+	public MyAccountPage clickOnMyAccountOptionAfterLogin() {
+		elementUtilities.clickOnElement(myAccountOption);
+		return new MyAccountPage(driver);
+	}
+	
 	public ForgottenPasswordPage clickOnForgottenPasswordOption() {
 		elementUtilities.clickOnElement(forgottendPasswordOption);
 		return new ForgottenPasswordPage(driver);

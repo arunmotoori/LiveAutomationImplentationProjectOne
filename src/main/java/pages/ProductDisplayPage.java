@@ -23,6 +23,12 @@ public class ProductDisplayPage extends RootPage {
 
 	@FindBy(xpath = "//a[text()='shopping cart']")
 	WebElement shoppingCartOption;
+	
+	@FindBy(xpath = "//a[text()='wish list']")
+	WebElement wishListOption;
+	
+	@FindBy(xpath = "//a[text()='product comparison']")
+	WebElement productComparisonOption;
 
 	public boolean didWeNavigateToProductDisplayPage() {
 		return elementUtilities.isElementDisplayed(addtoCartButton);
@@ -40,6 +46,18 @@ public class ProductDisplayPage extends RootPage {
 	public ShoppingCartPage selectShoppingCartOptionOnTheSuccessMessage() {
 		elementUtilities.waitForElementAndClick(shoppingCartOption,CommonUtilities.AVERAGE_TIME);
 		return new ShoppingCartPage(driver);
+	}
+	
+	public boolean IsShoppingCartOptionDisplayedOnTheSuccessMessage() {
+		return elementUtilities.waitAndCheckElementDisplayStatus(shoppingCartOption,CommonUtilities.AVERAGE_TIME);
+	}
+	
+	public boolean IsWishListOptionDisplayedOnTheSuccessMessage() {
+		return elementUtilities.waitAndCheckElementDisplayStatus(wishListOption,CommonUtilities.AVERAGE_TIME);
+	}
+	
+	public boolean IsProductComparisonOptionDisplayedOnTheSuccessMessage() {
+		return elementUtilities.waitAndCheckElementDisplayStatus(productComparisonOption,CommonUtilities.AVERAGE_TIME);
 	}
 
 }

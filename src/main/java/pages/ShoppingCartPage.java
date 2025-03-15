@@ -24,5 +24,10 @@ public class ShoppingCartPage extends RootPage {
 		elementUtilities.clickOnElement(checkoutButton);
 		return new CheckoutPage(driver);
 	}
+	
+	public GuestCheckoutPage clickOnCheckoutButtonWithoutLogin() {
+		elementUtilities.clickOnElement(checkoutButton);
+		return new GuestCheckoutPage(driver);
+	}
 
 }

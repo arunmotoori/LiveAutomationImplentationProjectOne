@@ -29,6 +29,7 @@ import pages.EditAddressPage;
 import pages.FooterOptions;
 import pages.ForgottenPasswordPage;
 import pages.GiftCertificatePage;
+import pages.GuestCheckoutPage;
 import pages.HeaderOptions;
 import pages.HomePage;
 import pages.LoginPage;
@@ -93,7 +94,7 @@ public class Base {
 	public ReturnInformationPage returnInformationPage;
 	public CheckoutPage checkoutPage;
 	public CheckoutSuccessPage checkoutSuccessPage;
-	
+	public GuestCheckoutPage guestCheckoutPage;
 	
 	@AfterMethod
 	public void teardown() {
@@ -161,11 +162,25 @@ public class Base {
 		return actions;
 	}
 	
+	public Actions clickKeyboradKeyMultipleTimes(WebDriver driver,Keys keyName,int noOfTimes) {
+		actions = getActions(driver);
+		for (int i = 1; i <= noOfTimes; i++) {
+			actions.sendKeys(keyName).perform();
+		}
+		return actions;
+	}
+	
 	public Actions clickKeyboradKeyMultipleTimes(Actions actions,Keys keyName,int noOfTimes) {
 		for (int i = 1; i <= noOfTimes; i++) {
 			actions.sendKeys(keyName).perform();
 		}
 		return actions;
+	}
+	
+	public void pressTwoKeysTogether(WebDriver driver,Keys keyNameOne,Keys keyNameTwo) {
+		actions = getActions(driver);
+		actions.keyDown(keyNameOne).sendKeys(keyNameTwo).keyUp(keyNameOne)
+		.keyUp(keyNameTwo).build().perform();
 	}
 	
 	public Actions typeTextUsingActions(Actions actions,String text) {

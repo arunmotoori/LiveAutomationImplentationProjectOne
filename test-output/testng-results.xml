@@ -2,20 +2,20 @@
 <testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2025-03-09T12:27:31 IST" name="Default suite" finished-at="2025-03-09T12:28:25 IST" duration-ms="54234">
+  <suite started-at="2025-03-15T13:16:20 IST" name="Default suite" finished-at="2025-03-15T13:16:41 IST" duration-ms="21183">
     <groups>
     </groups>
-    <test started-at="2025-03-09T12:27:31 IST" name="Default test" finished-at="2025-03-09T12:28:25 IST" duration-ms="54234">
+    <test started-at="2025-03-15T13:16:20 IST" name="Default test" finished-at="2025-03-15T13:16:41 IST" duration-ms="21183">
       <class name="tests.Search">
-        <test-method is-config="true" signature="setup()[pri:0, instance:tests.Search@2af004b]" started-at="2025-03-09T12:27:31 IST" name="setup" finished-at="2025-03-09T12:27:38 IST" duration-ms="6949" status="PASS">
+        <test-method is-config="true" signature="setup()[pri:0, instance:tests.Search@563f38c4]" started-at="2025-03-15T13:16:20 IST" name="setup" finished-at="2025-03-15T13:16:26 IST" duration-ms="5961" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup -->
-        <test-method signature="verifyDisplayingOfSearchFieldAndSearchButtonOnAllPagesOfTheApplication()[pri:16, instance:tests.Search@2af004b]" started-at="2025-03-09T12:27:38 IST" name="verifyDisplayingOfSearchFieldAndSearchButtonOnAllPagesOfTheApplication" finished-at="2025-03-09T12:28:25 IST" duration-ms="46715" status="PASS">
+        <test-method signature="verifyUsingAllOptionsOnSearchResultsPageUsingKeyboardKeys()[pri:19, instance:tests.Search@563f38c4]" started-at="2025-03-15T13:16:26 IST" name="verifyUsingAllOptionsOnSearchResultsPageUsingKeyboardKeys" finished-at="2025-03-15T13:16:41 IST" duration-ms="14863" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- verifyDisplayingOfSearchFieldAndSearchButtonOnAllPagesOfTheApplication -->
-        <test-method is-config="true" signature="teardown()[pri:0, instance:tests.Search@2af004b]" started-at="2025-03-09T12:28:25 IST" name="teardown" finished-at="2025-03-09T12:28:25 IST" duration-ms="509" status="PASS">
+        </test-method> <!-- verifyUsingAllOptionsOnSearchResultsPageUsingKeyboardKeys -->
+        <test-method is-config="true" signature="teardown()[pri:0, instance:tests.Search@563f38c4]" started-at="2025-03-15T13:16:41 IST" name="teardown" finished-at="2025-03-15T13:16:41 IST" duration-ms="298" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- teardown -->

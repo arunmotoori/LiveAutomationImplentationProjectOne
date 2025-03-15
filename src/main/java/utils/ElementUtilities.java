@@ -49,6 +49,19 @@ public class ElementUtilities {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(seconds));
 		wait.until(ExpectedConditions.visibilityOf(element));
 	}
+	
+	public boolean waitAndCheckElementDisplayStatus(WebElement element, int seconds) {
+		boolean b = false;
+		try {
+			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(seconds));
+			wait.until(ExpectedConditions.visibilityOf(element));
+		    b = true;
+		}catch(Exception e) {
+			b = false;
+		}
+		return b;
+	}
+
 
 	public void waitForElementAndClick(WebElement element, int seconds) {
 		waitForElement(element, seconds);

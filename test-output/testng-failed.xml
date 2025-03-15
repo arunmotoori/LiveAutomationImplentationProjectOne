@@ -5,8 +5,8 @@
     <classes>
       <class name="tests.Search">
         <methods>
+          <include name="verifyUsingAllOptionsOnSearchResultsPageUsingKeyboardKeys"/>
           <include name="teardown"/>
-          <include name="verifyDisplayingOfSearchFieldAndSearchButtonOnAllPagesOfTheApplication"/>
           <include name="setup"/>
         </methods>
       </class> <!-- tests.Search -->

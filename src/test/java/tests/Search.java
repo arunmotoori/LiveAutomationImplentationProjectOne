@@ -1,12 +1,17 @@
 package tests;
 
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import base.Base;
+import pages.FooterOptions;
 import pages.HeaderOptions;
+import pages.ProductComparisonPage;
+import pages.ProductDisplayPage;
+import pages.SearchPage;
 import utils.CommonUtilities;
 
 public class Search extends Base {
@@ -248,17 +253,19 @@ public class Search extends Base {
 	public void verifyDisplayingOfSearchFieldAndSearchButtonOnAllPagesOfTheApplication() throws InterruptedException {
 
 		Assert.assertTrue(headerOptions.areSearchBoxFieldAndSearchButtonDisplayed());
-		navigateToPage(getBaseURL()+prop.getProperty("contactUsPage"));
+		navigateToPage(getBaseURL() + prop.getProperty("contactUsPage"));
 		Assert.assertTrue(headerOptions.areSearchBoxFieldAndSearchButtonDisplayed());
-		navigateToPage(getBaseURL()+prop.getProperty("registerPageURL"));
+		navigateToPage(getBaseURL() + prop.getProperty("registerPageURL"));
 		Assert.assertTrue(headerOptions.areSearchBoxFieldAndSearchButtonDisplayed());
-		navigateToPage(getBaseURL()+prop.getProperty("loginPageURL"));
+		navigateToPage(getBaseURL() + prop.getProperty("loginPageURL"));
 		Assert.assertTrue(headerOptions.areSearchBoxFieldAndSearchButtonDisplayed());
-		navigateToPage(getBaseURL()+prop.getProperty("forgottenPasswordPage"));
+		navigateToPage(getBaseURL() + prop.getProperty("forgottenPasswordPage"));
 		Assert.assertTrue(headerOptions.areSearchBoxFieldAndSearchButtonDisplayed());
 		registerPage = headerOptions.navigateToRegisterPage();
 		String emailAddress = CommonUtilities.generateBrandNewEmail();
-		accountSuccessPage = registerPage.registeringAnAccount(prop.getProperty("firstName"),prop.getProperty("lastName"),emailAddress,prop.getProperty("telephoneNumber"),prop.getProperty("validPassword"));
+		accountSuccessPage = registerPage.registeringAnAccount(prop.getProperty("firstName"),
+				prop.getProperty("lastName"), emailAddress, prop.getProperty("telephoneNumber"),
+				prop.getProperty("validPassword"));
 		rightColumnOptions = accountSuccessPage.getRightColumnOptions();
 		myAccountPage = rightColumnOptions.clickOnMyAccountOptionAfterLogin();
 		myAccountPage.clickOnEditYourAccountInformationOption();
@@ -284,7 +291,7 @@ public class Search extends Base {
 		shoppingCartPage = productDisplayPage.clickOnAddToCartButtonAndSelectShoppingCartOption();
 		checkoutPage = shoppingCartPage.clickOnCheckoutButton();
 		checkoutSuccessPage = checkoutPage.placeOrder();
-		refreshAndNavigateToPage(checkoutSuccessPage.getDriver(),getBaseURL()+prop.getProperty("myAccountPage"));
+		refreshAndNavigateToPage(checkoutSuccessPage.getDriver(), getBaseURL() + prop.getProperty("myAccountPage"));
 		orderHistoryPage = myAccountPage.clickOnViewYourOrderHistoryOption();
 		Assert.assertTrue(headerOptions.areSearchBoxFieldAndSearchButtonDisplayed());
 		orderInformationPage = orderHistoryPage.selectViewOption();
@@ -303,7 +310,7 @@ public class Search extends Base {
 		navigateBackInBrowser(headerOptions.getDriver());
 		productReturnsPage = myAccountPage.clickOnViewYourReturnRequestsOption();
 		Assert.assertTrue(headerOptions.areSearchBoxFieldAndSearchButtonDisplayed());
-		//Continue from here
+		// Continue from here
 		returnInformationPage = productReturnsPage.clickOnViewOption();
 		Assert.assertTrue(headerOptions.areSearchBoxFieldAndSearchButtonDisplayed());
 		returnInformationPage.clickOnAccountBreadCrumb();
@@ -325,22 +332,129 @@ public class Search extends Base {
 		rightColumnOptions = myAccountPage.getRightColumnOptions();
 		accountLogoutPage = rightColumnOptions.clickOnLogoutOption();
 		Assert.assertTrue(headerOptions.areSearchBoxFieldAndSearchButtonDisplayed());
-		navigateToPage(getBaseURL()+prop.getProperty("aboutUsPage"));
+		navigateToPage(getBaseURL() + prop.getProperty("aboutUsPage"));
 		Assert.assertTrue(headerOptions.areSearchBoxFieldAndSearchButtonDisplayed());
-		navigateToPage(getBaseURL()+prop.getProperty("deliveryInformationPage"));
+		navigateToPage(getBaseURL() + prop.getProperty("deliveryInformationPage"));
 		Assert.assertTrue(headerOptions.areSearchBoxFieldAndSearchButtonDisplayed());
-		navigateToPage(getBaseURL()+prop.getProperty("privacyPolicyPage"));
+		navigateToPage(getBaseURL() + prop.getProperty("privacyPolicyPage"));
 		Assert.assertTrue(headerOptions.areSearchBoxFieldAndSearchButtonDisplayed());
-		navigateToPage(getBaseURL()+prop.getProperty("termsAndConditionsPage"));
+		navigateToPage(getBaseURL() + prop.getProperty("termsAndConditionsPage"));
 		Assert.assertTrue(headerOptions.areSearchBoxFieldAndSearchButtonDisplayed());
-		navigateToPage(getBaseURL()+prop.getProperty("brandsPage"));
+		navigateToPage(getBaseURL() + prop.getProperty("brandsPage"));
 		Assert.assertTrue(headerOptions.areSearchBoxFieldAndSearchButtonDisplayed());
-		//pending things - sitemap pages links and guest checkout pages
-		//Pending items - Footer pages - gift certificate and purchase gift certificate page
-		navigateToPage(getBaseURL()+prop.getProperty("affiliateLoginPage"));
+		navigateToPage(getBaseURL() + prop.getProperty("siteMapPage"));
 		Assert.assertTrue(headerOptions.areSearchBoxFieldAndSearchButtonDisplayed());
-		navigateToPage(getBaseURL()+prop.getProperty("specialOffersPage"));
-		
+		navigateToPage(getBaseURL() + prop.getProperty("desktopsCategoryPage"));
+		Assert.assertTrue(headerOptions.areSearchBoxFieldAndSearchButtonDisplayed());
+		navigateToPage(getBaseURL() + prop.getProperty("pcSubCategoryPage"));
+		Assert.assertTrue(headerOptions.areSearchBoxFieldAndSearchButtonDisplayed());
+		navigateToPage(getBaseURL() + prop.getProperty("macSubCategoryPage"));
+		Assert.assertTrue(headerOptions.areSearchBoxFieldAndSearchButtonDisplayed());
+		navigateToPage(getBaseURL() + prop.getProperty("laptopsAndNotebooksCategoryPage"));
+		Assert.assertTrue(headerOptions.areSearchBoxFieldAndSearchButtonDisplayed());
+		navigateToPage(getBaseURL() + prop.getProperty("macsSubCategoryPage"));
+		Assert.assertTrue(headerOptions.areSearchBoxFieldAndSearchButtonDisplayed());
+		navigateToPage(getBaseURL() + prop.getProperty("windowsSubCategoryPage"));
+		Assert.assertTrue(headerOptions.areSearchBoxFieldAndSearchButtonDisplayed());
+		navigateToPage(getBaseURL() + prop.getProperty("componentsCategoryPage"));
+		Assert.assertTrue(headerOptions.areSearchBoxFieldAndSearchButtonDisplayed());
+		navigateToPage(getBaseURL() + prop.getProperty("mikeAndTrackballsSubCategoryPage"));
+		Assert.assertTrue(headerOptions.areSearchBoxFieldAndSearchButtonDisplayed());
+		navigateToPage(getBaseURL() + prop.getProperty("monitorsSubCategoryPage"));
+		Assert.assertTrue(headerOptions.areSearchBoxFieldAndSearchButtonDisplayed());
+		navigateToPage(getBaseURL() + prop.getProperty("subSubCategoryPage"));
+		Assert.assertTrue(headerOptions.areSearchBoxFieldAndSearchButtonDisplayed());
+		navigateToPage(getBaseURL() + prop.getProperty("specialOffersPage"));
+		Assert.assertTrue(headerOptions.areSearchBoxFieldAndSearchButtonDisplayed());
+		navigateToPage(getBaseURL() + prop.getProperty("brandsPage"));
+		Assert.assertTrue(headerOptions.areSearchBoxFieldAndSearchButtonDisplayed());
+		navigateToPage(getBaseURL() + prop.getProperty("giftCertificatesPage"));
+		Assert.assertTrue(headerOptions.areSearchBoxFieldAndSearchButtonDisplayed());
+		navigateToPage(getBaseURL() + prop.getProperty("affiliateLoginPage"));
+		Assert.assertTrue(headerOptions.areSearchBoxFieldAndSearchButtonDisplayed());
+		searchPage = headerOptions.enterProductAndClickOnSearchButton(prop.getProperty("existingProduct"));
+		productDisplayPage = searchPage.clickOnProductOneName();
+		shoppingCartPage = productDisplayPage.clickOnAddToCartButtonAndSelectShoppingCartOption();
+		guestCheckoutPage = shoppingCartPage.clickOnCheckoutButtonWithoutLogin();
+		Assert.assertTrue(headerOptions.areSearchBoxFieldAndSearchButtonDisplayed());
+	}
+
+	@Test(priority = 17)
+	public void verifyNavigatingToSearchPageFromSiteMapPage() {
+
+		footerOptions = new FooterOptions(headerOptions.getDriver());
+		siteMapPage = footerOptions.selectSiteMapOption();
+		searchPage = siteMapPage.clickOnSearchOption();
+		Assert.assertTrue(searchPage.didWeNavigateToSearchResultsPage());
+
+	}
+
+	@Test(priority = 18)
+	public void verifyBreadcrumbOptionInSearchResultsPage() {
+
+		searchPage = headerOptions.enterProductAndClickOnSearchButton(prop.getProperty("existingProductThree"));
+		searchPage = searchPage.clickOnBreadcrumb();
+		Assert.assertTrue(searchPage.didWeNavigateToSearchResultsPage());
+
+	}
+
+	@Test(priority = 19)
+	public void verifyUsingAllOptionsOnSearchResultsPageUsingKeyboardKeys() throws InterruptedException {
+
+		headerOptions.enterProductAndClickOnSearchButton("");
+		actions = clickKeyboradKeyMultipleTimes(headerOptions.getDriver(), Keys.TAB, 21);
+		actions = typeTextUsingActions(actions, prop.getProperty("existingProduct"));
+		actions = clickKeyboradKeyMultipleTimes(actions, Keys.TAB, 1);
+		actions = clickKeyboradKeyMultipleTimes(actions, Keys.ARROW_DOWN, 1);
+		actions = clickKeyboradKeyMultipleTimes(actions, Keys.TAB, 1);
+		actions = clickKeyboradKeyMultipleTimes(actions, Keys.SPACE, 1);
+		actions = clickKeyboradKeyMultipleTimes(actions, Keys.TAB, 2);
+		actions = clickKeyboradKeyMultipleTimes(actions, Keys.ENTER, 1);
+		searchPage = new SearchPage(headerOptions.getDriver());
+		Assert.assertTrue(searchPage.isProductDisplayedInSearchResults());
+		actions = clickKeyboradKeyMultipleTimes(getActions(driver), Keys.TAB, 21);
+		actions = typeTextUsingActions(actions, prop.getProperty("textInProductDescription"));
+		actions = clickKeyboradKeyMultipleTimes(actions, Keys.TAB, 3);
+		actions = clickKeyboradKeyMultipleTimes(actions, Keys.SPACE, 1);
+		actions = clickKeyboradKeyMultipleTimes(actions, Keys.TAB, 1);
+		actions = clickKeyboradKeyMultipleTimes(actions, Keys.ENTER, 1);
+		Assert.assertTrue(searchPage.isProductFromCorrectCategoryDisplayedInSearchResults());
+		actions = clickKeyboradKeyMultipleTimes(actions, Keys.TAB, 26);
+		actions = clickKeyboradKeyMultipleTimes(actions, Keys.ENTER, 1);
+		Assert.assertTrue(searchPage.isProductFromCorrectCategoryDisplayedInSearchResults());
+		actions = clickKeyboradKeyMultipleTimes(actions, Keys.TAB, 1);
+		actions = clickKeyboradKeyMultipleTimes(actions, Keys.ENTER, 1);
+		Assert.assertTrue(searchPage.isProductFromCorrectCategoryDisplayedInSearchResults());
+		actions = clickKeyboradKeyMultipleTimes(actions, Keys.TAB, 1);
+		actions = clickKeyboradKeyMultipleTimes(actions, Keys.ENTER, 1);
+		productComparisonPage = new ProductComparisonPage(searchPage.getDriver());
+		Assert.assertTrue(productComparisonPage.didWeNavigateToProductComparisonPage());
+		navigateBackInBrowser(productComparisonPage.getDriver());
+		actions = clickKeyboradKeyMultipleTimes(actions, Keys.TAB, 1);
+		actions = clickKeyboradKeyMultipleTimes(actions, Keys.ARROW_DOWN, 1);
+		Assert.assertTrue(searchPage.isProductFromCorrectCategoryDisplayedInSearchResults());
+		actions = clickKeyboradKeyMultipleTimes(actions, Keys.TAB, 30);
+		actions = clickKeyboradKeyMultipleTimes(actions, Keys.ARROW_DOWN, 1);
+		Assert.assertTrue(searchPage.isProductFromCorrectCategoryDisplayedInSearchResults());
+		actions = clickKeyboradKeyMultipleTimes(actions, Keys.TAB, 31);
+		actions = clickKeyboradKeyMultipleTimes(actions, Keys.ENTER, 1);
+		productDisplayPage = new ProductDisplayPage(searchPage.getDriver());
+		Assert.assertTrue(productDisplayPage.didWeNavigateToProductDisplayPage());
+		navigateBackInBrowser(productDisplayPage.getDriver());
+		actions = clickKeyboradKeyMultipleTimes(actions, Keys.TAB, 1);
+		actions = clickKeyboradKeyMultipleTimes(actions, Keys.ENTER, 1);
+		Assert.assertTrue(productDisplayPage.didWeNavigateToProductDisplayPage());
+		navigateBackInBrowser(productDisplayPage.getDriver());
+		actions = clickKeyboradKeyMultipleTimes(actions, Keys.TAB, 1);
+		actions = clickKeyboradKeyMultipleTimes(actions, Keys.ENTER, 1);
+		Assert.assertTrue(productDisplayPage.IsShoppingCartOptionDisplayedOnTheSuccessMessage());
+		actions = clickKeyboradKeyMultipleTimes(actions, Keys.TAB, 1);
+		actions = clickKeyboradKeyMultipleTimes(actions, Keys.ENTER, 1);
+		Assert.assertTrue(productDisplayPage.IsWishListOptionDisplayedOnTheSuccessMessage());
+		actions = clickKeyboradKeyMultipleTimes(actions, Keys.TAB, 1);
+		actions = clickKeyboradKeyMultipleTimes(actions, Keys.ENTER, 1);
+		Assert.assertTrue(productDisplayPage.IsProductComparisonOptionDisplayedOnTheSuccessMessage());
+
 	}
 
 }

@@ -185,5 +185,10 @@ public class SearchPage extends RootPage {
 	public boolean didWeNavigateToSearchResultsPage() {
 		return elementUtilities.isElementDisplayed(searchPageBreadcrumb);
 	}
+	
+	public SearchPage clickOnBreadcrumb() {
+		elementUtilities.clickOnElement(searchPageBreadcrumb);
+		return new SearchPage(driver);
+	}
 
 }

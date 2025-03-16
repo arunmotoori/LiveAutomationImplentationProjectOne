@@ -401,7 +401,7 @@ public class Search extends Base {
 	@Test(priority = 19)
 	public void verifyUsingAllOptionsOnSearchResultsPageUsingKeyboardKeys() throws InterruptedException {
 
-		headerOptions.enterProductAndClickOnSearchButton("");
+		headerOptions.clickOnSearchButton();
 		actions = clickKeyboradKeyMultipleTimes(headerOptions.getDriver(), Keys.TAB, 21);
 		actions = typeTextUsingActions(actions, prop.getProperty("existingProduct"));
 		actions = clickKeyboradKeyMultipleTimes(actions, Keys.TAB, 1);
@@ -455,6 +455,52 @@ public class Search extends Base {
 		actions = clickKeyboradKeyMultipleTimes(actions, Keys.ENTER, 1);
 		Assert.assertTrue(productDisplayPage.IsProductComparisonOptionDisplayedOnTheSuccessMessage());
 
+	}
+	
+	@Test(priority=20)
+	public void verifySearchPageHeadingTitleURL() {
+		
+		searchPage = headerOptions.clickOnSearchButton();
+		Assert.assertEquals(searchPage.getPageHeading(),"Search");
+		Assert.assertEquals(getPageURL(searchPage.getDriver()),getBaseURL()+prop.getProperty("searchPage"));
+		Assert.assertEquals(getPageTitle(searchPage.getDriver()),"Search");
+		
+	}
+	
+	@Test(priority =21)
+	public void verifySearchPageUI() {
+		
+		searchPage = headerOptions.clickOnSearchButton();
+		
+		if (browserName.equalsIgnoreCase("chrome")) {
+			CommonUtilities.takeScreenshot(driver,
+					System.getProperty("user.dir") + "\\Screenshots\\actualSearchPageUI.png");
+			Assert.assertFalse(CommonUtilities.compareTwoScreenshots(
+					System.getProperty("user.dir") + "\\Screenshots\\actualSearchPageUI.png",
+					System.getProperty("user.dir") + "\\Screenshots\\expectedSearchPageUI.png"));
+		} else if (browserName.equalsIgnoreCase("firefox")) {
+			CommonUtilities.takeScreenshot(driver,
+					System.getProperty("user.dir") + "\\Screenshots\\actualFirefoxSearchPageUI.png");
+			Assert.assertFalse(CommonUtilities.compareTwoScreenshots(
+					System.getProperty("user.dir") + "\\Screenshots\\actualFirefoxSearchPageUI.png",
+					System.getProperty("user.dir") + "\\Screenshots\\expectedFirefoxSearchPageUI.png"));
+		} else if (browserName.equalsIgnoreCase("edge")) {
+			CommonUtilities.takeScreenshot(driver,
+					System.getProperty("user.dir") + "\\Screenshots\\actualEdgeSearchPageUI.png");
+			Assert.assertFalse(CommonUtilities.compareTwoScreenshots(
+					System.getProperty("user.dir") + "\\Screenshots\\actualEdgeSearchPageUI.png",
+					System.getProperty("user.dir") + "\\Screenshots\\expectedEdgeSearchPageUI.png"));
+		}
+		
+	}
+	
+	@Test(priority = 22)
+	public void verifySearchFunctionalityInAllEnvironments() {
+		
+		searchPage = headerOptions.enterProductAndClickOnSearchButton(prop.getProperty("existingProductThree"));
+		Assert.assertTrue(searchPage.didWeNavigateToSearchResultsPage());
+		Assert.assertTrue(searchPage.isProductHavingTextInItsDescriptionDisplayedInSearchResults());
+		
 	}
 
 }

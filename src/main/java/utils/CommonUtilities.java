@@ -85,10 +85,20 @@ public class CommonUtilities {
 
 	}
 
-	public static boolean compareTwoScreenshots(String actualImagePath, String expectedImagePath) throws IOException {
+	public static boolean compareTwoScreenshots(String actualImagePath, String expectedImagePath)  {
 
-		BufferedImage bufferedActualImage = ImageIO.read(new File(actualImagePath));
-		BufferedImage bufferedExpectedImage = ImageIO.read(new File(expectedImagePath));
+		BufferedImage bufferedActualImage = null;
+		try {
+			bufferedActualImage = ImageIO.read(new File(actualImagePath));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		BufferedImage bufferedExpectedImage = null;
+		try {
+			bufferedExpectedImage = ImageIO.read(new File(expectedImagePath));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		ImageDiffer differ = new ImageDiffer();
 		ImageDiff imageDiff = differ.makeDiff(bufferedExpectedImage, bufferedActualImage);
 		return imageDiff.hasDiff();

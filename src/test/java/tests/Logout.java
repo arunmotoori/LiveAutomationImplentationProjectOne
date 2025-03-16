@@ -25,11 +25,12 @@ public class Logout extends Base {
 
 	@Test(priority = 1)
 	public void verifyLoggingOutUsingMyAccountLogoutOption() {
-
-		loginPage = headerOptions.navigateToLoginPage();
-		myAccountPage = loginPage.loginInToApplication(prop.getProperty("existingEmail"),
-				prop.getProperty("validPassword"));
-		headerOptions = myAccountPage.getHeaderOptions();
+		String emailAddress = CommonUtilities.generateBrandNewEmail();
+		registerPage = headerOptions.navigateToRegisterPage();
+		accountSuccessPage = registerPage.registeringAnAccount(prop.getProperty("firstName"),
+	    prop.getProperty("lastName"), emailAddress, prop.getProperty("telephoneNumber"),
+		prop.getProperty("validPassword"));
+		headerOptions = accountSuccessPage.getHeaderOptions();
 		headerOptions.clickOnMyAccountDropMenu();
 		accountLogoutPage = headerOptions.selectLogoutOption();
 		Assert.assertTrue(accountLogoutPage.didWeNavigateToAccountLogoutPage());
@@ -39,16 +40,16 @@ public class Logout extends Base {
 		accountLogoutPage = headerOptions.getAccountLogoutPage();
 		homePage = accountLogoutPage.clickOnContinueButton();
 		Assert.assertEquals(getPageTitle(accountLogoutPage.getDriver()), "Your Store");
-
 	}
 
 	@Test(priority = 2)
 	public void verifyLoggingOutUsingRightColumnLogoutOption() {
-
-		loginPage = headerOptions.navigateToLoginPage();
-		myAccountPage = loginPage.loginInToApplication(prop.getProperty("existingEmail"),
-				prop.getProperty("validPassword"));
-		rightColumnOptions = myAccountPage.getRightColumnOptions();
+		String emailAddress = CommonUtilities.generateBrandNewEmail();
+		registerPage = headerOptions.navigateToRegisterPage();
+		accountSuccessPage = registerPage.registeringAnAccount(prop.getProperty("firstName"),
+	    prop.getProperty("lastName"), emailAddress, prop.getProperty("telephoneNumber"),
+		prop.getProperty("validPassword"));
+		rightColumnOptions = accountSuccessPage.getRightColumnOptions();
 		accountLogoutPage = rightColumnOptions.clickOnLogoutOption();
 		Assert.assertTrue(accountLogoutPage.didWeNavigateToAccountLogoutPage());
 		headerOptions = accountLogoutPage.getHeaderOptions();
@@ -62,11 +63,12 @@ public class Logout extends Base {
 
 	@Test(priority = 3)
 	public void verifyLoggingOutAndBrowsingBack() {
-
-		loginPage = headerOptions.navigateToLoginPage();
-		myAccountPage = loginPage.loginInToApplication(prop.getProperty("existingEmail"),
-				prop.getProperty("validPassword"));
-		headerOptions = myAccountPage.getHeaderOptions();
+		String emailAddress = CommonUtilities.generateBrandNewEmail();
+		registerPage = headerOptions.navigateToRegisterPage();
+		accountSuccessPage = registerPage.registeringAnAccount(prop.getProperty("firstName"),
+	    prop.getProperty("lastName"), emailAddress, prop.getProperty("telephoneNumber"),
+		prop.getProperty("validPassword"));
+		headerOptions = accountSuccessPage.getHeaderOptions();
 		headerOptions.clickOnMyAccountDropMenu();
 		accountLogoutPage = headerOptions.selectLogoutOption();
 		navigateBackInBrowser(driver);
@@ -74,7 +76,6 @@ public class Logout extends Base {
 		headerOptions = accountLogoutPage.getHeaderOptions();
 		headerOptions.clickOnMyAccountDropMenu();
 		Assert.assertTrue(headerOptions.isLoginOptionUnderMyAccountDropMenuDisplayed());
-
 	}
 
 	@Test(priority = 4)
@@ -97,17 +98,18 @@ public class Logout extends Base {
 
 	@Test(priority = 6)
 	public void verifyLoginImmediatleyAfterLogout() {
-
-		loginPage = headerOptions.navigateToLoginPage();
-		myAccountPage = loginPage.loginInToApplication(prop.getProperty("existingEmail"),
-				prop.getProperty("validPassword"));
-		headerOptions = myAccountPage.getHeaderOptions();
+		String emailAddress = CommonUtilities.generateBrandNewEmail();
+		registerPage = headerOptions.navigateToRegisterPage();
+		accountSuccessPage = registerPage.registeringAnAccount(prop.getProperty("firstName"),
+	    prop.getProperty("lastName"), emailAddress, prop.getProperty("telephoneNumber"),
+		prop.getProperty("validPassword"));
+		headerOptions = accountSuccessPage.getHeaderOptions();
 		headerOptions.clickOnMyAccountDropMenu();
 		accountLogoutPage = headerOptions.selectLogoutOption();
 		headerOptions = accountLogoutPage.getHeaderOptions();
 		headerOptions.clickOnMyAccountDropMenu();
 		loginPage = headerOptions.navigateToLoginPage();
-		myAccountPage = loginPage.loginInToApplication(prop.getProperty("existingEmail"),
+		myAccountPage = loginPage.loginInToApplication(emailAddress,
 				prop.getProperty("validPassword"));
 		Assert.assertTrue(myAccountPage.didWeNavigateToMyAccountPage());
 
@@ -115,27 +117,29 @@ public class Logout extends Base {
 
 	@Test(priority = 7)
 	public void verifyBreadcrumbTitleURLAndHeadingOfAccountLogoutPage() {
-
-		loginPage = headerOptions.navigateToLoginPage();
-		myAccountPage = loginPage.loginInToApplication(prop.getProperty("existingEmail"),
-				prop.getProperty("validPassword"));
-		headerOptions = myAccountPage.getHeaderOptions();
+		String emailAddress = CommonUtilities.generateBrandNewEmail();
+		registerPage = headerOptions.navigateToRegisterPage();
+		accountSuccessPage = registerPage.registeringAnAccount(prop.getProperty("firstName"),
+	    prop.getProperty("lastName"), emailAddress, prop.getProperty("telephoneNumber"),
+		prop.getProperty("validPassword"));
+		headerOptions = accountSuccessPage.getHeaderOptions();
 		headerOptions.clickOnMyAccountDropMenu();
 		accountLogoutPage = headerOptions.selectLogoutOption();
 		Assert.assertEquals(getPageTitle(accountLogoutPage.getDriver()), "Account Logout");
-		Assert.assertEquals(getPageURL(accountLogoutPage.getDriver()), prop.getProperty("logoutPageURL"));
+		Assert.assertEquals(getPageURL(accountLogoutPage.getDriver()), getBaseURL()+prop.getProperty("logoutPageURL"));
 		Assert.assertTrue(accountLogoutPage.didWeNavigateToAccountLogoutPage());
 		Assert.assertEquals(accountLogoutPage.getPageHeading(), "Account Logout");
 
 	}
 
 	@Test(priority = 8)
-	public void verifyLogoutUI() throws IOException {
-
-		loginPage = headerOptions.navigateToLoginPage();
-		myAccountPage = loginPage.loginInToApplication(prop.getProperty("existingEmail"),
-				prop.getProperty("validPassword"));
-		headerOptions = myAccountPage.getHeaderOptions();
+	public void verifyLogoutUI()  {
+		String emailAddress = CommonUtilities.generateBrandNewEmail();
+		registerPage = headerOptions.navigateToRegisterPage();
+		accountSuccessPage = registerPage.registeringAnAccount(prop.getProperty("firstName"),
+	    prop.getProperty("lastName"), emailAddress, prop.getProperty("telephoneNumber"),
+		prop.getProperty("validPassword"));
+		headerOptions = accountSuccessPage.getHeaderOptions();
 		headerOptions.clickOnMyAccountDropMenu();
 
 		if (browserName.equalsIgnoreCase("chrome")) {
@@ -184,11 +188,12 @@ public class Logout extends Base {
 
 	@Test(priority = 9)
 	public void verifyLogoutInAllSupportedEnvironments() {
-
-		loginPage = headerOptions.navigateToLoginPage();
-		myAccountPage = loginPage.loginInToApplication(prop.getProperty("existingEmail"),
-				prop.getProperty("validPassword"));
-		headerOptions = myAccountPage.getHeaderOptions();
+		String emailAddress = CommonUtilities.generateBrandNewEmail();
+		registerPage = headerOptions.navigateToRegisterPage();
+		accountSuccessPage = registerPage.registeringAnAccount(prop.getProperty("firstName"),
+	    prop.getProperty("lastName"), emailAddress, prop.getProperty("telephoneNumber"),
+		prop.getProperty("validPassword"));
+		headerOptions = accountSuccessPage.getHeaderOptions();
 		headerOptions.clickOnMyAccountDropMenu();
 		accountLogoutPage = headerOptions.selectLogoutOption();
 		Assert.assertTrue(accountLogoutPage.didWeNavigateToAccountLogoutPage());
@@ -198,7 +203,6 @@ public class Logout extends Base {
 		accountLogoutPage = headerOptions.getAccountLogoutPage();
 		homePage = accountLogoutPage.clickOnContinueButton();
 		Assert.assertEquals(getPageTitle(accountLogoutPage.getDriver()), "Your Store");
-
 	}
 
 }

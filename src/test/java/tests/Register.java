@@ -1060,7 +1060,7 @@ public class Register extends Base {
 	}
 
 	@Test(priority = 26)
-	public void verifyRegisterAccountUI() throws IOException {
+	public void verifyRegisterAccountUI() {
 
 		if (browserName.equalsIgnoreCase("chrome")) {
 			CommonUtilities.takeScreenshot(driver,

@@ -7,6 +7,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.HashMap;
 import java.util.Properties;
 
 import javax.mail.Flags;
@@ -32,10 +33,11 @@ import org.testng.asserts.SoftAssert;
 import base.Base;
 import pages.HeaderOptions;
 import utils.CommonUtilities;
+import utils.MyXLSReader;
 
 public class Register extends Base {
 
-	WebDriver driver;
+	public WebDriver driver;
 
 	@BeforeMethod
 	public void setup() {
@@ -580,14 +582,14 @@ public class Register extends Base {
 
 	@Test(priority = 17, dataProvider = "passwordSupplier")
 	public void verifyRegisteringAccountUsingPasswordsWhichAreNotFollowingPasswordComplexityStandards(
-			String passwordText) {
+			HashMap<String, String> map) {
 
 		registerPage.enterFirstName(prop.getProperty("firstName"));
 		registerPage.enterLastName(prop.getProperty("lastName"));
 		registerPage.enterEmail(CommonUtilities.generateBrandNewEmail());
 		registerPage.enterTelephone(prop.getProperty("telephoneNumber"));
-		registerPage.enterPassword(passwordText);
-		registerPage.enterConfirmationPassword(passwordText);
+		registerPage.enterPassword(map.get("Passwords"));
+		registerPage.enterConfirmationPassword(map.get("Passwords"));
 		registerPage.selectYesNewsletterOption();
 		registerPage.selectPrivacyPolicyField();
 		registerPage.clickOnContinueButton();
@@ -610,7 +612,9 @@ public class Register extends Base {
 	@DataProvider(name = "passwordSupplier")
 	public Object[][] supplyPasswords() {
 
-		Object[][] data = { { "12345" }, { "abcdefghi" }, { "abcd1234" }, { "abcd123$" }, { "ABCD456#" } };
+		MyXLSReader myXLSReader = new MyXLSReader("\\src\\test\\resources\\TutorialsNinja.xlsx");
+		Object[][] data = CommonUtilities.getTestData(myXLSReader, "RegisterWithNoPasswordComplexityTest",
+				"BadPasswords");
 		return data;
 
 	}
@@ -1053,7 +1057,7 @@ public class Register extends Base {
 	public void verifyRegisterAccountPageBreadcrumbURLTitleHeading() {
 
 		Assert.assertEquals(getPageTitle(registerPage.getDriver()), "Register Account");
-		Assert.assertEquals(getPageURL(registerPage.getDriver()), getBaseURL()+prop.getProperty("registerPageURL"));
+		Assert.assertEquals(getPageURL(registerPage.getDriver()), getBaseURL() + prop.getProperty("registerPageURL"));
 		Assert.assertTrue(registerPage.didWeNavigateToRegisterPage());
 		Assert.assertEquals(registerPage.getPageHeading(), "Register Account");
 

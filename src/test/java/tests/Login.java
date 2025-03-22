@@ -15,7 +15,7 @@ import utils.CommonUtilities;
 
 public class Login extends Base {
 
-	WebDriver driver;
+	public WebDriver driver;
 
 	@BeforeMethod
 	public void setup() {
@@ -31,8 +31,8 @@ public class Login extends Base {
 		String emailAddress = CommonUtilities.generateBrandNewEmail();
 		registerPage = headerOptions.navigateToRegisterPage();
 		accountSuccessPage = registerPage.registeringAnAccount(prop.getProperty("firstName"),
-	    prop.getProperty("lastName"), emailAddress, prop.getProperty("telephoneNumber"),
-		prop.getProperty("validPassword"));
+				prop.getProperty("lastName"), emailAddress, prop.getProperty("telephoneNumber"),
+				prop.getProperty("validPassword"));
 		rightColumnOptions = accountSuccessPage.getRightColumnOptions();
 		rightColumnOptions.clickOnLogoutOption();
 		loginPage = headerOptions.navigateToLoginPage();
@@ -98,8 +98,8 @@ public class Login extends Base {
 		String emailAddress = CommonUtilities.generateBrandNewEmail();
 		registerPage = headerOptions.navigateToRegisterPage();
 		accountSuccessPage = registerPage.registeringAnAccount(prop.getProperty("firstName"),
-	    prop.getProperty("lastName"), emailAddress, prop.getProperty("telephoneNumber"),
-		prop.getProperty("validPassword"));
+				prop.getProperty("lastName"), emailAddress, prop.getProperty("telephoneNumber"),
+				prop.getProperty("validPassword"));
 		rightColumnOptions = accountSuccessPage.getRightColumnOptions();
 		rightColumnOptions.clickOnLogoutOption();
 		loginPage = headerOptions.navigateToLoginPage();
@@ -127,13 +127,12 @@ public class Login extends Base {
 		String emailAddress = CommonUtilities.generateBrandNewEmail();
 		registerPage = headerOptions.navigateToRegisterPage();
 		accountSuccessPage = registerPage.registeringAnAccount(prop.getProperty("firstName"),
-	    prop.getProperty("lastName"), emailAddress, prop.getProperty("telephoneNumber"),
-		prop.getProperty("validPassword"));
+				prop.getProperty("lastName"), emailAddress, prop.getProperty("telephoneNumber"),
+				prop.getProperty("validPassword"));
 		rightColumnOptions = accountSuccessPage.getRightColumnOptions();
 		rightColumnOptions.clickOnLogoutOption();
 		loginPage = headerOptions.navigateToLoginPage();
-		myAccountPage = loginPage.loginInToApplication(emailAddress,
-				prop.getProperty("validPassword"));
+		myAccountPage = loginPage.loginInToApplication(emailAddress, prop.getProperty("validPassword"));
 		navigateBackInBrowser(myAccountPage.getDriver());
 		refreshPage(myAccountPage.getDriver());
 		Assert.assertTrue(myAccountPage.didWeNavigateToMyAccountPage());
@@ -145,13 +144,12 @@ public class Login extends Base {
 		String emailAddress = CommonUtilities.generateBrandNewEmail();
 		registerPage = headerOptions.navigateToRegisterPage();
 		accountSuccessPage = registerPage.registeringAnAccount(prop.getProperty("firstName"),
-	    prop.getProperty("lastName"), emailAddress, prop.getProperty("telephoneNumber"),
-		prop.getProperty("validPassword"));
+				prop.getProperty("lastName"), emailAddress, prop.getProperty("telephoneNumber"),
+				prop.getProperty("validPassword"));
 		rightColumnOptions = accountSuccessPage.getRightColumnOptions();
 		rightColumnOptions.clickOnLogoutOption();
 		loginPage = headerOptions.navigateToLoginPage();
-		myAccountPage = loginPage.loginInToApplication(emailAddress,
-				prop.getProperty("validPassword"));
+		myAccountPage = loginPage.loginInToApplication(emailAddress, prop.getProperty("validPassword"));
 		headerOptions = myAccountPage.getHeaderOptions();
 		accountLogoutPage = headerOptions.selectLogoutOption();
 		navigateBackInBrowser(accountLogoutPage.getDriver());
@@ -417,7 +415,7 @@ public class Login extends Base {
 	public void verifyLoginPageBreadcrumbURLTitleHeading() {
 
 		Assert.assertEquals(getPageTitle(loginPage.getDriver()), "Account Login");
-		Assert.assertEquals(getPageURL(loginPage.getDriver()), getBaseURL()+prop.getProperty("loginPageURL"));
+		Assert.assertEquals(getPageURL(loginPage.getDriver()), getBaseURL() + prop.getProperty("loginPageURL"));
 		Assert.assertTrue(loginPage.didWeNavigateToLogin());
 		Assert.assertEquals(loginPage.getFirstHeading(), "New Customer");
 		Assert.assertEquals(loginPage.getSecondHeading(), "Returning Customer");
@@ -454,8 +452,8 @@ public class Login extends Base {
 		String emailAddress = CommonUtilities.generateBrandNewEmail();
 		registerPage = headerOptions.navigateToRegisterPage();
 		accountSuccessPage = registerPage.registeringAnAccount(prop.getProperty("firstName"),
-	    prop.getProperty("lastName"), emailAddress, prop.getProperty("telephoneNumber"),
-		prop.getProperty("validPassword"));
+				prop.getProperty("lastName"), emailAddress, prop.getProperty("telephoneNumber"),
+				prop.getProperty("validPassword"));
 		rightColumnOptions = accountSuccessPage.getRightColumnOptions();
 		rightColumnOptions.clickOnLogoutOption();
 		loginPage = headerOptions.navigateToLoginPage();

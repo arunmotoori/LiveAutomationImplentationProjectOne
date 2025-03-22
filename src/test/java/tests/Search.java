@@ -16,7 +16,7 @@ import utils.CommonUtilities;
 
 public class Search extends Base {
 
-	WebDriver driver;
+	public WebDriver driver;
 
 	@BeforeMethod
 	public void setup() {
@@ -456,22 +456,22 @@ public class Search extends Base {
 		Assert.assertTrue(productDisplayPage.IsProductComparisonOptionDisplayedOnTheSuccessMessage());
 
 	}
-	
-	@Test(priority=20)
+
+	@Test(priority = 20)
 	public void verifySearchPageHeadingTitleURL() {
-		
+
 		searchPage = headerOptions.clickOnSearchButton();
-		Assert.assertEquals(searchPage.getPageHeading(),"Search");
-		Assert.assertEquals(getPageURL(searchPage.getDriver()),getBaseURL()+prop.getProperty("searchPage"));
-		Assert.assertEquals(getPageTitle(searchPage.getDriver()),"Search");
-		
+		Assert.assertEquals(searchPage.getPageHeading(), "Search");
+		Assert.assertEquals(getPageURL(searchPage.getDriver()), getBaseURL() + prop.getProperty("searchPage"));
+		Assert.assertEquals(getPageTitle(searchPage.getDriver()), "Search");
+
 	}
-	
-	@Test(priority =21)
+
+	@Test(priority = 21)
 	public void verifySearchPageUI() {
-		
+
 		searchPage = headerOptions.clickOnSearchButton();
-		
+
 		if (browserName.equalsIgnoreCase("chrome")) {
 			CommonUtilities.takeScreenshot(driver,
 					System.getProperty("user.dir") + "\\Screenshots\\actualSearchPageUI.png");
@@ -491,16 +491,16 @@ public class Search extends Base {
 					System.getProperty("user.dir") + "\\Screenshots\\actualEdgeSearchPageUI.png",
 					System.getProperty("user.dir") + "\\Screenshots\\expectedEdgeSearchPageUI.png"));
 		}
-		
+
 	}
-	
+
 	@Test(priority = 22)
 	public void verifySearchFunctionalityInAllEnvironments() {
-		
+
 		searchPage = headerOptions.enterProductAndClickOnSearchButton(prop.getProperty("existingProductThree"));
 		Assert.assertTrue(searchPage.didWeNavigateToSearchResultsPage());
 		Assert.assertTrue(searchPage.isProductHavingTextInItsDescriptionDisplayedInSearchResults());
-		
+
 	}
 
 }
